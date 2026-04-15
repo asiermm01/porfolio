@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asier — Portfolio</title>
+    <meta name="description" content="Asier's personal portfolio showcasing projects, skills, and experience in web development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">A<span class="logo-dot">.</span></a>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#technologies" class="nav-link">Tech</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-glow hero-glow-1"></div>
+        <div class="hero-glow hero-glow-2"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Available for work
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-greeting">Hi, I'm</span>
+                <span class="hero-name">Asier</span>
+                <span class="hero-role">Web Developer</span>
+            </h1>
+            <p class="hero-description">
+                I build modern, performant, and beautiful web experiences that make an impact. Passionate about clean code and elegant design.
+            </p>
+            <div class="hero-cta">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+            <div class="hero-scroll-indicator">
+                <div class="scroll-line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">01</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-wrapper">
+                    <div class="about-image-frame">
+                        <img src="assets/profile.jpg" alt="Profile photo of Asier" class="about-image" id="about-image">
+                        <div class="about-image-overlay"></div>
+                    </div>
+                    <div class="about-image-decoration"></div>
+                </div>
+                <div class="about-content">
+                    <p class="about-text">
+                        I'm a passionate web developer with a keen eye for design and a love for creating seamless digital experiences. With a strong foundation in both front-end and back-end technologies, I bring ideas to life through clean, efficient code.
+                    </p>
+                    <p class="about-text">
+                        When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or enjoying the outdoors. I believe in continuous learning and pushing the boundaries of what's possible on the web.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" data-target="10">0</span>
+                            <span class="stat-suffix">+</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="section technologies" id="technologies">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">02</span>
+                <h2 class="section-title">Technologies</h2>
+                <div class="section-line"></div>
+            </div>
+            <p class="section-subtitle">The tools and technologies I work with to bring ideas to life.</p>
+            <div class="tech-grid">
+                <div class="tech-card" data-category="frontend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
+                            <line x1="12" y1="22" x2="12" y2="15.5"/>
+                            <polyline points="22 8.5 12 15.5 2 8.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">HTML5</h3>
+                    <span class="tech-category">Markup</span>
+                </div>
+                <div class="tech-card" data-category="frontend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M4 4h16v16H4z"/>
+                            <path d="M8 8h8v8H8z"/>
+                            <path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">CSS3</h3>
+                    <span class="tech-category">Styling</span>
+                </div>
+                <div class="tech-card" data-category="frontend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 15.88c-3.05-1.27-5.76-4-5.76-7.38a7.5 7.5 0 0115 0c0 3.38-2.71 6.11-5.76 7.38"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">JavaScript</h3>
+                    <span class="tech-category">Language</span>
+                </div>
+                <div class="tech-card" data-category="frontend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1c5 0 9.27 3.11 9.27 8.5S17 18 12 21c-5-3-9.27-6.11-9.27-11.5S7 1 12 1z"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">React</h3>
+                    <span class="tech-category">Framework</span>
+                </div>
+                <div class="tech-card" data-category="backend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">Node.js</h3>
+                    <span class="tech-category">Runtime</span>
+                </div>
+                <div class="tech-card" data-category="tools">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">Git</h3>
+                    <span class="tech-category">Version Control</span>
+                </div>
+                <div class="tech-card" data-category="frontend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                            <path d="M8 12l3 3 5-5"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">TypeScript</h3>
+                    <span class="tech-category">Language</span>
+                </div>
+                <div class="tech-card" data-category="backend">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                        </svg>
+                    </div>
+                    <h3 class="tech-name">Databases</h3>
+                    <span class="tech-category">Storage</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">03</span>
+                <h2 class="section-title">Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <p class="section-subtitle">A selection of projects I've built and contributed to.</p>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <article class="project-card project-card-featured" id="project-1">
+                    <div class="project-image-wrapper">
+                        <img src="assets/project1.jpg" alt="E-Commerce Platform screenshot" class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View live site">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                                <a href="#" class="project-link" aria-label="View source code">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-label">Featured Project</span>
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">
+                            A full-featured e-commerce platform with user authentication, product management, shopping cart, and payment integration. Built with modern web technologies for optimal performance.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span class="project-tech">React</span>
+                            <span class="project-tech">Node.js</span>
+                            <span class="project-tech">MongoDB</span>
+                            <span class="project-tech">Stripe</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card" id="project-2">
+                    <div class="project-image-wrapper">
+                        <img src="assets/project2.jpg" alt="Task Manager App screenshot" class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View live site">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                                <a href="#" class="project-link" aria-label="View source code">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Task Manager App</h3>
+                        <p class="project-description">
+                            A productivity app with drag-and-drop task management, real-time collaboration features, and intuitive user interface.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span class="project-tech">TypeScript</span>
+                            <span class="project-tech">React</span>
+                            <span class="project-tech">Firebase</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card" id="project-3">
+                    <div class="project-image-wrapper">
+                        <img src="assets/project3.jpg" alt="Weather Dashboard screenshot" class="project-image">
+                        <div class="project-image-overlay">
+                            <div class="project-links">
+                                <a href="#" class="project-link" aria-label="View live site">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                </a>
+                                <a href="#" class="project-link" aria-label="View source code">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Weather Dashboard</h3>
+                        <p class="project-description">
+                            A beautiful weather dashboard with location-based forecasts, interactive charts, and responsive design for all devices.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span class="project-tech">JavaScript</span>
+                            <span class="project-tech">API</span>
+                            <span class="project-tech">CSS3</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">04</span>
+                <h2 class="section-title">Get in Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <p class="section-subtitle">Have a project in mind or just want to chat? I'd love to hear from you.</p>
+            <div class="contact-grid">
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                        <span class="form-highlight"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+                        <span class="form-highlight"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?">
+                        <span class="form-highlight"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-input form-textarea" placeholder="Tell me about your project..." rows="5" required></textarea>
+                        <span class="form-highlight"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
+                        <span class="btn-text">Send Message</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                        </svg>
+                    </button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>Email</h4>
+                            <p>hello@asier.dev</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-card-content">
+                            <h4>Location</h4>
+                            <p>Spain</p>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <h4>Follow Me</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link" aria-label="GitHub" id="social-github">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn" id="social-linkedin">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter" id="social-twitter">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#hero" class="footer-logo">A<span class="logo-dot">.</span></a>
+                    <p class="footer-tagline">Building the web, one pixel at a time.</p>
+                </div>
+                <div class="footer-nav">
+                    <a href="#about">About</a>
+                    <a href="#technologies">Tech</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Asier. All rights reserved.</p>
+                <p class="footer-credit">Designed & Built with <span class="heart">&hearts;</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
