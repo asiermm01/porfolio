@@ -641,7 +641,7 @@ ul {
     align-items: center;
     z-index: 1;
     min-height: 100px;
-    aspect-ratio: 1344 / 114;
+    aspect-ratio: 1622 / 114;
     transition: transform var(--transition-fast);
 }
 
