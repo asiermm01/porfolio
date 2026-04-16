@@ -4,6 +4,36 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Portfolio loaded!");
 
     // ==========================================
+    // NAVBAR SCROLL BEHAVIOR
+    // ==========================================
+    const navbar = document.getElementById("navbar");
+    if (navbar) {
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener("scroll", () => {
+            const currentScrollY = window.scrollY;
+
+            // Adding/removing 'scrolled' class based on scroll position
+            if (currentScrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+
+            // Hiding/showing navbar based on scroll direction
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down & past 100px: hide navbar
+                navbar.classList.add("hidden");
+            } else {
+                // Scrolling up: show navbar
+                navbar.classList.remove("hidden");
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+    }
+
+    // ==========================================
     // GSAP ANIMATIONS SETUP
     // ==========================================
     // Example GSAP code:

@@ -25,7 +25,8 @@
     --border-hover: rgba(124, 92, 252, 0.3);
 
     /* Typography */
-    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-main: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
     /* Spacing */
@@ -71,6 +72,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6,
+.hero-name, .section-title, .project-title {
+    font-family: var(--font-heading);
+}
+
 ::selection {
     background-color: var(--accent-primary);
     color: #fff;
@@ -103,20 +109,30 @@ ul {
    =================================== */
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 20px;
+    left: 2%;
+    right: 2%;
+    width: 96%;
+    max-width: 1400px; /* A bit wider than standard container */
+    margin: 0 auto; /* Center it */
     z-index: 1000;
-    padding: 20px 0;
+    padding: 16px 0;
     transition: all var(--transition-medium);
-    backdrop-filter: blur(0px);
+    border-radius: 100px;
+    border: 1px solid transparent;
+}
+
+.navbar.hidden {
+    transform: translateY(-150%);
 }
 
 .navbar.scrolled {
     padding: 12px 0;
-    background-color: rgba(10, 10, 15, 0.85);
+    background-color: rgba(10, 10, 15, 0.75);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border-color);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
