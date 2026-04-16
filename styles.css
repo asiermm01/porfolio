@@ -3,20 +3,25 @@
    =================================== */
 :root {
     /* Colors */
-    --bg-primary: #0a0a0f;
-    --bg-secondary: #12121a;
-    --bg-tertiary: #1a1a2e;
+    --bg-primary: #d9d9d9;
+    --bg-secondary: #f2f4f3;
+    --bg-tertiary: #101014;
     --bg-card: rgba(22, 22, 35, 0.7);
     --bg-card-hover: rgba(30, 30, 50, 0.9);
     --bg-glass: rgba(255, 255, 255, 0.03);
     --bg-glass-hover: rgba(255, 255, 255, 0.06);
 
-    --text-primary: #e8e6f0;
+    --color-white: #f2f4f3;
+    --color-grey: #d9d9d9;
+    --color-black: #101014;
+
+    --text-primary: #101014;
     --text-secondary: #9896a8;
     --text-muted: #5e5c6e;
 
     --accent-primary: #5620e9;
-    --accent-secondary: #a78bfa;
+    --accent-secondary: #00c853;
+    --accent-tertiary: #f5b800;
     --accent-glow: rgba(124, 92, 252, 0.15);
     --accent-gradient: linear-gradient(135deg, #7c5cfc, #a78bfa, #c084fc);
     --accent-gradient-hover: linear-gradient(135deg, #6d4de6, #9b7bf0, #b574f0);
@@ -27,11 +32,11 @@
     /* Typography */
     --font-main: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    /* --font-mono: 'JetBrains Mono', 'Fira Code', monospace; */
 
     /* Spacing */
     --section-padding: 120px;
-    --container-max: 1200px;
+    --container-max: 1500px;
     --container-padding: 24px;
 
     /* Transitions */
@@ -145,9 +150,7 @@ ul {
 }
 
 .nav-logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    max-width: 175px;
     color: var(--text-primary);
     transition: transform var(--transition-fast);
 }
@@ -244,8 +247,8 @@ ul {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(rgba(124, 92, 252, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 92, 252, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(124, 92, 252, 0.2) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 92, 252, 0.2) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 20%, transparent 70%);
@@ -255,7 +258,7 @@ ul {
     position: absolute;
     border-radius: 50%;
     filter: blur(120px);
-    opacity: 0.4;
+    opacity: 1;
     pointer-events: none;
 }
 
@@ -272,7 +275,7 @@ ul {
 .hero-glow-2 {
     width: 400px;
     height: 400px;
-    background: #c084fc;
+    background: var(--accent-secondary);
     bottom: -50px;
     left: -100px;
     opacity: 0.08;
@@ -629,7 +632,7 @@ ul {
 
 .study-card {
     position: relative;
-    padding: 35px 60px;
+    padding: 0 60px;
     font-weight: 700;
     font-size: 1.15rem;
     color: #12121a;
@@ -638,6 +641,7 @@ ul {
     align-items: center;
     z-index: 1;
     min-height: 100px;
+    aspect-ratio: 1344 / 114;
     transition: transform var(--transition-fast);
 }
 
@@ -667,25 +671,45 @@ ul {
     inset: 0;
     width: 100%;
     height: 100%;
-    fill: none;
-    stroke: var(--accent-primary);
-    stroke-width: 4px;
-    stroke-dasharray: 400 3500;
-    stroke-dashoffset: 0;
-    opacity: 0;
     z-index: 2;
     transition: opacity var(--transition-fast);
     pointer-events: none;
+    opacity: 0;
 }
 
 .study-card:hover .study-card-border {
     opacity: 1;
-    animation: dashPulse 2s linear infinite;
 }
 
-@keyframes dashPulse {
-    from { stroke-dashoffset: 3900; }
-    to { stroke-dashoffset: 0; }
+.pulse-main, .pulse-wrap {
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 4px;
+    stroke-dasharray: 15 85; 
+}
+
+.pulse-main {
+    animation: sweepMain 3s linear infinite;
+}
+
+.pulse-wrap {
+    animation: sweepWrap 3s linear infinite;
+}
+
+@keyframes sweepMain {
+    from { stroke-dashoffset: 0; }
+    to { stroke-dashoffset: -100; }
+}
+
+@keyframes sweepWrap {
+    from { stroke-dashoffset: -100; }
+    to { stroke-dashoffset: -200; }
+}
+
+@media (max-width: 1024px) {
+    .study-card {
+        aspect-ratio: auto;
+    }
 }
 
 /* --- Workflow Section --- */
