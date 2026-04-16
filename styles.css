@@ -128,7 +128,7 @@ ul {
 
 .navbar.scrolled {
     padding: 12px 0;
-    background-color: rgba(10, 10, 15, 0.75);
+    background-color: rgba(240, 240, 235, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--border-color);
@@ -521,11 +521,17 @@ ul {
     position: absolute;
     top: 50px;
     left: 0;
-    width: 200%;
-    white-space: nowrap;
+    right: 0;
+    overflow: hidden;
     z-index: 1;
     opacity: 0.15;
     pointer-events: none;
+}
+
+.scrolling-text-track {
+    display: flex;
+    width: max-content;
+    animation: scrollText 20s linear infinite;
 }
 
 .scrolling-text {
@@ -533,7 +539,7 @@ ul {
     font-weight: 800;
     color: #000;
     font-family: var(--font-heading);
-    animation: scrollText 30s linear infinite;
+    white-space: nowrap;
 }
 
 @keyframes scrollText {
@@ -566,16 +572,23 @@ ul {
 }
 
 .about-intro-card {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 50px 60px;
-    clip-path: polygon(
-        0% 0%, 
-        85% 0%, 100% 15%, 
-        100% 100%, 
-        15% 100%, 0% 85%
-    );
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    flex: 1.2;
+    position: relative;
+    padding: 80px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 450px;
+    z-index: 1;
+}
+
+.about-intro-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('assets/components/basic_box.svg') center center / 100% 100% no-repeat;
+    z-index: -1;
+    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
 }
 
 .about-card-title {
@@ -615,19 +628,64 @@ ul {
 }
 
 .study-card {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    clip-path: polygon(
-        0% 0%, 
-        calc(100% - 30px) 0%, 
-        100% 30px, 
-        100% 100%, 
-        0% 100%
-    );
+    position: relative;
+    padding: 35px 60px;
     font-weight: 700;
     font-size: 1.15rem;
     color: #12121a;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    min-height: 100px;
+    transition: transform var(--transition-fast);
+}
+
+.study-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #F2F4F3;
+    -webkit-mask: url('assets/components/nav.svg') center center / 100% 100% no-repeat;
+    mask: url('assets/components/nav.svg') center center / 100% 100% no-repeat;
+    z-index: -1;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.05));
+    transition: background-color var(--transition-fast), filter var(--transition-fast);
+}
+
+.study-card:hover {
+    transform: scale(1.02);
+}
+
+.study-card:hover::before {
+    background-color: #FFFFFF;
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
+}
+
+.study-card-border {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 4px;
+    stroke-dasharray: 400 3500;
+    stroke-dashoffset: 0;
+    opacity: 0;
+    z-index: 2;
+    transition: opacity var(--transition-fast);
+    pointer-events: none;
+}
+
+.study-card:hover .study-card-border {
+    opacity: 1;
+    animation: dashPulse 2s linear infinite;
+}
+
+@keyframes dashPulse {
+    from { stroke-dashoffset: 3900; }
+    to { stroke-dashoffset: 0; }
 }
 
 /* --- Workflow Section --- */
