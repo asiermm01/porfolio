@@ -29,6 +29,8 @@
     --border-color: rgba(255, 255, 255, 0.06);
     --border-hover: rgba(124, 92, 252, 0.3);
 
+    --component-basic: polygon(10% 0%, 12% 3%, 35% 3%, 37% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 97%, 65% 97%, 63% 100%, 0% 100%, 0% 0%);
+
     /* Typography */
     --font-main: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,8 +42,8 @@
     --container-padding: 24px;
 
     /* Transitions */
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Border radius */
@@ -427,24 +429,53 @@ ul {
     font-family: var(--font-main);
     font-size: 0.95rem;
     font-weight: 600;
-    border-radius: var(--radius-sm);
     cursor: pointer;
     transition: all var(--transition-medium);
     border: none;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .btn-primary {
-    background: var(--accent-gradient);
+    background: var(--accent-primary);
     color: #fff;
     box-shadow: 0 4px 20px var(--accent-glow);
 }
 
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+    background-color: rgba(255, 255, 255, 0.1);
+    -webkit-mask-image: url('assets/components/A.svg');
+    mask-image: url('assets/components/A.svg');
+    -webkit-mask-size: contain;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    transform: translate(-50%, -50%) rotate(90deg);
+    transition: all var(--transition-medium);
+    z-index: -1;
+}
+
 .btn-primary:hover {
-    background: var(--accent-gradient-hover);
-    box-shadow: 0 6px 30px rgba(124, 92, 252, 0.3);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(104, 76, 214, 0.3);
+    transform: scale(1.02);
+    filter: brightness(1.1);
+}
+
+.btn-primary:hover::before {
+    background-color: rgba(255, 255, 255, 0.15);
+    width: 65%;
+    height: 65%;
+    left: 80%;
+    transform: translate(-50%, -50%) rotate(360deg);
 }
 
 .btn-secondary {
@@ -513,7 +544,10 @@ ul {
 /* --- Intro Section (Quien soy) --- */
 .about-intro {
     position: relative;
-    background: linear-gradient(135deg, #e3e1ec 0%, #d1c1fa 100%);
+    /* background: linear-gradient(135deg, #e3e1ec 0%, #d1c1fa 100%); */
+    background-image: url('assets/images/mesh-673\ 2-1x.png');
+    background-size: cover;
+    background-position: center;
     padding-top: 150px;
     padding-bottom: 80px;
     overflow: hidden;
@@ -522,12 +556,12 @@ ul {
 
 .about-scrolling-bg {
     position: absolute;
-    top: 50px;
+    top: 10px;
     left: 0;
     right: 0;
     overflow: hidden;
-    z-index: 1;
-    opacity: 0.15;
+    z-index: 5;
+    opacity: 1;
     pointer-events: none;
 }
 
@@ -540,7 +574,7 @@ ul {
 .scrolling-text {
     font-size: 8rem;
     font-weight: 800;
-    color: #000;
+    color: var(--color-black);
     font-family: var(--font-heading);
     white-space: nowrap;
 }
@@ -583,13 +617,15 @@ ul {
     justify-content: center;
     min-height: 450px;
     z-index: 1;
+    background-color: #f2f4f3;
+    clip-path: var(--component-basic)
 }
 
 .about-intro-card::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: url('assets/components/basic_box.svg') center center / 100% 100% no-repeat;
+    /*background: url('assets/components/basic_box.svg') center center / 100% 100% no-repeat;*/
     z-index: -1;
     filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
 }
@@ -659,6 +695,7 @@ ul {
 
 .study-card:hover {
     transform: scale(1.02);
+    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
 }
 
 .study-card:hover::before {
@@ -702,8 +739,8 @@ ul {
 }
 
 @keyframes sweepWrap {
-    from { stroke-dashoffset: -100; }
-    to { stroke-dashoffset: -200; }
+    from { stroke-dashoffset: -50; }
+    to { stroke-dashoffset: -150; }
 }
 
 @media (max-width: 1024px) {
@@ -1021,6 +1058,10 @@ ul {
    =================================== */
 .contact {
     background-color: var(--bg-secondary);
+    background-image: url('assets/images/mesh-673\ 2-1x.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .contact-grid {
