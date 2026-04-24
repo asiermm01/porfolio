@@ -828,80 +828,191 @@ ul {
 }
 
 /* ===================================
-   Technologies Section
+   Technologies Section — Scroll-Driven Card Stack
    =================================== */
-.technologies {
-    background-color: var(--bg-secondary);
-}
-
-.tech-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-.tech-card {
-    padding: 36px 24px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    text-align: center;
-    transition: all var(--transition-medium);
-    cursor: default;
+.tech-section {
     position: relative;
-    overflow: hidden;
+    height: 600vh;
+    background-color: #f2f4f3;
+    /* clip keeps visual containment without breaking position:sticky */
+    overflow: clip;
 }
 
-.tech-card::after {
-    content: '';
+/* Three.js fluid gradient canvas — absolute inside sticky viewport */
+#tech-gradient-canvas {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow) 0%, transparent 60%);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
     opacity: 0;
-    transition: opacity var(--transition-medium);
+    will-change: opacity;
 }
 
-.tech-card:hover::after {
+/* --- Scrolling marquee text --- */
+.tech-scrolling-bg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    will-change: opacity;
+}
+
+.tech-scrolling-track {
+    display: flex;
+    width: max-content;
+    animation: techScrollText 25s linear infinite;
+}
+
+.tech-scrolling-text {
+    font-size: clamp(5rem, 12vw, 10rem);
+    font-weight: 900;
+    color: var(--color-black);
+    font-family: var(--font-heading);
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+    /* Full opacity as requested */
     opacity: 1;
 }
 
-.tech-card:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+@keyframes techScrollText {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
-.tech-icon {
-    width: 48px;
-    height: 48px;
-    margin: 0 auto 16px;
-    color: var(--accent-secondary);
-    transition: all var(--transition-medium);
+/* --- Sticky viewport (contains all animated elements) --- */
+.tech-sticky-viewport {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* --- Cards wrapper --- */
+.tech-cards-wrapper {
     position: relative;
-    z-index: 1;
+    width: 75vw;
+    max-width: 1100px;
+    height: 65vh;
+    max-height: 600px;
+    pointer-events: auto;
+    z-index: 3;
 }
 
-.tech-card:hover .tech-icon {
-    color: var(--accent-primary);
-    transform: scale(1.15);
+/* --- Individual card --- */
+.tech-stack-card {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(110vh);
+    will-change: transform, filter;
 }
 
-.tech-name {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 6px;
+.tech-stack-card-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: var(--radius-xl);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.08),
+        0 4px 16px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
     position: relative;
-    z-index: 1;
 }
 
-.tech-category {
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+/* Card text content */
+.tech-stack-card-content {
+    flex: 1;
+    padding: 50px 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 2;
     position: relative;
-    z-index: 1;
+}
+
+.tech-stack-title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: #12121a;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.tech-stack-text {
+    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    color: #555;
+    line-height: 1.8;
+    max-width: 480px;
+}
+
+/* --- Card blob gradient (right side) --- */
+.tech-stack-card-blob {
+    flex: 0 0 42%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Multimedia card blob — purple #5620e9 */
+.tech-stack-card-blob[data-blob="multimedia"] {
+    background:
+        radial-gradient(ellipse at 30% 50%, #7c4dff 0%, transparent 70%),
+        radial-gradient(ellipse at 70% 30%, #9b6dff 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 80%, #4a0ed4 0%, transparent 65%),
+        linear-gradient(135deg, #6b1fff 0%, #5620e9 50%, #3d0eb0 100%);
+}
+
+/* Frontend card blob — gold #f5b800 */
+.tech-stack-card-blob[data-blob="frontend"] {
+    background:
+        radial-gradient(ellipse at 25% 40%, #ffd54f 0%, transparent 65%),
+        radial-gradient(ellipse at 75% 60%, #f5b800 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 20%, #ffe082 0%, transparent 55%),
+        linear-gradient(160deg, #f5b800 0%, #e6a800 60%, #cc9500 100%);
+}
+
+/* Backend card blob — green #00c853 */
+.tech-stack-card-blob[data-blob="backend"] {
+    background:
+        radial-gradient(ellipse at 30% 60%, #00e676 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 40%, #00c853 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 80%, #009624 0%, transparent 50%),
+        linear-gradient(145deg, #00c853 0%, #00a846 70%, #008c3a 100%);
+}
+
+/* Decorative arrow on Frontend card */
+.tech-blob-arrow {
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    width: 70px;
+    height: 70px;
+    color: #f5b800;
+    opacity: 0.9;
+    z-index: 3;
+    filter: drop-shadow(0 2px 8px rgba(245, 184, 0, 0.4));
 }
 
 /* ===================================
@@ -1336,8 +1447,13 @@ ul {
         margin: 0 auto;
     }
 
-    .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .tech-cards-wrapper {
+        width: 90vw;
+        height: 55vh;
+    }
+
+    .tech-stack-card-content {
+        padding: 36px 32px;
     }
 
     .project-card {
@@ -1415,13 +1531,26 @@ ul {
         display: none;
     }
 
-    .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+    .tech-cards-wrapper {
+        width: 95vw;
+        height: 50vh;
     }
 
-    .tech-card {
-        padding: 28px 16px;
+    .tech-stack-card-inner {
+        flex-direction: column;
+    }
+
+    .tech-stack-card-blob {
+        flex: 0 0 35%;
+        border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+    }
+
+    .tech-stack-card-content {
+        padding: 28px 24px;
+    }
+
+    .tech-stack-title {
+        font-size: 1.6rem;
     }
 
     .project-info {
@@ -1457,8 +1586,9 @@ ul {
         font-size: 3rem;
     }
 
-    .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .tech-cards-wrapper {
+        width: 96vw;
+        height: 60vh;
     }
 
     .footer-nav {

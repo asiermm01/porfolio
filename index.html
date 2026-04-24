@@ -167,96 +167,64 @@
     </section>
 
     <!-- Technologies Section -->
-    <section class="section technologies" id="technologies">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">02</span>
-                <h2 class="section-title">Technologies</h2>
-                <div class="section-line"></div>
+    <section class="tech-section" id="technologies">
+        <!-- Sticky viewport — everything contained here -->
+        <div class="tech-sticky-viewport">
+            <!-- Three.js fluid gradient canvas -->
+            <canvas id="tech-gradient-canvas"></canvas>
+
+            <!-- Scrolling background text (infinite marquee) -->
+            <div class="tech-scrolling-bg">
+                <div class="tech-scrolling-track">
+                    <span class="tech-scrolling-text">Tecnologías Tecnologías Tecnologías Tecnologías&nbsp;</span>
+                    <span class="tech-scrolling-text">Tecnologías Tecnologías Tecnologías Tecnologías&nbsp;</span>
+                </div>
             </div>
-            <p class="section-subtitle">The tools and technologies I work with to bring ideas to life.</p>
-            <div class="tech-grid">
-                <div class="tech-card" data-category="frontend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/>
-                            <line x1="12" y1="22" x2="12" y2="15.5"/>
-                            <polyline points="22 8.5 12 15.5 2 8.5"/>
-                        </svg>
+
+            <!-- Cards stack here -->
+            <div class="tech-cards-wrapper">
+                <!-- Card 1: Multimedia -->
+                <div class="tech-stack-card" data-card-index="0">
+                    <div class="tech-stack-card-inner">
+                        <div class="tech-stack-card-content">
+                            <h3 class="tech-stack-title">Multimedia</h3>
+                            <p class="tech-stack-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.
+                            </p>
+                        </div>
+                        <div class="tech-stack-card-blob" data-blob="multimedia"></div>
                     </div>
-                    <h3 class="tech-name">HTML5</h3>
-                    <span class="tech-category">Markup</span>
                 </div>
-                <div class="tech-card" data-category="frontend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M4 4h16v16H4z"/>
-                            <path d="M8 8h8v8H8z"/>
-                            <path d="M4 4l4 4M20 4l-4 4M4 20l4-4M20 20l-4-4"/>
-                        </svg>
+
+                <!-- Card 2: Frontend -->
+                <div class="tech-stack-card" data-card-index="1">
+                    <div class="tech-stack-card-inner">
+                        <div class="tech-stack-card-content">
+                            <h3 class="tech-stack-title">Frontend</h3>
+                            <p class="tech-stack-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.
+                            </p>
+                        </div>
+                        <div class="tech-stack-card-blob" data-blob="frontend">
+                            <!-- Decorative arrow -->
+                            <svg class="tech-blob-arrow" viewBox="0 0 80 80" fill="none">
+                                <path d="M10 70L70 10M70 10H25M70 10V55" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
                     </div>
-                    <h3 class="tech-name">CSS3</h3>
-                    <span class="tech-category">Styling</span>
                 </div>
-                <div class="tech-card" data-category="frontend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 15.88c-3.05-1.27-5.76-4-5.76-7.38a7.5 7.5 0 0115 0c0 3.38-2.71 6.11-5.76 7.38"/>
-                        </svg>
+
+                <!-- Card 3: Backend -->
+                <div class="tech-stack-card" data-card-index="2">
+                    <div class="tech-stack-card-inner">
+                        <div class="tech-stack-card-content">
+                            <h3 class="tech-stack-title">Backend</h3>
+                            <p class="tech-stack-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.
+                            </p>
+                        </div>
+                        <div class="tech-stack-card-blob" data-blob="backend"></div>
                     </div>
-                    <h3 class="tech-name">JavaScript</h3>
-                    <span class="tech-category">Language</span>
-                </div>
-                <div class="tech-card" data-category="frontend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="3"/>
-                            <path d="M12 1c5 0 9.27 3.11 9.27 8.5S17 18 12 21c-5-3-9.27-6.11-9.27-11.5S7 1 12 1z"/>
-                        </svg>
-                    </div>
-                    <h3 class="tech-name">React</h3>
-                    <span class="tech-category">Framework</span>
-                </div>
-                <div class="tech-card" data-category="backend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3 class="tech-name">Node.js</h3>
-                    <span class="tech-category">Runtime</span>
-                </div>
-                <div class="tech-card" data-category="tools">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-                        </svg>
-                    </div>
-                    <h3 class="tech-name">Git</h3>
-                    <span class="tech-category">Version Control</span>
-                </div>
-                <div class="tech-card" data-category="frontend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                            <path d="M8 12l3 3 5-5"/>
-                        </svg>
-                    </div>
-                    <h3 class="tech-name">TypeScript</h3>
-                    <span class="tech-category">Language</span>
-                </div>
-                <div class="tech-card" data-category="backend">
-                    <div class="tech-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <ellipse cx="12" cy="5" rx="9" ry="3"/>
-                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
-                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
-                        </svg>
-                    </div>
-                    <h3 class="tech-name">Databases</h3>
-                    <span class="tech-category">Storage</span>
                 </div>
             </div>
         </div>
@@ -470,8 +438,9 @@
         </div>
     </footer>
 
-    <!-- Animation Engine (GSAP) -->
+    <!-- Animation Engine (GSAP + ScrollTrigger) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 3D Graphics Engine (Three.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
