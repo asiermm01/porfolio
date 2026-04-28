@@ -71,7 +71,7 @@ html {
 
 body {
     font-family: var(--font-main);
-    background-color: var(--bg-primary);
+    background-color: transparent;
     color: var(--text-primary);
     line-height: 1.7;
     overflow-x: hidden;
@@ -238,11 +238,13 @@ ul {
    =================================== */
 .hero {
     position: relative;
+    z-index: 1;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background-color: var(--bg-primary);
 }
 
 .hero-bg-grid {
@@ -496,6 +498,8 @@ ul {
 .section {
     padding: var(--section-padding) 0;
     position: relative;
+    z-index: 1;
+    background-color: var(--bg-primary);
 }
 
 .section-header {
@@ -538,16 +542,14 @@ ul {
    =================================== */
 .about-section {
     position: relative;
+    z-index: 1;
     overflow: hidden;
 }
 
 /* --- Intro Section (Quien soy) --- */
 .about-intro {
     position: relative;
-    /* background: linear-gradient(135deg, #e3e1ec 0%, #d1c1fa 100%); */
-    background-image: url('assets/images/mesh-673\ 2-1x.png');
-    background-size: cover;
-    background-position: center;
+    background: transparent;
     padding-top: 150px;
     padding-bottom: 80px;
     overflow: hidden;
@@ -648,6 +650,8 @@ ul {
 
 /* --- Studies Section --- */
 .about-studies {
+    position: relative;
+    z-index: 1;
     background-color: #e5e5e5;
     padding: 100px 0;
 }
@@ -755,6 +759,7 @@ ul {
     padding: 100px 0 0 0;
     color: var(--text-primary);
     position: relative;
+    z-index: 1;
 }
 
 .workflow-container {
@@ -832,22 +837,23 @@ ul {
    =================================== */
 .tech-section {
     position: relative;
+    z-index: 1;
     height: 600vh;
-    background-color: #f2f4f3;
+    background-color: transparent;
     /* clip keeps visual containment without breaking position:sticky */
     overflow: clip;
 }
 
-/* Three.js fluid gradient canvas — absolute inside sticky viewport */
+/* Three.js fluid gradient canvas — fixed fullscreen parallax background */
 #tech-gradient-canvas {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: 0;
     pointer-events: none;
-    opacity: 0;
-    will-change: opacity;
+    opacity: 0.65;
 }
 
 /* --- Scrolling marquee text --- */
@@ -924,7 +930,7 @@ ul {
     width: 100%;
     height: 100%;
     display: flex;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-radius: var(--radius-xl);
@@ -1168,11 +1174,7 @@ ul {
    Contact Section
    =================================== */
 .contact {
-    background-color: var(--bg-secondary);
-    background-image: url('assets/images/mesh-673\ 2-1x.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: transparent;
 }
 
 .contact-grid {
@@ -1348,6 +1350,9 @@ ul {
 .footer {
     padding: 60px 0 30px;
     border-top: 1px solid var(--border-color);
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-primary);
 }
 
 .footer-content {
