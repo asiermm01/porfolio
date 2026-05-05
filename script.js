@@ -372,7 +372,7 @@ function initTechSection() {
     function hideAllCards() {
         cards.forEach((card, i) => {
             gsap.set(card, {
-                opacity: 0,
+                 opacity: 0,
                 y: window.innerHeight * 1.2,
                 rotation: 0,
                 scale: 1,
