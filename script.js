@@ -1,5 +1,57 @@
+// Force scroll to top on every page load
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// ==========================================
+// GLOBAL SMOOTH SCROLL
+// ==========================================
+// Intercepts wheel events and smoothly interpolates scroll position
+// for a buttery-smooth browsing experience across the entire page.
+// This is independent from the tech section's own scrub speed.
+const GLOBAL_SCRUB_SPEED = 0.1;    // Tune: lower = smoother, higher = snappier
+
+let smoothScrollTarget = 0;
+let smoothScrollCurrent = 0;
+let lastScrollSet = -1;
+
+// Intercept wheel events — prevent native jump, accumulate into target
+window.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    smoothScrollTarget = Math.max(0, Math.min(smoothScrollTarget + e.deltaY, maxScroll));
+}, { passive: false });
+
+// Sync with external scroll sources (anchor clicks, keyboard, touch, scrollbar)
+window.addEventListener('scroll', () => {
+    // Ignore scroll events caused by our own scrollTo calls
+    if (Math.abs(window.scrollY - lastScrollSet) < 2) return;
+    // External scroll source — sync our tracking
+    smoothScrollTarget = window.scrollY;
+    smoothScrollCurrent = window.scrollY;
+}, { passive: true });
+
+// Smooth scroll render loop
+(function smoothScrollLoop() {
+    const diff = smoothScrollTarget - smoothScrollCurrent;
+
+    if (Math.abs(diff) > 0.5) {
+        smoothScrollCurrent += diff * GLOBAL_SCRUB_SPEED;
+        lastScrollSet = smoothScrollCurrent;
+        window.scrollTo({ top: smoothScrollCurrent, behavior: 'instant' });
+    }
+
+    requestAnimationFrame(smoothScrollLoop);
+})();
+
 // Wait for the DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset scroll position on load
+    smoothScrollTarget = 0;
+    smoothScrollCurrent = 0;
+    lastScrollSet = 0;
+    window.scrollTo({ top: 0, behavior: 'instant' });
     
     console.log("Portfolio loaded!");
 
@@ -212,47 +264,101 @@ function initTechSection() {
     // ———————————————————————————————
     // Section = 600vh, scroll distance = 500vh
     //
-    // 0.00 – 0.06 : Blank phase (just section bg)
-    // 0.06 – 0.14 : Marquee + gradient fade in
-    // 0.14 – 0.85 : Cards appear & stack
-    //     Card 0: 0.14 – 0.378
-    //     Card 1: 0.378 – 0.614
-    //     Card 2: 0.614 – 0.85
-    //     Each card: first 30% of range = entrance, rest = settled
-    // 0.85 – 1.00 : Cards settled, section scrolls away naturally
+    // 0.00 – 0.05 : Blank phase (just section bg)
+    // 0.05 – 0.12 : Marquee + gradient fade in
+    // 0.12 – 0.92 : Cards appear & stack
+    //     Each card gets ~26.7% of this range
+    //     Each card: first 60% of range = entrance, rest = settled/reading time
+    // 0.92 – 1.00 : Cards settled, section scrolls away naturally
 
     const FADE_IN_START = 0.05;
-    const FADE_IN_END   = 0.15;
-    const CARDS_START    = 0.15;
-    const CARDS_END      = 0.85;
+    const FADE_IN_END   = 0.12;
+    const CARDS_START    = 0.12;
+    const CARDS_END      = 0.92;
 
     const perCard = (CARDS_END - CARDS_START) / totalCards;
-    const ENTRANCE_RATIO = 0.30;
+    const ENTRANCE_RATIO = 0.60;
 
     const cardRotations = [-3.5, 2.8, -2.2];
 
     // ———————————————————————————————
-    // MAIN SCROLL TRIGGER
+    // SMOOTH SCRUB INTERPOLATION
     // ———————————————————————————————
+    // Instead of directly using scroll progress, we lerp toward it
+    // each frame. This gives the classic buttery GSAP scrub feel.
+    let targetProgress = 0;
+    let smoothProgress = 0;
+    const TECH_SCRUB_SPEED = 0.08; // Separate from GLOBAL_SCRUB_SPEED — tune independently
+
     ScrollTrigger.create({
         trigger: section,
         start: 'top top',
         end: 'bottom bottom',
         onUpdate: (self) => {
-            updateTechSection(self.progress);
+            targetProgress = self.progress;
         },
         onLeave: () => {
-            // Revert accent to purple when scrolling past tech section
-            // (canvas is hidden behind opaque Projects section, so
-            //  by the time Contact reveals it, accent is already purple)
-            globalAccent[0] = PURPLE_ACCENT[0];
-            globalAccent[1] = PURPLE_ACCENT[1];
-            globalAccent[2] = PURPLE_ACCENT[2];
+            // Keep the last card's accent (green) — the Projects section
+            // will handle the swap to purple once it covers the canvas
+            targetProgress = 1;
         },
         onEnterBack: () => {
-            // Will be handled by updateTechSection on next scroll frame
+            // Restore last card's accent when scrolling back into tech section
+            const lastAccent = accentColors[totalCards - 1];
+            globalAccent[0] = lastAccent[0];
+            globalAccent[1] = lastAccent[1];
+            globalAccent[2] = lastAccent[2];
         }
     });
+
+    // Smooth animation loop
+    function smoothUpdate() {
+        // Lerp smoothProgress toward targetProgress
+        smoothProgress += (targetProgress - smoothProgress) * TECH_SCRUB_SPEED;
+
+        // Snap when very close to avoid infinite tiny movements
+        if (Math.abs(targetProgress - smoothProgress) < 0.0001) {
+            smoothProgress = targetProgress;
+        }
+
+        updateTechSection(smoothProgress);
+        requestAnimationFrame(smoothUpdate);
+    }
+    requestAnimationFrame(smoothUpdate);
+
+    // ———————————————————————————————
+    // ACCENT COLOR SWAP — triggered by Projects section
+    // ———————————————————————————————
+    // Uses getBoundingClientRect for reliable detection — when the
+    // Projects section top reaches the viewport top, the canvas is
+    // fully hidden behind its opaque background, so the color swap
+    // is invisible to the user.
+    const projectsSection = document.querySelector('#projects');
+    let accentIsPurple = false;
+    if (projectsSection) {
+
+        function checkAccentSwap() {
+            const rect = projectsSection.getBoundingClientRect();
+
+            if (rect.top <= 0 && !accentIsPurple) {
+                // Projects covers the viewport — swap to purple
+                globalAccent[0] = PURPLE_ACCENT[0];
+                globalAccent[1] = PURPLE_ACCENT[1];
+                globalAccent[2] = PURPLE_ACCENT[2];
+                accentIsPurple = true;
+            } else if (rect.top > 0 && accentIsPurple) {
+                // Scrolled back up — restore last card's green accent
+                const lastAccent = accentColors[totalCards - 1];
+                globalAccent[0] = lastAccent[0];
+                globalAccent[1] = lastAccent[1];
+                globalAccent[2] = lastAccent[2];
+                accentIsPurple = false;
+            }
+
+            requestAnimationFrame(checkAccentSwap);
+        }
+        requestAnimationFrame(checkAccentSwap);
+    }
 
     function updateTechSection(p) {
 
@@ -270,9 +376,11 @@ function initTechSection() {
             gsap.set(scrollingBg, { opacity: eased });
             hideAllCards();
             // Pre-set accent to first card's color
-            globalAccent[0] = accentColors[0][0];
-            globalAccent[1] = accentColors[0][1];
-            globalAccent[2] = accentColors[0][2];
+            if (!accentIsPurple) {
+                globalAccent[0] = accentColors[0][0];
+                globalAccent[1] = accentColors[0][1];
+                globalAccent[2] = accentColors[0][2];
+            }
             return;
         }
 
@@ -294,9 +402,9 @@ function initTechSection() {
                     zIndex: 10 + i
                 });
             } else if (p < entranceEnd) {
-                // Entering from bottom
+                // Entering from bottom — gentle ease-out for soft landing
                 const t = (p - cardStart) / (entranceEnd - cardStart);
-                const eased = easeOutCubic(t);
+                const eased = t * (2 - t); // subtle quadratic ease-out
                 gsap.set(card, {
                     opacity: 1,
                     y: (1 - eased) * window.innerHeight * 1.2,
@@ -306,8 +414,10 @@ function initTechSection() {
                     zIndex: 10 + i
                 });
                 // Transition accent color
-                const prevAccent = i > 0 ? accentColors[i - 1] : accentColors[0];
-                lerpColorDirect(globalAccent, prevAccent, accentColors[i], eased);
+                if (!accentIsPurple) {
+                    const prevAccent = i > 0 ? accentColors[i - 1] : accentColors[0];
+                    lerpColorDirect(globalAccent, prevAccent, accentColors[i], eased);
+                }
 
             } else {
                 // Card is up — check if newer cards are on top
@@ -324,7 +434,7 @@ function initTechSection() {
                     } else if (p >= jStart) {
                         // Card j is entering — transition this card to stacked
                         const jt = (p - jStart) / (jEntranceEnd - jStart);
-                        const jEased = easeOutCubic(jt);
+                        const jEased = jt * (2 - jt); // subtle quadratic ease-out
 
                         gsap.set(card, {
                             opacity: 1,
@@ -360,7 +470,9 @@ function initTechSection() {
                         zIndex: 10 + i
                     });
                     // Snap accent color
-                    lerpColor(globalAccent, globalAccent, accentColors[i], 0.12);
+                    if (!accentIsPurple) {
+                        lerpColor(globalAccent, globalAccent, accentColors[i], 0.12);
+                    }
                 }
             }
         });

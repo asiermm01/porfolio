@@ -432,7 +432,7 @@ ul {
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-medium);
+    transition: all var(--transition-fast);
     border: none;
     position: relative;
     overflow: hidden;
@@ -461,7 +461,7 @@ ul {
     mask-size: contain;
     mask-position: center;
     mask-repeat: no-repeat;
-    transform: translate(-50%, -50%) rotate(90deg);
+    transform: translate(-50%, -50%) rotate(-90deg);
     transition: all var(--transition-medium);
     z-index: -1;
 }
