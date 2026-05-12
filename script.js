@@ -86,15 +86,269 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
+        initHeroScene();
         initGlobalCanvas();
         initTechSection();
     }
 });
 
+// ==========================================
+// HERO THREE.JS SCENE
+// ==========================================
+function initHeroScene() {
+    const canvas = document.getElementById('hero-canvas');
+    if (typeof THREE === 'undefined' || !canvas) return;
 
-// ==========================================
-// GLOBAL THREE.JS FLUID GRADIENT CANVAS
-// ==========================================
+    // --- RENDERER ---
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x020208);
+
+    const scene = new THREE.Scene();
+
+    // --- CAMERA ---
+    const camera = new THREE.PerspectiveCamera(
+        55, window.innerWidth / window.innerHeight, 0.1, 300
+    );
+    camera.position.set(0, 6, 22);
+    camera.lookAt(0, 0, 0);
+
+    // ===========================
+    // STARS — dramatic twinkling
+    // ===========================
+    const STAR_COUNT = 1200;
+    const starPos = new Float32Array(STAR_COUNT * 3);
+    const starSizes = new Float32Array(STAR_COUNT);
+    const starPhases = new Float32Array(STAR_COUNT);
+    const starSpeeds = new Float32Array(STAR_COUNT);
+
+    for (let i = 0; i < STAR_COUNT; i++) {
+        starPos[i * 3]     = (Math.random() - 0.5) * 160;
+        starPos[i * 3 + 1] = Math.random() * 80 - 10;
+        starPos[i * 3 + 2] = (Math.random() - 0.5) * 160;
+        starSizes[i] = Math.random() * 2.5 + 0.8;
+        starPhases[i] = Math.random() * Math.PI * 2;
+        starSpeeds[i] = Math.random() * 0.8 + 0.4; // individual speed variation
+    }
+
+    const starGeo = new THREE.BufferGeometry();
+    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+    starGeo.setAttribute('aSize', new THREE.BufferAttribute(starSizes, 1));
+    starGeo.setAttribute('aPhase', new THREE.BufferAttribute(starPhases, 1));
+    starGeo.setAttribute('aSpeed', new THREE.BufferAttribute(starSpeeds, 1));
+
+    const starMat = new THREE.ShaderMaterial({
+        uniforms: {
+            uTime: { value: 0 },
+            uPixelRatio: { value: renderer.getPixelRatio() }
+        },
+        vertexShader: `
+            attribute float aSize;
+            attribute float aPhase;
+            attribute float aSpeed;
+            uniform float uTime;
+            uniform float uPixelRatio;
+            varying float vAlpha;
+
+            void main() {
+                vec4 mv = modelViewMatrix * vec4(position, 1.0);
+
+                // Layered wave: slow breathe × fast flicker
+                float breathe = sin(uTime * 0.3 * aSpeed + aPhase) * 0.5 + 0.5;
+                float flicker = sin(uTime * 1.8 * aSpeed + aPhase * 3.1) * 0.5 + 0.5;
+
+                // Combined: stars fully vanish at breathe troughs
+                float raw = breathe * flicker;
+                // Sharpen: push toward 0 and 1 for dramatic on/off
+                vAlpha = smoothstep(0.15, 0.55, raw);
+
+                gl_PointSize = aSize * uPixelRatio * (180.0 / -mv.z);
+                gl_Position = projectionMatrix * mv;
+            }
+        `,
+        fragmentShader: `
+            varying float vAlpha;
+            void main() {
+                float d = length(gl_PointCoord - vec2(0.5));
+                if (d > 0.5) discard;
+                float a = 1.0 - smoothstep(0.15, 0.5, d);
+                gl_FragColor = vec4(1.0, 1.0, 1.0, a * vAlpha);
+            }
+        `,
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending
+    });
+
+    const stars = new THREE.Points(starGeo, starMat);
+    scene.add(stars);
+
+    // ===========================
+    // SPHERE — cleaner wireframe
+    // ===========================
+    const sphereGeo = new THREE.SphereGeometry(3, 14, 10);
+    const sphereMat = new THREE.MeshBasicMaterial({
+        color: 0x5620e9,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.82
+    });
+    const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+
+    // Wider orbit range
+    const SPHERE_START = { x: -8, y: 4.5, z: 0 };
+    const SPHERE_END   = { x: 12, y: 1.5, z: -3 };
+    sphere.position.set(SPHERE_START.x, SPHERE_START.y, SPHERE_START.z);
+    scene.add(sphere);
+
+    // Inner glow fill for depth
+    const glowGeo = new THREE.SphereGeometry(2.85, 14, 10);
+    const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x5620e9,
+        transparent: true,
+        opacity: 0.04,
+        side: THREE.BackSide
+    });
+    sphere.add(new THREE.Mesh(glowGeo, glowMat));
+
+    // ===========================
+    // GRID PLANE — shader-based
+    // ===========================
+    const gridGeo = new THREE.PlaneGeometry(100, 100, 1, 1);
+    const gridMat = new THREE.ShaderMaterial({
+        uniforms: {
+            uColor: { value: new THREE.Vector3(0.337, 0.125, 0.914) },
+            uTime: { value: 0 }
+        },
+        vertexShader: `
+            varying vec3 vWorldPos;
+            void main() {
+                vec4 wp = modelMatrix * vec4(position, 1.0);
+                vWorldPos = wp.xyz;
+                gl_Position = projectionMatrix * viewMatrix * wp;
+            }
+        `,
+        fragmentShader: `
+            precision highp float;
+            varying vec3 vWorldPos;
+            uniform vec3 uColor;
+            uniform float uTime;
+
+            void main() {
+                vec2 coord = vWorldPos.xz * 0.4;
+
+                // Anti-aliased grid
+                vec2 g = abs(fract(coord - 0.5) - 0.5);
+                vec2 dv = fwidth(coord);
+                vec2 lines = smoothstep(dv * 0.5, dv * 1.8, g);
+                float line = 1.0 - min(lines.x, lines.y);
+
+                // Distance fade
+                float dist = length(vWorldPos.xz);
+                float fade = 1.0 - smoothstep(6.0, 42.0, dist);
+
+                // Glow pulse on lines
+                float pulse = sin(uTime * 0.4) * 0.08 + 0.92;
+
+                float alpha = line * fade * 0.55 * pulse;
+                gl_FragColor = vec4(uColor * (1.0 + line * 0.3), alpha);
+            }
+        `,
+        transparent: true,
+        side: THREE.DoubleSide,
+        depthWrite: false
+    });
+
+    const grid = new THREE.Mesh(gridGeo, gridMat);
+    grid.rotation.x = -Math.PI / 2;
+    grid.position.y = -3;
+    scene.add(grid);
+
+    // ===========================
+    // MOUSE TRACKING (for grid)
+    // ===========================
+    let mouseX = 0, mouseY = 0;
+    const BASE_GRID_ROT_X = -Math.PI / 2;
+    const BASE_GRID_POS_Z = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth)  * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+    });
+
+    // ===========================
+    // SCROLL — sphere orbit (natural, no pin)
+    // ===========================
+    let heroScrollProgress = 0;
+
+    ScrollTrigger.create({
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        onUpdate: (self) => {
+            heroScrollProgress = self.progress;
+        }
+    });
+
+    // ===========================
+    // RENDER LOOP
+    // ===========================
+    let heroTime = 0;
+    let currentGridRotX = BASE_GRID_ROT_X;
+    let currentGridRotZ = 0;
+    let currentGridPosZ = BASE_GRID_POS_Z;
+
+    function heroAnimate() {
+        requestAnimationFrame(heroAnimate);
+        heroTime += 0.016;
+
+        // Stars twinkle + faster rotation
+        starMat.uniforms.uTime.value = heroTime;
+        stars.rotation.y += 0.0003;
+
+        // Grid time
+        gridMat.uniforms.uTime.value = heroTime;
+
+        // Sphere constant rotation (faster)
+        sphere.rotation.y += 0.007;
+        sphere.rotation.x += 0.002;
+
+        // Sphere scroll-driven orbit (left → arc → right)
+        const t = heroScrollProgress;
+        const arcY = Math.sin(t * Math.PI) * 2.5;
+        sphere.position.x = SPHERE_START.x + (SPHERE_END.x - SPHERE_START.x) * t;
+        sphere.position.y = SPHERE_START.y + (SPHERE_END.y - SPHERE_START.y) * t + arcY;
+        sphere.position.z = SPHERE_START.z + (SPHERE_END.z - SPHERE_START.z) * t;
+
+        // Grid cursor-reactive: Y-axis rotation + Z-axis position
+        const targetRotX = BASE_GRID_ROT_X + mouseY * 0.035;
+        const targetRotZ = mouseX * 0.025;
+        const targetPosZ = mouseX * 0.8;
+        currentGridRotX += (targetRotX - currentGridRotX) * 0.04;
+        currentGridRotZ += (targetRotZ - currentGridRotZ) * 0.04;
+        currentGridPosZ += (targetPosZ - currentGridPosZ) * 0.04;
+        grid.rotation.x = currentGridRotX;
+        grid.rotation.z = currentGridRotZ;
+        grid.position.z = currentGridPosZ;
+
+        renderer.render(scene, camera);
+    }
+    heroAnimate();
+
+    // --- RESIZE ---
+    window.addEventListener('resize', () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+    });
+}
+
+
+
 // Shared state for the canvas accent color — accessible by all sections
 const PURPLE_ACCENT = [0.337, 0.125, 0.914]; // #5620e9
 let globalAccent = [...PURPLE_ACCENT];
