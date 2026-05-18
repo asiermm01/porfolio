@@ -191,23 +191,21 @@ function initHeroScene() {
     const sphereMat = new THREE.MeshBasicMaterial({
         color: 0x5620e9,
         wireframe: true,
-        transparent: true,
-        opacity: 0.82
+        transparent: false
     });
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
 
     // Wider orbit range
-    const SPHERE_START = { x: -8, y: 4.5, z: 0 };
-    const SPHERE_END   = { x: 12, y: 1.5, z: -3 };
+    const SPHERE_START = { x: -10, y: 6, z: -5 };
+    const SPHERE_END   = { x: 0, y: 5, z: 20 };
     sphere.position.set(SPHERE_START.x, SPHERE_START.y, SPHERE_START.z);
     scene.add(sphere);
 
     // Inner glow fill for depth
-    const glowGeo = new THREE.SphereGeometry(2.85, 14, 10);
+    const glowGeo = new THREE.SphereGeometry(2.99, 14, 10);
     const glowMat = new THREE.MeshBasicMaterial({
-        color: 0x5620e9,
-        transparent: true,
-        opacity: 0.04,
+        color: 0x101014,
+        transparent: false,
         side: THREE.BackSide
     });
     sphere.add(new THREE.Mesh(glowGeo, glowMat));
@@ -284,6 +282,7 @@ function initHeroScene() {
 
     ScrollTrigger.create({
         trigger: '#hero',
+        pin: true,
         start: 'top top',
         end: 'bottom top',
         scrub: true,
@@ -317,9 +316,10 @@ function initHeroScene() {
 
         // Sphere scroll-driven orbit (left → arc → right)
         const t = heroScrollProgress;
+        const arcX = Math.sin(t * Math.PI) * 2.5;
         const arcY = Math.sin(t * Math.PI) * 2.5;
-        sphere.position.x = SPHERE_START.x + (SPHERE_END.x - SPHERE_START.x) * t;
-        sphere.position.y = SPHERE_START.y + (SPHERE_END.y - SPHERE_START.y) * t + arcY;
+        sphere.position.x = SPHERE_START.x + (SPHERE_END.x - SPHERE_START.x) * t - arcX;
+        sphere.position.y = SPHERE_START.y + (SPHERE_END.y - SPHERE_START.y) * t - arcY;
         sphere.position.z = SPHERE_START.z + (SPHERE_END.z - SPHERE_START.z) * t;
 
         // Grid cursor-reactive: Y-axis rotation + Z-axis position
