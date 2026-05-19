@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.registerPlugin(ScrollTrigger);
         initHeroScene();
         initGlobalCanvas();
+        initAboutSection();
         initTechSection();
     }
 });
@@ -280,6 +281,8 @@ function initHeroScene() {
     // ===========================
     let heroScrollProgress = 0;
 
+    const heroContent = document.querySelector('.hero-content');
+
     ScrollTrigger.create({
         trigger: '#hero',
         pin: true,
@@ -288,6 +291,12 @@ function initHeroScene() {
         scrub: true,
         onUpdate: (self) => {
             heroScrollProgress = self.progress;
+        },
+        onLeave: () => {
+            if (heroContent) gsap.to(heroContent, { autoAlpha: 0, duration: 0.2, overwrite: true });
+        },
+        onEnterBack: () => {
+            if (heroContent) gsap.to(heroContent, { autoAlpha: 1, duration: 0.2, overwrite: true });
         }
     });
 
@@ -494,6 +503,51 @@ function initGlobalCanvas() {
     });
 }
 
+
+// ==========================================
+// ABOUT SECTION — Scroll Animations
+// ==========================================
+function initAboutSection() {
+    const aboutIntro = document.querySelector('.about-intro');
+    if (!aboutIntro) return;
+
+    const scrollingBg = aboutIntro.querySelector('.about-scrolling-bg');
+    const heroImage = aboutIntro.querySelector('.about-hero-image');
+    const introCard = aboutIntro.querySelector('.about-intro-card');
+
+    // Set initial states
+    if (scrollingBg) gsap.set(scrollingBg, { opacity: 0 });
+    if (heroImage) gsap.set(heroImage, { x: '-50vw', opacity: 0 });
+    if (introCard) gsap.set(introCard, { x: '50vw', opacity: 0 });
+
+    // Create a timeline using the parent section as trigger
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.about-section',
+            start: 'top top',
+            end: '+=150%', // Scroll distance equal to the margin-top we added
+            scrub: 1 // Smooth scrubbing
+        }
+    });
+
+    // 1. Fade in the scrolling background text
+    if (scrollingBg) {
+        tl.to(scrollingBg, {
+            opacity: 1,
+            duration: 0.4
+        });
+    }
+
+    // 2. Bring in the left and right content simultaneously
+    if (heroImage && introCard) {
+        tl.to([heroImage, introCard], {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power2.out"
+        }, "+=0.2"); // Small delay after text starts fading in
+    }
+}
 
 // ==========================================
 // TECHNOLOGIES SECTION — Scroll-Driven Card Stack

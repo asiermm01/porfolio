@@ -517,22 +517,25 @@ ul {
 .about-section {
     position: relative;
     z-index: 1;
-    overflow: hidden;
 }
 
 /* --- Intro Section (Quien soy) --- */
 .about-intro {
-    position: relative;
-    background: transparent;
-    padding-top: 150px;
-    padding-bottom: 80px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--color-black);
     overflow: hidden;
     color: #12121a;
+    z-index: 0;
 }
 
 .about-scrolling-bg {
     position: absolute;
-    top: 10px;
+    top: 10vh;
     left: 0;
     right: 0;
     overflow: hidden;
@@ -550,7 +553,7 @@ ul {
 .scrolling-text {
     font-size: 8rem;
     font-weight: 800;
-    color: var(--color-black);
+    color: var(--color-white);
     font-family: var(--font-heading);
     white-space: nowrap;
 }
@@ -625,9 +628,10 @@ ul {
 /* --- Studies Section --- */
 .about-studies {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     background-color: #e5e5e5;
     padding: 100px 0;
+    margin-top: 150vh;
 }
 
 .studies-title {
@@ -883,10 +887,10 @@ ul {
 /* --- Cards wrapper --- */
 .tech-cards-wrapper {
     position: relative;
-    width: 75vw;
-    max-width: 1100px;
-    height: 65vh;
-    max-height: 600px;
+    width: 85vw;
+    max-width: 1300px;
+    height: 75vh;
+    max-height: 700px;
     pointer-events: auto;
     z-index: 3;
 }
@@ -1457,8 +1461,8 @@ ul {
     }
 
     .tech-cards-wrapper {
-        width: 90vw;
-        height: 55vh;
+        width: 92vw;
+        height: 65vh;
     }
 
     .tech-stack-card-content {
@@ -1542,7 +1546,7 @@ ul {
 
     .tech-cards-wrapper {
         width: 95vw;
-        height: 50vh;
+        height: 60vh;
     }
 
     .tech-stack-card-inner {
@@ -1602,8 +1606,8 @@ ul {
     }
 
     .tech-cards-wrapper {
-        width: 96vw;
-        height: 60vh;
+        width: 98vw;
+        height: 70vh;
     }
 
     .footer-nav {
