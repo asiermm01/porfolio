@@ -572,17 +572,17 @@ function initTechSection() {
     // ———————————————————————————————
     // Section = 600vh, scroll distance = 500vh
     //
-    // 0.00 – 0.05 : Blank phase (just section bg)
-    // 0.05 – 0.12 : Marquee + gradient fade in
-    // 0.12 – 0.92 : Cards appear & stack
-    //     Each card gets ~26.7% of this range
+    // 0.00 – 0.04 : Blank phase (just section bg)
+    // 0.04 – 0.10 : Marquee + gradient fade in
+    // 0.10 – 0.77 : Cards appear & stack
+    //     Each card gets ~22.3% of this range
     //     Each card: first 60% of range = entrance, rest = settled/reading time
-    // 0.92 – 1.00 : Cards settled, section scrolls away naturally
+    // 0.77 – 1.00 : Cards settled, section stays fixed while Projects slides over
 
     const FADE_IN_START = 0.05;
-    const FADE_IN_END   = 0.12;
-    const CARDS_START    = 0.12;
-    const CARDS_END      = 0.92;
+    const FADE_IN_END = 0.11;
+    const CARDS_START = 0.11;
+    const CARDS_END = 0.85;
 
     const perCard = (CARDS_END - CARDS_START) / totalCards;
     const ENTRANCE_RATIO = 0.60;
@@ -601,6 +601,7 @@ function initTechSection() {
     ScrollTrigger.create({
         trigger: section,
         start: 'top top',
+        markers: true,
         end: 'bottom bottom',
         onUpdate: (self) => {
             targetProgress = self.progress;

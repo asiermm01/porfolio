@@ -816,7 +816,7 @@ ul {
 .tech-section {
     position: relative;
     z-index: 1;
-    height: 600vh;
+    height: 700vh;
     background-color: transparent;
     /* clip keeps visual containment without breaking position:sticky */
     overflow: clip;
@@ -1002,6 +1002,11 @@ ul {
 /* ===================================
    Projects Section
    =================================== */
+.projects {
+    margin-top: -100vh;
+    z-index: 10;
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
