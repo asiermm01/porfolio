@@ -601,7 +601,6 @@ function initTechSection() {
     ScrollTrigger.create({
         trigger: section,
         start: 'top top',
-        markers: true,
         end: 'bottom bottom',
         onUpdate: (self) => {
             targetProgress = self.progress;
