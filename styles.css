@@ -774,6 +774,7 @@ ul {
     position: relative;
     z-index: 0;
     padding-bottom: 50vh;
+    padding-top: 150px;
     margin-top: -50px;
 }
 
