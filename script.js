@@ -250,7 +250,7 @@ function initHeroScene() {
                 // Glow pulse on lines
                 float pulse = sin(uTime * 0.4) * 0.08 + 0.92;
 
-                float alpha = line * fade * 0.55 * pulse;
+                float alpha = line * fade * 0.35 * pulse;
                 gl_FragColor = vec4(uColor * (1.0 + line * 0.3), alpha);
             }
         `,

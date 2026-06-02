@@ -181,18 +181,26 @@ ul {
     padding: 8px 18px;
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--text-muted);
+    color: var(--color-white);
     border-radius: var(--radius-sm);
     transition: all var(--transition-fast);
     position: relative;
 }
 
 .nav-link:hover {
-    color: var(--text-primary);
-    background-color: var(--bg-glass-hover);
+    color: var(--accent-secondary);
 }
 
 .nav-link.active {
+    color: var(--accent-primary);
+}
+
+/* Scrolled navbar styles */
+.navbar.scrolled .nav-link {
+    color: var(--text-primary);
+}
+
+.navbar.scrolled .nav-link:hover {
     color: var(--accent-primary);
 }
 
@@ -640,6 +648,7 @@ ul {
     background-color: #e5e5e5;
     padding: 100px 0;
     margin-top: 150vh;
+    clip-path: var(--component-basic-card)
 }
 
 .studies-title {
@@ -733,6 +742,24 @@ ul {
     to { stroke-dashoffset: -150; }
 }
 
+/* Study card pulse colors */
+.study-card:nth-child(1) .pulse-main,
+.study-card:nth-child(1) .pulse-wrap {
+    stroke: var(--accent-tertiary);
+}
+
+.study-card:nth-child(2) .pulse-main,
+.study-card:nth-child(2) .pulse-wrap {
+    stroke: var(--accent-secondary);
+}
+
+.study-card:nth-child(3) .pulse-main,
+.study-card:nth-child(3) .pulse-wrap,
+.study-card:nth-child(4) .pulse-main,
+.study-card:nth-child(4) .pulse-wrap {
+    stroke: var(--accent-primary);
+}
+
 @media (max-width: 1024px) {
     .study-card {
         aspect-ratio: auto;
@@ -745,8 +772,9 @@ ul {
     padding: 100px 0 0 0;
     color: var(--text-primary);
     position: relative;
-    z-index: 1;
+    z-index: 0;
     padding-bottom: 50vh;
+    margin-top: -50px;
 }
 
 .workflow-container {
@@ -1021,6 +1049,7 @@ ul {
 .projects {
     margin-top: -100vh;
     z-index: 10;
+    clip-path: var(--component-basic-card)
 }
 
 .projects-grid {
@@ -1220,7 +1249,7 @@ ul {
     padding: 48px;
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
+    clip-path: var(--component-basic-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
