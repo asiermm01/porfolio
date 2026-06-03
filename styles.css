@@ -31,7 +31,8 @@
 
     --component-basic: polygon(10% 0%, 12% 3%, 35% 3%, 37% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 97%, 65% 97%, 63% 100%, 0% 100%, 0% 0%);
     --component-basic-card: polygon(10% 0%, 12% 2%, 40% 2%, 42% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 98%, 60% 98%, 58% 100%, 0% 100%, 0% 0%);
-    --component-basic-largo: polygon(10% 0%, 12% 4%, 35% 4%, 37% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 96%, 65% 96%, 63% 100%, 0% 100%, 0% 0%);
+    --component-basic-largo: polygon(7% 2%, 42% 2%, 43% 0%, 95% 0%, 100% 20%, 100% 100%, 94% 100%, 93% 98%, 58% 98%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
+    --component-esquina: polygon(0% 0%, 95% 0%, 100% 20%, 100% 100%, 5% 100%, 0% 80%);
     --component-basic-esquina: polygon(7% 6%, 42% 6%, 43% 0%, 98% 0%, 100% 25%, 100% 100%, 94% 100%, 93% 94%, 58% 94%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
 
     /* Typography */
@@ -1066,7 +1067,7 @@ ul {
     border: 1px solid var(--border-color);
     overflow: hidden;
     transition: all var(--transition-medium);
-    clip-path: var(--component-basic-card);
+    clip-path: var(--component-esquina);
 }
 
 .project-card:hover {
@@ -1147,7 +1148,7 @@ ul {
 }
 
 .project-info {
-    padding: 40px 36px;
+    padding: 3rem 4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

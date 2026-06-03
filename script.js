@@ -65,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", () => {
             const currentScrollY = window.scrollY;
 
-            if (currentScrollY > 50) {
+            if (currentScrollY > 1500) {
                 navbar.classList.add("scrolled");
             } else {
                 navbar.classList.remove("scrolled");
             }
 
-            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            if (currentScrollY > lastScrollY && currentScrollY > 1550) {
                 navbar.classList.add("hidden");
             } else {
                 navbar.classList.remove("hidden");
@@ -301,7 +301,7 @@ function initHeroScene() {
             this.geometry = new THREE.BufferGeometry();
             this.positions = new Float32Array(3);
             this.positions[0] = 0;
-            this.positions[1] = -2.95;
+            this.positions[1] = -3;
             this.positions[2] = 0;
             this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
             
@@ -455,7 +455,7 @@ function initHeroScene() {
                 const positions = new Float32Array(this.points.length * 3);
                 for (let i = 0; i < this.points.length; i++) {
                     positions[i * 3] = this.points[i].x;
-                    positions[i * 3 + 1] = -2.95;
+                    positions[i * 3 + 1] = -3;
                     positions[i * 3 + 2] = this.points[i].z;
                 }
                 
@@ -479,8 +479,8 @@ function initHeroScene() {
             this.time += 0.015;
             const pulse = Math.sin(this.time) * 0.3 + 0.7;
             this.material.opacity = pulse * 0.85;
-            this.glowMaterial.opacity = pulse * 0.25;
-            this.glowMaterial2.opacity = pulse * 0.06;
+            this.glowMaterial.opacity = pulse * 0.5;
+            this.glowMaterial2.opacity = pulse * 0.1;
         }
     }
 
@@ -733,6 +733,7 @@ function initAboutSection() {
         scrollTrigger: {
             trigger: '.about-section',
             start: 'top top',
+            markers: true,
             end: '+=150%', // Scroll distance equal to the margin-top we added
             scrub: 1 // Smooth scrubbing
         }
