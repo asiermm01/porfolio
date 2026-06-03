@@ -276,8 +276,8 @@ function initHeroScene() {
             this.gridSpacing = 2.5;
             
             // Visible grid bounds (centered area where snakes move)
-            this.gridBoundMin = -20;
-            this.gridBoundMax = 20;
+            this.gridBoundMin = -15;
+            this.gridBoundMax = 15;
             
             // Current grid intersection position (snapped to grid)
             this.gridX = 0;  // Must always be multiple of 2.5
@@ -307,7 +307,7 @@ function initHeroScene() {
             
             this.material = new THREE.LineBasicMaterial({
                 color: color,
-                linewidth: 2,
+                linewidth: 10,
                 transparent: true,
                 fog: false,
                 blending: THREE.AdditiveBlending,
@@ -321,7 +321,7 @@ function initHeroScene() {
             this.glowGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3), 3));
             this.glowMaterial = new THREE.LineBasicMaterial({
                 color: color,
-                linewidth: 5,
+                linewidth: 10,
                 transparent: true,
                 fog: false,
                 blending: THREE.AdditiveBlending,
@@ -336,7 +336,7 @@ function initHeroScene() {
             this.glowGeometry2.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3), 3));
             this.glowMaterial2 = new THREE.LineBasicMaterial({
                 color: color,
-                linewidth: 10,
+                linewidth: 14,
                 transparent: true,
                 fog: false,
                 blending: THREE.AdditiveBlending,
@@ -487,7 +487,7 @@ function initHeroScene() {
     // Create two snakes with accent colors
     // Green: #00c853, Gold: #f5b800
     // Slow, professional movement speeds
-    const snake1 = new SnakeLine(0x00c853, 0.12); // accent-secondary (green) - slightly faster
+    const snake1 = new SnakeLine(0x00c853, 0.15); // accent-secondary (green) - slightly faster
     const snake2 = new SnakeLine(0xf5b800, 0.10);  // accent-tertiary (gold) - slightly slower
 
     // Grid is now static - mouse tracking removed
