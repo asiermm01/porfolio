@@ -265,16 +265,232 @@ function initHeroScene() {
     scene.add(grid);
 
     // ===========================
-    // MOUSE TRACKING (for grid)
+    // ANIMATED SNAKE LINES — glowing paths on grid lines
     // ===========================
-    let mouseX = 0, mouseY = 0;
-    const BASE_GRID_ROT_X = -Math.PI / 2;
-    const BASE_GRID_POS_Z = 0;
+    class SnakeLine {
+        constructor(color, speed = 0.15) {
+            this.color = color;
+            this.points = [];
+            
+            // Grid system: lines appear every 2.5 units (coord = vWorldPos.xz * 0.4)
+            this.gridSpacing = 2.5;
+            
+            // Visible grid bounds (centered area where snakes move)
+            this.gridBoundMin = -20;
+            this.gridBoundMax = 20;
+            
+            // Current grid intersection position (snapped to grid)
+            this.gridX = 0;  // Must always be multiple of 2.5
+            this.gridZ = 0;  // Must always be multiple of 2.5
+            
+            // Direction: 0=+X, 1=+Z, 2=-X, 3=-Z (always moving along a line)
+            this.direction = Math.floor(Math.random() * 4);
+            
+            // Smooth interpolation between grid intersections
+            this.moveProgress = 0;
+            this.moveSpeed = speed; // Units per frame
+            this.targetGridX = this.gridX;
+            this.targetGridZ = this.gridZ;
+            this.nextDirectionChangeCounter = 0;
+            this.directionChangeCooldown = Math.random() * 40 + 60; // Change direction every 60-100 frames
+            
+            this.maxSegments = 80;
+            this.time = Math.random() * 6.28;
+            
+            // Create line geometry
+            this.geometry = new THREE.BufferGeometry();
+            this.positions = new Float32Array(3);
+            this.positions[0] = 0;
+            this.positions[1] = -2.95;
+            this.positions[2] = 0;
+            this.geometry.setAttribute('position', new THREE.BufferAttribute(this.positions, 3));
+            
+            this.material = new THREE.LineBasicMaterial({
+                color: color,
+                linewidth: 2,
+                transparent: true,
+                fog: false,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+            this.line = new THREE.Line(this.geometry, this.material);
+            scene.add(this.line);
+            
+            // Glow effect
+            this.glowGeometry = new THREE.BufferGeometry();
+            this.glowGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3), 3));
+            this.glowMaterial = new THREE.LineBasicMaterial({
+                color: color,
+                linewidth: 5,
+                transparent: true,
+                fog: false,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                opacity: 0.3
+            });
+            this.glowLine = new THREE.Line(this.glowGeometry, this.glowMaterial);
+            scene.add(this.glowLine);
+            
+            // Second glow layer (softer)
+            this.glowGeometry2 = new THREE.BufferGeometry();
+            this.glowGeometry2.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3), 3));
+            this.glowMaterial2 = new THREE.LineBasicMaterial({
+                color: color,
+                linewidth: 10,
+                transparent: true,
+                fog: false,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                opacity: 0.08
+            });
+            this.glowLine2 = new THREE.Line(this.glowGeometry2, this.glowMaterial2);
+            scene.add(this.glowLine2);
+            
+            // Set initial target
+            this.setNewTarget();
+        }
 
-    window.addEventListener('mousemove', (e) => {
-        mouseX = (e.clientX / window.innerWidth)  * 2 - 1;
-        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
-    });
+        snapToGrid(value) {
+            return Math.round(value / this.gridSpacing) * this.gridSpacing;
+        }
+
+        getValidDirections() {
+            const valid = [];
+            
+            // 0=+X, 1=+Z, 2=-X, 3=-Z
+            if (this.gridX + this.gridSpacing <= this.gridBoundMax) valid.push(0);
+            if (this.gridZ + this.gridSpacing <= this.gridBoundMax) valid.push(1);
+            if (this.gridX - this.gridSpacing >= this.gridBoundMin) valid.push(2);
+            if (this.gridZ - this.gridSpacing >= this.gridBoundMin) valid.push(3);
+            
+            return valid.length > 0 ? valid : [this.direction];
+        }
+
+        getPerpendicular() {
+            // Current direction is either X or Z
+            const isMovingX = (this.direction === 0 || this.direction === 2);
+            
+            if (isMovingX) {
+                // Moving along X, can turn to Z directions
+                return [1, 3];
+            } else {
+                // Moving along Z, can turn to X directions
+                return [0, 2];
+            }
+        }
+
+        setNewTarget() {
+            const valid = this.getValidDirections();
+            const perpendicular = this.getPerpendicular().filter(d => valid.includes(d));
+            
+            // Prefer perpendicular (turn) 30% of the time, continue straight 70%
+            let nextDir;
+            if (perpendicular.length > 0 && Math.random() < 0.35) {
+                nextDir = perpendicular[Math.floor(Math.random() * perpendicular.length)];
+            } else {
+                nextDir = valid.includes(this.direction) ? this.direction : valid[0];
+            }
+            
+            this.direction = nextDir;
+            
+            // Calculate target grid intersection
+            switch(this.direction) {
+                case 0: // +X
+                    this.targetGridX = this.gridX + this.gridSpacing;
+                    this.targetGridZ = this.gridZ;
+                    break;
+                case 1: // +Z
+                    this.targetGridX = this.gridX;
+                    this.targetGridZ = this.gridZ + this.gridSpacing;
+                    break;
+                case 2: // -X
+                    this.targetGridX = this.gridX - this.gridSpacing;
+                    this.targetGridZ = this.gridZ;
+                    break;
+                case 3: // -Z
+                    this.targetGridX = this.gridX;
+                    this.targetGridZ = this.gridZ - this.gridSpacing;
+                    break;
+            }
+            
+            // Clamp to bounds
+            this.targetGridX = Math.max(this.gridBoundMin, Math.min(this.gridBoundMax, this.targetGridX));
+            this.targetGridZ = Math.max(this.gridBoundMin, Math.min(this.gridBoundMax, this.targetGridZ));
+            
+            this.moveProgress = 0;
+            this.nextDirectionChangeCounter = 0;
+        }
+
+        update() {
+            // Interpolate between current and target grid intersection
+            const dist = Math.sqrt(
+                Math.pow(this.targetGridX - this.gridX, 2) + 
+                Math.pow(this.targetGridZ - this.gridZ, 2)
+            );
+            
+            if (dist > 0) {
+                this.moveProgress += this.moveSpeed;
+                const t = Math.min(1, this.moveProgress / dist);
+                
+                const currentX = this.gridX + (this.targetGridX - this.gridX) * t;
+                const currentZ = this.gridZ + (this.targetGridZ - this.gridZ) * t;
+                
+                // If reached target intersection
+                if (t >= 1) {
+                    this.gridX = this.snapToGrid(this.targetGridX);
+                    this.gridZ = this.snapToGrid(this.targetGridZ);
+                    this.setNewTarget();
+                }
+                
+                // Add current position to trail
+                this.points.unshift({ x: currentX, z: currentZ });
+            }
+            
+            if (this.points.length > this.maxSegments) {
+                this.points.pop();
+            }
+            
+            // Update geometry
+            if (this.points.length > 0) {
+                const positions = new Float32Array(this.points.length * 3);
+                for (let i = 0; i < this.points.length; i++) {
+                    positions[i * 3] = this.points[i].x;
+                    positions[i * 3 + 1] = -2.95;
+                    positions[i * 3 + 2] = this.points[i].z;
+                }
+                
+                this.geometry.dispose();
+                this.geometry = new THREE.BufferGeometry();
+                this.geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                this.line.geometry = this.geometry;
+                
+                this.glowGeometry.dispose();
+                this.glowGeometry = new THREE.BufferGeometry();
+                this.glowGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                this.glowLine.geometry = this.glowGeometry;
+                
+                this.glowGeometry2.dispose();
+                this.glowGeometry2 = new THREE.BufferGeometry();
+                this.glowGeometry2.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                this.glowLine2.geometry = this.glowGeometry2;
+            }
+            
+            // Subtle glow pulse
+            this.time += 0.015;
+            const pulse = Math.sin(this.time) * 0.3 + 0.7;
+            this.material.opacity = pulse * 0.85;
+            this.glowMaterial.opacity = pulse * 0.25;
+            this.glowMaterial2.opacity = pulse * 0.06;
+        }
+    }
+
+    // Create two snakes with accent colors
+    // Green: #00c853, Gold: #f5b800
+    // Slow, professional movement speeds
+    const snake1 = new SnakeLine(0x00c853, 0.12); // accent-secondary (green) - slightly faster
+    const snake2 = new SnakeLine(0xf5b800, 0.10);  // accent-tertiary (gold) - slightly slower
+
+    // Grid is now static - mouse tracking removed
 
     // ===========================
     // SCROLL — sphere orbit (natural, no pin)
@@ -304,9 +520,6 @@ function initHeroScene() {
     // RENDER LOOP
     // ===========================
     let heroTime = 0;
-    let currentGridRotX = BASE_GRID_ROT_X;
-    let currentGridRotZ = 0;
-    let currentGridPosZ = BASE_GRID_POS_Z;
 
     function heroAnimate() {
         requestAnimationFrame(heroAnimate);
@@ -318,6 +531,10 @@ function initHeroScene() {
 
         // Grid time
         gridMat.uniforms.uTime.value = heroTime;
+
+        // Update snake lines
+        snake1.update();
+        snake2.update();
 
         // Sphere constant rotation (faster)
         sphere.rotation.y += 0.007;
@@ -331,16 +548,7 @@ function initHeroScene() {
         sphere.position.y = SPHERE_START.y + (SPHERE_END.y - SPHERE_START.y) * t - arcY;
         sphere.position.z = SPHERE_START.z + (SPHERE_END.z - SPHERE_START.z) * t;
 
-        // Grid cursor-reactive: Y-axis rotation + Z-axis position
-        const targetRotX = BASE_GRID_ROT_X + mouseY * 0.035;
-        const targetRotZ = mouseX * 0.025;
-        const targetPosZ = mouseX * 0.8;
-        currentGridRotX += (targetRotX - currentGridRotX) * 0.04;
-        currentGridRotZ += (targetRotZ - currentGridRotZ) * 0.04;
-        currentGridPosZ += (targetPosZ - currentGridPosZ) * 0.04;
-        grid.rotation.x = currentGridRotX;
-        grid.rotation.z = currentGridRotZ;
-        grid.position.z = currentGridPosZ;
+        // Grid is static (no mouse tracking)
 
         renderer.render(scene, camera);
     }
