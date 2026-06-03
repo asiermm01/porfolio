@@ -1064,9 +1064,9 @@ ul {
     grid-template-columns: 1.2fr 1fr;
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
     overflow: hidden;
     transition: all var(--transition-medium);
+    clip-path: var(--component-basic-card);
 }
 
 .project-card:hover {
