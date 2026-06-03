@@ -65,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", () => {
             const currentScrollY = window.scrollY;
 
-            if (currentScrollY > 1500) {
+            if (currentScrollY > 1200) {
                 navbar.classList.add("scrolled");
             } else {
                 navbar.classList.remove("scrolled");
             }
 
-            if (currentScrollY > lastScrollY && currentScrollY > 1550) {
+            if (currentScrollY > lastScrollY && currentScrollY > 1250) {
                 navbar.classList.add("hidden");
             } else {
                 navbar.classList.remove("hidden");
@@ -720,21 +720,20 @@ function initAboutSection() {
     if (!aboutIntro) return;
 
     const scrollingBg = aboutIntro.querySelector('.about-scrolling-bg');
-    const heroImage = aboutIntro.querySelector('.about-hero-image');
+    const aboutImage = aboutIntro.querySelector('.about-hero-image');
     const introCard = aboutIntro.querySelector('.about-intro-card');
 
     // Set initial states
     if (scrollingBg) gsap.set(scrollingBg, { opacity: 0 });
-    if (heroImage) gsap.set(heroImage, { x: '-50vw', opacity: 0 });
+    if (aboutImage) gsap.set(aboutImage, { x: '-50vw', opacity: 0 });
     if (introCard) gsap.set(introCard, { x: '50vw', opacity: 0 });
 
     // Create a timeline using the parent section as trigger
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: '.about-section',
-            start: 'top top',
-            markers: true,
-            end: '+=150%', // Scroll distance equal to the margin-top we added
+            start: 'top 60%', 
+            end: '+=100%', // Scroll distance equal to the margin-top we added
             scrub: 1 // Smooth scrubbing
         }
     });
@@ -743,20 +742,31 @@ function initAboutSection() {
     if (scrollingBg) {
         tl.to(scrollingBg, {
             opacity: 1,
-            duration: 0.4
+            duration: 0.5
         });
     }
 
     // 2. Bring in the left and right content simultaneously
-    if (heroImage && introCard) {
-        tl.to([heroImage, introCard], {
+    if (aboutImage && introCard) {
+        tl.to([aboutImage, introCard], {
             x: 0,
             opacity: 1,
             duration: 0.8,
             ease: "power2.out"
-        }, "+=0.2"); // Small delay after text starts fading in
+        }, "-=0.2"); // Small delay after text starts fading in
     }
 }
+ScrollTrigger.create({
+  start: 4000,
+
+  onEnter: () => {
+    gsap.to(".about-intro", { autoAlpha: 0 });
+  },
+
+  onLeaveBack: () => {
+    gsap.to(".about-intro", { autoAlpha: 1 });
+  }
+});
 
 // ==========================================
 // TECHNOLOGIES SECTION — Scroll-Driven Card Stack

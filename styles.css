@@ -551,7 +551,7 @@ ul {
 }
 
 .about-scrolling-bg {
-    position: absolute;
+    position: fixed;
     top: 10vh;
     left: 0;
     right: 0;
@@ -584,7 +584,12 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: fixed;
+    inset: 10%;
+    /* top: 10%;
+    left: 10%;
+    right: 10%;
+    bottom: 10%; */
     z-index: 2;
     gap: 40px;
 }
@@ -648,7 +653,7 @@ ul {
     z-index: 2;
     background-color: #e5e5e5;
     padding: 100px 0;
-    margin-top: 150vh;
+    margin-top: 70vh;
     clip-path: var(--component-basic-card)
 }
 
@@ -1221,7 +1226,16 @@ ul {
     position: relative;
     z-index: 1;
 }
-
+.contact-scrolling-bg {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    right: 0;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 1;
+    pointer-events: none;
+}
 .contact-image {
     position: absolute;
     overflow: visible;
