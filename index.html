@@ -21,6 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Questrial&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Syne:wght@400..800&display=swap" rel="stylesheet">
     
     <!-- Diseño -->
     <link rel="stylesheet" href="styles.css">
@@ -71,26 +72,26 @@
 
     <!-- About Section -->
     <section class="about-section" id="about">
+        <canvas id="grid-canvas" class="canvas-intro"></canvas>
         <!-- Intro Section -->
-        <div class="about-intro">
-            <div class="about-scrolling-bg">
-                <div class="scrolling-text-track">
-                    <span class="scrolling-text">Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;</span>
-                    <span class="scrolling-text">Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;</span>
-                </div>
+        <div class="about-intro"></div>
+        <div class="about-scrolling-bg">
+            <div class="scrolling-text-track">
+                <span class="scrolling-text">Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;</span>
+                <span class="scrolling-text">Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;</span>
             </div>
-            <div class="about-intro-container container">
-                <div class="about-hero-image">
-                    <!-- Empty string, just the tag as requested -->
-                    <img src="" alt="" class="about-person-img">
-                </div>
-                <div class="about-intro-card">
-                    <h3 class="about-card-title">Quien soy</h3>
-                    <p class="about-card-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla. Nullam nec ligula mauris. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Quisque quis mi vehicula augue eleifend vestibulum. Donec aliquet tristique ante at bibendum.
-                    </p>
-                    <a href="#" class="btn btn-primary btn-cv">Descargar CV</a>
-                </div>
+        </div>
+        <div class="about-intro-container container">
+            <div class="about-hero-image">
+                <!-- Empty string, just the tag as requested -->
+                <img src="assets/images/contact-person.png" alt="Perfil" class="about-person-img">
+            </div>
+            <div class="about-intro-card">
+                <h3 class="about-card-title">Quien soy</h3>
+                <p class="about-card-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla. Nullam nec ligula mauris. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Quisque quis mi vehicula augue eleifend vestibulum. Donec aliquet tristique ante at bibendum.
+                </p>
+                <a href="#" class="btn btn-primary btn-cv">Descargar CV</a>
             </div>
         </div>
 
@@ -155,10 +156,10 @@
             </div>
             
             <div class="workflow-cta">
-                <div class="cta-decor cta-decor-left"></div>
+                <!-- <div class="cta-decor cta-decor-left"></div> -->
                 <h4 class="cta-title">¿Tienes alguna idea?</h4>
                 <a href="#contact" class="btn btn-primary btn-contact-cta">¡Envíame un mensaje!</a>
-                <div class="cta-decor cta-decor-right"></div>
+                <!-- <div class="cta-decor cta-decor-right"></div> -->
             </div>
         </div>
     </section>
@@ -303,8 +304,8 @@
                 </div>
             </div>
             <div class="contact-image">
-                    <img src="assets/images/contact-person.png" alt="Perfil" class="contact-person-img">
-                </div>
+                <img src="assets/images/contact-person.png" alt="Perfil" class="contact-person-img">
+            </div>
             <div class="contact-grid">
                 <div class="contact-form-card">
                     <form class="contact-form" id="contact-form">
@@ -409,11 +410,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 3D Graphics Engine (Three.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineSegmentsGeometry.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineGeometry.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineMaterial.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/LineSegments2.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/lines/Line2.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

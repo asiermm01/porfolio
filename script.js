@@ -65,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", () => {
             const currentScrollY = window.scrollY;
 
-            if (currentScrollY > 1200) {
+            if (currentScrollY > 1300) {
                 navbar.classList.add("scrolled");
             } else {
                 navbar.classList.remove("scrolled");
             }
 
-            if (currentScrollY > lastScrollY && currentScrollY > 1250) {
+            if (currentScrollY > lastScrollY && currentScrollY > 1200) {
                 navbar.classList.add("hidden");
             } else {
                 navbar.classList.remove("hidden");
@@ -498,6 +498,19 @@ function initHeroScene() {
     let heroScrollProgress = 0;
 
     const heroContent = document.querySelector('.hero-content');
+    gsap.set(".canvas-intro", { display: "none", autoAlpha: 0 });
+    gsap.set(".about-intro-container", { display: "none", autoAlpha: 0 });
+
+   /*  ScrollTrigger.create({
+    start: 4000,
+    onEnter: () => {
+        gsap.to(".canvas-intro", { autoAlpha: 0 });
+    },
+
+    onLeaveBack: () => {
+        gsap.to(".canvas-intro", { autoAlpha: 1 });
+    }
+    }); */
 
     ScrollTrigger.create({
         trigger: '#hero',
@@ -510,9 +523,13 @@ function initHeroScene() {
         },
         onLeave: () => {
             if (heroContent) gsap.to(heroContent, { autoAlpha: 0, duration: 0.2, overwrite: true });
+            if (".about-intro-container") gsap.to(".about-intro-container", { display: "flex", autoAlpha: 1, duration: 0.5, overwrite: true });   
+            if (".canvas-intro") gsap.to(".canvas-intro", { display: "block", autoAlpha: 1, duration: 0.5, overwrite: true });                 
         },
         onEnterBack: () => {
             if (heroContent) gsap.to(heroContent, { autoAlpha: 1, duration: 0.2, overwrite: true });
+            if (".about-intro-container") gsap.to(".about-intro-container", { display: "none", autoAlpha: 0, duration: 0.5, overwrite: true });   
+            if (".canvas-intro") gsap.to(".canvas-intro", { display: "none", autoAlpha: 0, duration: 0.5, overwrite: true });      
         }
     });
 
@@ -715,13 +732,135 @@ function initGlobalCanvas() {
 // ==========================================
 // ABOUT SECTION — Scroll Animations
 // ==========================================
+(function DynamicGrid() {
+
+  const CFG = {
+    color       : 0x5620e9,
+    lineOpacity : 1,
+    cols        : 20,
+    rows        : 10,
+    gridSize    : 55,
+    waveAmp     : 2,
+    waveSpeed   : 1,
+    waveFreqX   : 0.44,
+    waveFreqZ   : 0.26,
+    mouseRadius : 6,
+    mouseForce  : 15,
+    parallax    : -3,
+    camPos      : [1, 50, -15],
+    camFOV      : 50,
+  };
+
+  const canvas  = document.getElementById('grid-canvas');
+  const section = canvas.parentElement;   // → .about-section
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setClearColor(0x000000, 0);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(CFG.camFOV, 1, 0.1, 500);
+  camera.position.set(...CFG.camPos);
+  camera.lookAt(0, 0, -3);
+
+  const W = CFG.cols, H = CFG.rows, S = CFG.gridSize;
+  const verts = [];
+  for (let r = 0; r <= H; r++) {
+    for (let c = 0; c <= W; c++) {
+      verts.push({ x: (c / W - 0.5) * S, z: (r / H - 0.5) * S, y: 0, targetY: 0 });
+    }
+  }
+  const vi = (c, r) => r * (W + 1) + c;
+
+  const lineMat = new THREE.LineBasicMaterial({ color: CFG.color, transparent: true, opacity: 0, depthWrite: false });
+
+  const hAttr = [], vAttr = [];
+  for (let r = 0; r <= H; r++) {
+    const attr = new THREE.BufferAttribute(new Float32Array((W + 1) * 3), 3);
+    const geom = new THREE.BufferGeometry().setAttribute('position', attr);
+    const line = new THREE.Line(geom, lineMat);
+    line.frustumCulled = false;
+    scene.add(line);
+    hAttr.push(attr);
+  }
+  for (let c = 0; c <= W; c++) {
+    const attr = new THREE.BufferAttribute(new Float32Array((H + 1) * 3), 3);
+    const geom = new THREE.BufferGeometry().setAttribute('position', attr);
+    const line = new THREE.Line(geom, lineMat);
+    line.frustumCulled = false;
+    scene.add(line);
+    vAttr.push(attr);
+  }
+
+  const mouse3D = { x: 9999, z: 9999 };
+  const plane   = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+  const rc      = new THREE.Raycaster();
+  const mNDC    = new THREE.Vector2();
+  const mWorld  = new THREE.Vector3();
+  const camShift = { x: 0 };
+
+  section.addEventListener('pointermove', (e) => {
+    const nx = e.clientX / window.innerWidth;
+    const ny = e.clientY / window.innerHeight;
+    mNDC.set(nx * 2 - 1, -(ny * 2 - 1));
+    rc.setFromCamera(mNDC, camera);
+    if (rc.ray.intersectPlane(plane, mWorld)) { mouse3D.x = mWorld.x; mouse3D.z = mWorld.z; }
+    gsap.to(camShift, { x: (nx - 0.5) * CFG.parallax, duration: 2, ease: 'power2.out' });
+  });
+  window.addEventListener('pointerleave', () => {
+    gsap.to(mouse3D,  { x: 9999, z: 9999, duration: 1.4, ease: 'power2.out' });
+    gsap.to(camShift, { x: 0,             duration: 2,   ease: 'power2.out' });
+  });
+
+  function resize() {
+    const w = window.innerWidth, h = section.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(section);
+  resize();
+
+  const state = { offsetY: -3.0 };
+  gsap.timeline({ defaults: { ease: 'expo.out' } })
+    .to(lineMat, { opacity: CFG.lineOpacity, duration: 2.6 }, 0)
+    .to(state,   { offsetY: 0,               duration: 2.4 }, 0);
+
+  gsap.ticker.add((time) => {
+    const t = time * CFG.waveSpeed;
+    camera.position.x += (camShift.x - camera.position.x) * 0.04;
+
+    for (let i = 0; i < verts.length; i++) {
+      const v = verts[i];
+      const dx = v.x - mouse3D.x, dz = v.z - mouse3D.z;
+      const d  = Math.sqrt(dx * dx + dz * dz);
+      const wave   = Math.sin(v.x * CFG.waveFreqX + t) * Math.cos(v.z * CFG.waveFreqZ + t * 0.78) * CFG.waveAmp;
+      const ripple = d < CFG.mouseRadius ? Math.cos((d / CFG.mouseRadius) * (Math.PI * 0.5)) * CFG.mouseForce : 0;
+      v.targetY = wave + ripple + state.offsetY;
+      v.y += (v.targetY - v.y) * 0.06;
+    }
+
+    for (let r = 0; r <= H; r++) {
+      const a = hAttr[r].array;
+      for (let c = 0; c <= W; c++) { const v = verts[vi(c,r)]; a[c*3]=v.x; a[c*3+1]=v.y; a[c*3+2]=v.z; }
+      hAttr[r].needsUpdate = true;
+    }
+    for (let c = 0; c <= W; c++) {
+      const a = vAttr[c].array;
+      for (let r = 0; r <= H; r++) { const v = verts[vi(c,r)]; a[r*3]=v.x; a[r*3+1]=v.y; a[r*3+2]=v.z; }
+      vAttr[c].needsUpdate = true;
+    }
+    renderer.render(scene, camera);
+  });
+
+})();
 function initAboutSection() {
     const aboutIntro = document.querySelector('.about-intro');
     if (!aboutIntro) return;
 
-    const scrollingBg = aboutIntro.querySelector('.about-scrolling-bg');
-    const aboutImage = aboutIntro.querySelector('.about-hero-image');
-    const introCard = aboutIntro.querySelector('.about-intro-card');
+    const scrollingBg = document.querySelector('.about-scrolling-bg');
+    const aboutImage = document.querySelector('.about-hero-image');
+    const introCard = document.querySelector('.about-intro-card');
 
     // Set initial states
     if (scrollingBg) gsap.set(scrollingBg, { opacity: 0 });
@@ -761,10 +900,16 @@ ScrollTrigger.create({
 
   onEnter: () => {
     gsap.to(".about-intro", { autoAlpha: 0 });
+    gsap.to(".about-scrolling-bg", { autoAlpha: 0 });
+    gsap.to(".about-hero-image", { autoAlpha: 0 });
+    gsap.to(".about-intro-card", { autoAlpha: 0 });
   },
 
   onLeaveBack: () => {
     gsap.to(".about-intro", { autoAlpha: 1 });
+    gsap.to(".about-scrolling-bg", { autoAlpha: 1 });
+    gsap.to(".about-hero-image", { autoAlpha: 1 });
+    gsap.to(".about-intro-card", { autoAlpha: 1 });
   }
 });
 

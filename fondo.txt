@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Grid — Demo</title>
+
+  <style>
+    /* ════════════════════════════════════════════════════════
+       DEMO WRAPPER — elimina o adapta según tu proyecto
+    ════════════════════════════════════════════════════════ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #06030e;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow: hidden;
+    }
+
+
+    /* ════════════════════════════════════════════════════════
+       ① SECCIÓN — ajusta height y background a tu diseño
+    ════════════════════════════════════════════════════════ */
+    .section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      /*
+        Pon aquí el color/gradiente de fondo de tu sección.
+        El canvas solo pintará líneas; el resto es transparente.
+        Ejemplo:
+          background: #06030e;
+          background: linear-gradient(160deg, #0d0820 0%, #0a0515 100%);
+      */
+    }
+
+
+    /* ════════════════════════════════════════════════════════
+       ② CANVAS — esto es todo lo que pegas en tu CSS
+    ════════════════════════════════════════════════════════ */
+    #grid-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+
+      /* Interacción con ratón: 'none' = solo visual, 'auto' = reactivo */
+      pointer-events: none;
+
+      /* Glow sutil sobre las líneas */
+      filter: drop-shadow(0 0 10px rgba(86, 32, 233, 0.45))
+              drop-shadow(0 0 3px  rgba(86, 32, 233, 0.3));
+
+      /* Fundido radial en los bordes (opcional, quita si no lo quieres) */
+      -webkit-mask-image: radial-gradient(
+        ellipse 92% 82% at 50% 62%,
+        #000 40%, transparent 100%
+      );
+      mask-image: radial-gradient(
+        ellipse 92% 82% at 50% 62%,
+        #000 40%, transparent 100%
+      );
+    }
+
+
+    /* ════════════════════════════════════════════════════════
+       CONTENIDO DE DEMO (elimina en producción)
+    ════════════════════════════════════════════════════════ */
+    .content {
+      position: relative;
+      z-index: 10;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+
+    .c-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: #7c4ef5;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .c-title {
+      font-size: clamp(2.8rem, 8vw, 7rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      line-height: .95;
+      color: #ffffff;
+      opacity: 0;
+      transform: translateY(22px);
+    }
+
+    .c-title span {
+      background: linear-gradient(135deg, #7c4ef5 0%, #5620e9 50%, #3b10c4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .c-sub {
+      font-size: clamp(.8rem, 1.6vw, 1rem);
+      color: rgba(255,255,255,.38);
+      letter-spacing: .04em;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .c-pills {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    .c-pill {
+      padding: .35rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(86,32,233,.55);
+      background: rgba(86,32,233,.12);
+      color: rgba(255,255,255,.7);
+      font-size: .72rem;
+      letter-spacing: .08em;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════
+     ESTRUCTURA MÍNIMA A INCLUIR EN TU SECCIÓN
+════════════════════════════════════════════════════════ -->
+<section class="section" id="hero">
+
+  <!-- Este es el único elemento que necesitas para el fondo -->
+  <canvas id="grid-canvas"></canvas>
+
+  <!-- Tu contenido de la sección aquí (z-index > 0) -->
+  <div class="content">
+    <span class="c-tag">WebGL · Three.js · GSAP</span>
+    <h1 class="c-title">Dynamic<br><span>Grid</span></h1>
+    <p class="c-sub">Fondo interactivo · color #5620e9 · transparente</p>
+    <div class="c-pills">
+      <span class="c-pill">Three.js r128</span>
+      <span class="c-pill">GSAP 3</span>
+      <span class="c-pill">CSS Mask</span>
+      <span class="c-pill">Mouse Ripple</span>
+    </div>
+  </div>
+
+</section>
+<!-- ════════════════════════════════════════════════════════ -->
+
+
+<!-- ③ DEPENDENCIAS — pega estas dos líneas antes de tu script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<!-- ④ SCRIPT PRINCIPAL — pega esto antes de </body> -->
+<script>
+/* ══════════════════════════════════════════════════════════════
+   DYNAMIC GRID BACKGROUND  ·  v1.0
+   ──────────────────────────────────────────────────────────────
+   Deps  : Three.js r128+, GSAP 3+
+   Canvas: #grid-canvas  (position: absolute; inset: 0)
+   Fondo : completamente transparente (alpha: true, clearColor 0)
+   Mouse : reactivo al pointermove dentro de la sección padre
+   ══════════════════════════════════════════════════════════════ */
+(function DynamicGrid() {
+
+  /* ── CONFIGURACIÓN — ajusta a tu gusto ─────────────────── */
+  const CFG = {
+    // Apariencia
+    color       : 0x5620e9,   // color hexadecimal de las líneas
+    lineOpacity : 0.58,       // opacidad de las líneas  [0-1]
+    dotOpacity  : 0.80,       // opacidad de los puntos  [0-1]
+    dotSize     : 0.038,      // radio de los puntos de intersección
+
+    // Geometría
+    cols        : 28,         // segmentos en X
+    rows        : 28,         // segmentos en Z
+    gridSize    : 16,         // ancho total del plano (unidades 3D)
+
+    // Onda
+    waveAmp     : 0.52,       // amplitud vertical  (0 = plano)
+    waveSpeed   : 0.5,        // velocidad temporal  ↑ = más rápido
+    waveFreqX   : 0.44,       // frecuencia espacial eje X
+    waveFreqZ   : 0.36,       // frecuencia espacial eje Z
+
+    // Interacción con ratón
+    mouseRadius : 3.6,        // radio de influencia (unidades 3D)
+    mouseForce  : 1.35,       // altura máxima del bulto del ratón
+    parallax    : 1.4,        // movimiento lateral de la cámara
+
+    // Cámara
+    camPos      : [0, 6.5, 9],
+    camFOV      : 52,
+  };
+  /* ────────────────────────────────────────────────────── */
+
+
+  /* ── RENDERER ──────────────────────────────────────── */
+  const canvas   = document.getElementById('grid-canvas');
+  const section  = canvas.parentElement;
+
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    alpha     : true,   // ← fondo transparente
+    antialias : true,
+  });
+  renderer.setClearColor(0x000000, 0);   // rgba(0,0,0,0)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+
+  /* ── ESCENA & CÁMARA ───────────────────────────────── */
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(CFG.camFOV, 1, 0.1, 500);
+  camera.position.set(...CFG.camPos);
+  camera.lookAt(0, 0, 0);
+
+
+  /* ── VÉRTICES ──────────────────────────────────────── */
+  const W = CFG.cols, H = CFG.rows, S = CFG.gridSize;
+
+  // Array plano de objetos {x, z, y} — y se recalcula cada frame
+  const verts = [];
+  for (let r = 0; r <= H; r++) {
+    for (let c = 0; c <= W; c++) {
+      verts.push({
+        x : (c / W - 0.5) * S,
+        z : (r / H - 0.5) * S,
+        y : 0,
+      });
+    }
+  }
+  // Índice de vértice desde columna + fila
+  const vi = (c, r) => r * (W + 1) + c;
+
+
+  /* ── MATERIALES ────────────────────────────────────── */
+  // Ambos arrancan con opacity 0 (la entrada los anima a su valor final)
+  const lineMat = new THREE.LineBasicMaterial({
+    color       : CFG.color,
+    transparent : true,
+    opacity     : 0,
+    depthWrite  : false,
+  });
+  const dotMat = new THREE.MeshBasicMaterial({
+    color       : CFG.color,
+    transparent : true,
+    opacity     : 0,
+  });
+
+
+  /* ── GEOMETRÍA: LÍNEAS ─────────────────────────────── */
+  // hAttr[r] → BufferAttribute de la línea horizontal r
+  // vAttr[c] → BufferAttribute de la línea vertical   c
+  const hAttr = [], vAttr = [];
+
+  for (let r = 0; r <= H; r++) {
+    const arr  = new Float32Array((W + 1) * 3);
+    const geom = new THREE.BufferGeometry();
+    const attr = new THREE.BufferAttribute(arr, 3);
+    geom.setAttribute('position', attr);
+    const line = new THREE.Line(geom, lineMat);
+    line.frustumCulled = false;
+    scene.add(line);
+    hAttr.push(attr);
+  }
+
+  for (let c = 0; c <= W; c++) {
+    const arr  = new Float32Array((H + 1) * 3);
+    const geom = new THREE.BufferGeometry();
+    const attr = new THREE.BufferAttribute(arr, 3);
+    geom.setAttribute('position', attr);
+    const line = new THREE.Line(geom, lineMat);
+    line.frustumCulled = false;
+    scene.add(line);
+    vAttr.push(attr);
+  }
+
+
+  /* ── GEOMETRÍA: PUNTOS DE INTERSECCIÓN ────────────── */
+  const dotGeom   = new THREE.SphereGeometry(CFG.dotSize, 5, 5);
+  const dotMeshes = verts.map(() => {
+    const m = new THREE.Mesh(dotGeom, dotMat);
+    m.frustumCulled = false;
+    scene.add(m);
+    return m;
+  });
+
+
+  /* ── INTERACCIÓN: RATÓN ────────────────────────────── */
+  // El ratón se proyecta sobre y=0 mediante raycasting,
+  // dando coordenadas 3D reales para la física de la onda.
+  const mouse3D    = { x: 9999, z: 9999 };  // fuera de la rejilla = sin efecto
+  const plane      = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+  const raycaster  = new THREE.Raycaster();
+  const mouseNDC   = new THREE.Vector2();
+  const mouseWorld = new THREE.Vector3();
+  const camShift   = { x: 0 };   // parallax lateral de la cámara
+
+  section.addEventListener('pointermove', (e) => {
+    const rect = section.getBoundingClientRect();
+    const nx   = (e.clientX - rect.left) / rect.width;
+    const ny   = (e.clientY - rect.top)  / rect.height;
+
+    mouseNDC.set(nx * 2 - 1, -(ny * 2 - 1));
+    raycaster.setFromCamera(mouseNDC, camera);
+    if (raycaster.ray.intersectPlane(plane, mouseWorld)) {
+      mouse3D.x = mouseWorld.x;
+      mouse3D.z = mouseWorld.z;
+    }
+
+    gsap.to(camShift, {
+      x        : (nx - 0.5) * CFG.parallax,
+      duration : 2,
+      ease     : 'power2.out',
+    });
+  });
+
+  section.addEventListener('pointerleave', () => {
+    gsap.to(mouse3D,  { x: 9999, z: 9999, duration: 1.4, ease: 'power2.out' });
+    gsap.to(camShift, { x: 0,             duration: 2,   ease: 'power2.out' });
+  });
+
+
+  /* ── RESIZE ────────────────────────────────────────── */
+  function resize() {
+    const w = section.clientWidth, h = section.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(resize).observe(section);
+  resize();
+
+
+  /* ── ENTRADA: GSAP TIMELINE ────────────────────────── */
+  // La rejilla sube desde abajo y hace fade-in.
+  // Ajusta los tiempos y ease a tu gusto.
+  const state = { offsetY: -3.0 };  // desplazamiento vertical de entrada
+
+  gsap.timeline({ defaults: { ease: 'expo.out' } })
+    // Rejilla
+    .to(lineMat, { opacity: CFG.lineOpacity, duration: 2.6 }, 0)
+    .to(dotMat,  { opacity: CFG.dotOpacity,  duration: 2.6 }, 0)
+    .to(state,   { offsetY: 0,               duration: 2.4 }, 0)
+
+    // Contenido de demo (borra si no lo necesitas)
+    .to('.c-tag',   { opacity: 1, y: 0, duration: 1.1 }, 0.7)
+    .to('.c-title', { opacity: 1, y: 0, duration: 1.2 }, 0.9)
+    .to('.c-sub',   { opacity: 1, y: 0, duration: 1.1 }, 1.1)
+    .to('.c-pills', { opacity: 1, y: 0, duration: 1.0 }, 1.3);
+
+
+  /* ── LOOP PRINCIPAL (GSAP ticker) ──────────────────── */
+  gsap.ticker.add((time) => {
+    const t = time * CFG.waveSpeed;
+
+    // Suave seguimiento lateral de cámara
+    camera.position.x += (camShift.x - camera.position.x) * 0.04;
+
+    /* ─ Calcular posición Y de cada vértice ─ */
+    for (let i = 0; i < verts.length; i++) {
+      const v = verts[i];
+
+      // Distancia al cursor (coordenadas de mundo 3D)
+      const dx = v.x - mouse3D.x;
+      const dz = v.z - mouse3D.z;
+      const d  = Math.sqrt(dx * dx + dz * dz);
+
+      // Onda base: suma de dos senos con frecuencias y fases distintas
+      const wave =
+        Math.sin(v.x * CFG.waveFreqX + t) *
+        Math.cos(v.z * CFG.waveFreqZ + t * 0.78) *
+        CFG.waveAmp;
+
+      // Bulto bajo el cursor (coseno de anillo → suave en el centro, 0 en el borde)
+      const ripple = d < CFG.mouseRadius
+        ? Math.cos((d / CFG.mouseRadius) * (Math.PI * 0.5)) * CFG.mouseForce
+        : 0;
+
+      v.y = wave + ripple + state.offsetY;
+    }
+
+    /* ─ Actualizar posiciones — líneas horizontales ─ */
+    for (let r = 0; r <= H; r++) {
+      const a = hAttr[r].array;
+      for (let c = 0; c <= W; c++) {
+        const v = verts[vi(c, r)];
+        a[c * 3] = v.x;  a[c * 3 + 1] = v.y;  a[c * 3 + 2] = v.z;
+      }
+      hAttr[r].needsUpdate = true;
+    }
+
+    /* ─ Actualizar posiciones — líneas verticales ─── */
+    for (let c = 0; c <= W; c++) {
+      const a = vAttr[c].array;
+      for (let r = 0; r <= H; r++) {
+        const v = verts[vi(c, r)];
+        a[r * 3] = v.x;  a[r * 3 + 1] = v.y;  a[r * 3 + 2] = v.z;
+      }
+      vAttr[c].needsUpdate = true;
+    }
+
+    /* ─ Actualizar puntos de intersección ───────────── */
+    for (let i = 0; i < dotMeshes.length; i++) {
+      dotMeshes[i].position.set(verts[i].x, verts[i].y, verts[i].z);
+    }
+
+    renderer.render(scene, camera);
+  });
+
+})();
+</script>
+
+<!-- ════════════════════════════════════════════════════════
+     RESUMEN DE INTEGRACIÓN
+     ────────────────────────────────────────────────────────
+     1. En tu HTML, dentro de la sección:
+           <canvas id="grid-canvas"></canvas>
+
+     2. En tu CSS:
+           #grid-canvas {
+             position: absolute; inset: 0;
+             width: 100%; height: 100%; display: block;
+             pointer-events: none;
+             filter: drop-shadow(0 0 10px rgba(86,32,233,.45));
+             mask-image: radial-gradient(ellipse 92% 82% at 50% 62%,
+               #000 40%, transparent 100%);
+           }
+           .tu-seccion { position: relative; overflow: hidden; }
+
+     3. Antes de </body>:
+           <script src="three.min.js"><\/script>
+           <script src="gsap.min.js"><\/script>
+           <!-- el script DynamicGrid() de arriba -->
+
+     PARÁMETROS PRINCIPALES (objeto CFG):
+       color        → color de la rejilla (hex Three.js)
+       cols / rows  → densidad de la malla
+       waveAmp      → altura de la onda  (0 = rejilla plana)
+       waveSpeed    → velocidad de animación
+       mouseForce   → intensidad del bulto del cursor
+       lineOpacity  → transparencia de las líneas
+════════════════════════════════════════════════════════ -->
+</body>
+</html>
