@@ -94,6 +94,55 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ==========================================
+// LOADING SCREEN
+// ==========================================
+gsap.set(".triangle", {
+  yPercent: -120
+});
+function transitionIn() {
+  return gsap.timeline()
+    .set("#transition-overlay", {
+      pointerEvents: "all"
+    })
+    .to(".triangle", {
+      yPercent: 0,
+      duration: 0.55,
+      stagger: 0.08,
+      ease: "power4.inOut"
+    });
+}
+function transitionOut() {
+  return gsap.timeline()
+    .to(".triangle", {
+      yPercent: 120,
+      duration: 0.55,
+      stagger: -0.08,
+      ease: "power4.inOut"
+    })
+    .set("#transition-overlay", {
+      pointerEvents: "none"
+    });
+}
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener("click", async e => {
+    e.preventDefault();
+
+    const target = document.querySelector(
+      link.getAttribute("href")
+    );
+
+    await transitionIn();
+
+    window.scrollTo({
+      top: target.offsetTop,
+      behavior: "instant"
+    });
+
+    await transitionOut();
+  });
+});
+
+// ==========================================
 // HERO THREE.JS SCENE
 // ==========================================
 function initHeroScene() {
@@ -896,13 +945,14 @@ function initAboutSection() {
     }
 }
 ScrollTrigger.create({
-  start: 4000,
+  start: 3400,
 
   onEnter: () => {
-    gsap.to(".about-intro", { autoAlpha: 0 });
+    gsap.to(".about-intro", { autoAlpha: 0});
     gsap.to(".about-scrolling-bg", { autoAlpha: 0 });
     gsap.to(".about-hero-image", { autoAlpha: 0 });
     gsap.to(".about-intro-card", { autoAlpha: 0 });
+    gsap.to(".canvas-intro", { autoAlpha: 0 });
   },
 
   onLeaveBack: () => {
@@ -910,6 +960,7 @@ ScrollTrigger.create({
     gsap.to(".about-scrolling-bg", { autoAlpha: 1 });
     gsap.to(".about-hero-image", { autoAlpha: 1 });
     gsap.to(".about-intro-card", { autoAlpha: 1 });
+    gsap.to(".canvas-intro", { autoAlpha: 1 });
   }
 });
 
