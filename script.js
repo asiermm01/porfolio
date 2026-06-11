@@ -93,36 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// ==========================================
-// LOADING SCREEN
-// ==========================================
-gsap.set(".triangle", {
-  yPercent: -120
-});
-function transitionIn() {
-  return gsap.timeline()
-    .set("#transition-overlay", {
-      pointerEvents: "all"
-    })
-    .to(".triangle", {
-      yPercent: 0,
-      duration: 0.55,
-      stagger: 0.08,
-      ease: "power4.inOut"
-    });
-}
-function transitionOut() {
-  return gsap.timeline()
-    .to(".triangle", {
-      yPercent: 120,
-      duration: 0.55,
-      stagger: -0.08,
-      ease: "power4.inOut"
-    })
-    .set("#transition-overlay", {
-      pointerEvents: "none"
-    });
-}
+
+
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener("click", async e => {
     e.preventDefault();

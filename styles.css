@@ -128,38 +128,6 @@ ul {
     padding: 0 var(--container-padding);
 }
 
-/* ===================================
-   Loading Screen
-   =================================== */
-#transition-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-#transition-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.triangle {
-  transform-box: fill-box;
-  transform-origin: center;
-}
-
-.t1 {
-  fill: #0d0d0d;
-}
-
-.t2 {
-  fill: #151515;
-}
-
-.t3 {
-  fill: #0d0d0d;
-}
 
 /* ===================================
    Navigation
