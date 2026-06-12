@@ -81,7 +81,8 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
+    scroll-behavior: auto;
     scroll-padding-top: 80px;
 }
 
@@ -116,6 +117,7 @@ a {
     text-decoration: none;
     color: inherit;
     transition: color var(--transition-fast);
+    cursor: pointer;
 }
 
 ul {
@@ -204,6 +206,7 @@ ul {
 
 .nav-link:hover {
     color: var(--accent-secondary);
+    cursor: pointer;
 }
 
 .nav-link.active {
@@ -1148,6 +1151,10 @@ ul {
     opacity: 0.9;
     z-index: 3;
     filter: drop-shadow(0 2px 8px rgba(245, 184, 0, 0.4));
+}
+
+.tech-gradient-canvas{
+    
 }
 
 /* ===================================

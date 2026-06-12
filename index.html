@@ -39,10 +39,10 @@
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
-                <li><a href="#about" class="nav-link">Sobre mí</a></li>
-                <li><a href="#technologies" class="nav-link">Tecnologías</a></li>
-                <li><a href="#projects" class="nav-link">Proyectos</a></li>
-                <li><a href="#contact" class="nav-link">Contacto</a></li>
+                <li><a data-target="about" class="nav-link">Sobre mí</a></li>
+                <li><a data-target="technologies" class="nav-link">Tecnologías</a></li>
+                <li><a data-target="projects" class="nav-link">Proyectos</a></li>
+                <li><a data-target="contact" class="nav-link">Contacto</a></li>
             </ul>
         </div>
     </nav>
@@ -158,7 +158,7 @@
             <div class="workflow-cta">
                 <!-- <div class="cta-decor cta-decor-left"></div> -->
                 <h4 class="cta-title">¿Tienes alguna idea?</h4>
-                <a href="#contact" class="btn btn-primary btn-contact-cta">¡Envíame un mensaje!</a>
+                <a data-target="contact" class="btn btn-primary btn-contact-cta">¡Envíame un mensaje!</a>
                 <!-- <div class="cta-decor cta-decor-right"></div> -->
             </div>
         </div>
@@ -352,10 +352,10 @@
                     <p class="footer-tagline">Construyendo la web, un píxel a la vez.</p>
                 </div>
                 <div class="footer-nav">
-                    <a href="#about">Sobre mí</a>
-                    <a href="#technologies">Tecnologías</a>
-                    <a href="#projects">Proyectos</a>
-                    <a href="#contact">Contacto</a>
+                    <a data-target="about">Sobre mí</a>
+                    <a data-target="technologies">Tecnologías</a>
+                    <a data-target="projects">Proyectos</a>
+                    <a data-target="contact">Contacto</a>
                 </div>
             </div>
             <div class="footer-contact-info">
@@ -408,6 +408,7 @@
     <!-- Animation Engine (GSAP + ScrollTrigger) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollToPlugin.min.js"></script>
     <!-- 3D Graphics Engine (Three.js) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>

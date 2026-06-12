@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothScrollCurrent = 0;
     lastScrollSet = 0;
     window.scrollTo({ top: 0, behavior: 'instant' });
-    
-    console.log("Portfolio loaded!");
 
     // ==========================================
     // NAVBAR SCROLL BEHAVIOR
@@ -554,6 +552,19 @@ function initHeroScene() {
         }
     });
 
+    ScrollTrigger.create({
+        trigger: '.about-section',
+        start: 'top top',
+        end: '60% top',
+        markers: true,
+        onLeave: () => {
+            gsap.set(document.querySelector('.btn-cv'), { autoAlpha: 0 });           
+        },
+        onEnterBack: () => {
+            gsap.set(document.querySelector('.btn-cv'), { autoAlpha: 1 });      
+        }
+    });
+
     // ===========================
     // RENDER LOOP
     // ===========================
@@ -602,6 +613,53 @@ function initHeroScene() {
     });
 }
 
+ // ===========================
+// "Loading" screen
+// ===========================
+gsap.registerPlugin(ScrollToPlugin);
+
+const durationScroll = 3;
+const multiplicadorTemporal = 0.0005;
+let offsetScroll = 0;
+
+function getScrollDifference(targetId) {
+  const target = document.getElementById(targetId);
+
+  if (!target) {
+    throw new Error(`No existe ningún elemento con id "${targetId}"`);
+  }
+
+  const currentScroll = window.scrollY;
+  const targetScroll = target.getBoundingClientRect().top + window.scrollY;
+  return targetScroll - currentScroll;
+}
+
+document.querySelectorAll("[data-target]").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+
+    const id = btn.dataset.target;
+    const target = document.getElementById(id);
+    const tiempo = Math.abs(getScrollDifference(id)) * multiplicadorTemporal;
+    console.log(tiempo);
+
+    if (!target) return;
+    if (id == "technologies") {
+        offsetScroll = -600;
+    } else {
+        offsetScroll = -150;
+    }
+    gsap.to(window, {
+      duration: tiempo,
+      scrollTo: {
+        y: target,
+        autoKill: false,
+        offsetY: offsetScroll
+      },
+      ease: "power2.inOut"
+    });
+
+  });
+});
 
 
 // Shared state for the canvas accent color — accessible by all sections
