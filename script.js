@@ -1,7 +1,31 @@
 // Force scroll to top on every page load
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+history.scrollRestoration = "manual";
+
+function forceTop() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 }
+
+// 1) inmediato
+forceTop();
+
+// 2) DOM listo
+document.addEventListener("DOMContentLoaded", forceTop);
+
+// 3) load
+window.addEventListener("load", () => {
+  forceTop();
+
+  // hack importante: esperar 1 frame más
+  requestAnimationFrame(forceTop);
+  requestAnimationFrame(forceTop);
+});
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh(true);
+  window.scrollTo(0, 0);
+});
+
 
 // ==========================================
 // GLOBAL SMOOTH SCROLL
@@ -520,17 +544,6 @@ function initHeroScene() {
     gsap.set(".canvas-intro", { display: "none", autoAlpha: 0 });
     gsap.set(".about-intro-container", { display: "none", autoAlpha: 0 });
 
-   /*  ScrollTrigger.create({
-    start: 4000,
-    onEnter: () => {
-        gsap.to(".canvas-intro", { autoAlpha: 0 });
-    },
-
-    onLeaveBack: () => {
-        gsap.to(".canvas-intro", { autoAlpha: 1 });
-    }
-    }); */
-
     ScrollTrigger.create({
         trigger: '#hero',
         pin: true,
@@ -556,12 +569,11 @@ function initHeroScene() {
         trigger: '.about-section',
         start: 'top top',
         end: '60% top',
-        markers: true,
         onLeave: () => {
-            gsap.set(document.querySelector('.btn-cv'), { autoAlpha: 0 });           
+            gsap.set(document.querySelector('.btn-cv'), { opacity: 0 });           
         },
         onEnterBack: () => {
-            gsap.set(document.querySelector('.btn-cv'), { autoAlpha: 1 });      
+            gsap.set(document.querySelector('.btn-cv'), { opacity: 1 });      
         }
     });
 
@@ -965,14 +977,12 @@ function initAboutSection() {
     }
 
     // 2. Bring in the left and right content simultaneously
-    if (aboutImage && introCard) {
         tl.to([aboutImage, introCard], {
             x: 0,
             opacity: 1,
             duration: 0.8,
             ease: "power2.out"
         }, "-=0.2"); // Small delay after text starts fading in
-    }
 }
 ScrollTrigger.create({
   start: 3400,
