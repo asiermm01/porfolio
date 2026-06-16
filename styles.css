@@ -6,7 +6,8 @@
     --bg-primary: #d9d9d9;
     --bg-secondary: #f2f4f3;
     --bg-tertiary: #101014;
-    --bg-card: rgba(22, 22, 35, 0.7);
+    --bg-card: rgba(242, 244, 243, 0.6);
+    --bg-card-black: rgba(0, 0, 0, 0.5);
     --bg-card-hover: rgba(30, 30, 50, 0.9);
     --bg-glass: rgba(255, 255, 255, 0.03);
     --bg-glass-hover: rgba(255, 255, 255, 0.06);
@@ -128,6 +129,25 @@ ul {
     max-width: var(--container-max);
     margin: 0 auto;
     padding: 0 var(--container-padding);
+}
+.loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+            45deg,
+            #290a83,
+            #5620e9,
+            #7755f3
+        );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.loader-logo {
+  width: 120px;
+  height: auto;
 }
 
 
@@ -687,7 +707,7 @@ ul {
     -webkit-backdrop-filter: blur(3px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    background-color: var(--bg-card);
+    background-color: var(--bg-card-black);
     clip-path: var(--component-basic-card)
 }
 
@@ -1153,10 +1173,6 @@ ul {
     filter: drop-shadow(0 2px 8px rgba(245, 184, 0, 0.4));
 }
 
-.tech-gradient-canvas{
-    
-}
-
 /* ===================================
    Projects Section
    =================================== */
@@ -1319,8 +1335,8 @@ ul {
     background: transparent;
     position: relative;
     overflow: visible;
-    align-items: end;
-    padding-top: 300px;
+    /* align-items: end; */
+    padding-top: 250px;
 }
 
 .contact-grid {
@@ -1330,19 +1346,23 @@ ul {
     width: 50%;
     max-width: 1000px;
     margin-left: auto;
-    margin-right: var(--section-padding);
+    margin-right: var(--section-padding); 
     position: relative;
     z-index: 1;
 }
 .contact-scrolling-bg {
-    position: absolute;
-    top: 50px;
+    position: fixed;
+    top: var(--section-padding);
+    font-size: 100rem;
     left: 0;
     right: 0;
     overflow: hidden;
-    z-index: -1;
+    z-index: 0;
     opacity: 1;
     pointer-events: none;
+    & .scrolling-text{
+        font-size: 11rem;
+    }
 }
 .contact-image {
     position: absolute;
@@ -1372,7 +1392,6 @@ ul {
     width: 50%;
     padding: 48px;
     background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
     clip-path: var(--component-basic-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -1384,7 +1403,6 @@ ul {
 }
 
 .contact-form-card:hover {
-    border-color: var(--border-hover);
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
 }
 
@@ -1427,6 +1445,7 @@ ul {
 
 .form-input:focus {
     border-color: var(--accent-primary);
+    background-color: var(--color-white);
     box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
@@ -1461,7 +1480,7 @@ ul {
     align-items: center;
     gap: 20px;
     padding: 24px;
-    background-color: var(--bg-card);
+    background-color: var(--bg-glass);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     transition: all var(--transition-medium);

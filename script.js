@@ -15,6 +15,18 @@ document.addEventListener("DOMContentLoaded", forceTop);
 
 // 3) load
 window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+
+    gsap.to(loader, {
+        opacity: 0,
+        delay: 0.3,
+        duration: 1,
+        ease: "power2.out",
+        onComplete: () => {
+            loader.style.display = "none";
+        }
+    });
+
   forceTop();
 
   // hack importante: esperar 1 frame más
@@ -93,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 navbar.classList.remove("scrolled");
             }
 
-            if (currentScrollY > lastScrollY && currentScrollY > 1200) {
+            if (currentScrollY > lastScrollY && currentScrollY > 1000) {
                 navbar.classList.add("hidden");
             } else {
                 navbar.classList.remove("hidden");
@@ -112,6 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initGlobalCanvas();
         initAboutSection();
         initTechSection();
+        initContactSection();
     }
 });
 
@@ -549,7 +562,7 @@ function initHeroScene() {
         pin: true,
         start: 'top top',
         end: 'bottom top',
-        scrub: true,
+        scrub: true, 
         onUpdate: (self) => {
             heroScrollProgress = self.progress;
         },
@@ -1004,6 +1017,58 @@ ScrollTrigger.create({
   }
 });
 
+function initContactSection() {
+    const contact = document.querySelector('.contact');
+    if (!contact) return;
+
+    const contactImage = document.querySelector('.contact-person-img');
+    const contactCard = document.querySelector('.contact-grid');
+    const scrollingBg = document.querySelector('.contact-scrolling-bg');
+
+    // Set initial states
+    if (contactImage) gsap.set(contactImage, { y: '70vh'});
+    if (contactCard) gsap.set(contactCard, { y: '70vh' });
+    if (scrollingBg) gsap.set(scrollingBg, { opacity: 0 });
+
+    
+    // Create a timeline using the parent section as trigger
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.contact',
+            start: 'top 35%', 
+            end: 'bottom bottom', // Scroll distance equal to the margin-top we added
+            scrub: 1 // Smooth scrubbing
+        }
+    });
+
+    // 2. Bring in the left and right content simultaneously
+        tl.to([contactImage, contactCard], {
+            y: 0,
+            duration: 1,
+            ease: "power2.out"
+        }); // Small delay after text starts fading in
+
+    ScrollTrigger.create({
+        trigger: '.contact',
+        start: 'top 60%',
+        end: '+=100%',
+        onEnter: () => {
+            gsap.to([scrollingBg], {
+                opacity: 1,
+                duration: 0.8,
+                ease: "power2.out"
+            });      
+        },
+        onLeaveBack: () => {
+            gsap.to([scrollingBg], {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });    
+        }
+    });
+}
+
 // ==========================================
 // TECHNOLOGIES SECTION — Scroll-Driven Card Stack
 // ==========================================
@@ -1240,6 +1305,7 @@ function initTechSection() {
             }
         });
     }
+
 
     // ———————————————————————————————
     // HELPERS
