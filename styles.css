@@ -466,6 +466,7 @@ ul {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    width: fit-content;
 }
 
 .btn-primary {
@@ -617,7 +618,7 @@ ul {
 
 .about-scrolling-bg {
     position: fixed;
-    top: 5vh;
+    top: var(--section-padding);
     left: 0;
     right: 0;
     overflow: hidden;
@@ -705,20 +706,7 @@ ul {
     flex-direction: column;
     justify-content: center;
     min-height: 450px;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    background-color: var(--bg-card-black);
-    clip-path: var(--component-basic-card)
-}
-
-.about-intro-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
 }
 
 .about-card-title {
@@ -1579,7 +1567,7 @@ ul {
     border-top: 1px solid var(--border-color);
     position: relative;
     z-index: 1;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
 }
 
 .footer-contact-info {
@@ -1592,7 +1580,8 @@ ul {
 .footer-contact-info .contact-card,
 .footer-contact-info .contact-socials {
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.03);
+    /* background-color: rgba(255, 255, 255, 0.03); */
+    background-color: var(--color-white);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     transition: all var(--transition-medium);
@@ -1601,7 +1590,7 @@ ul {
 .footer-contact-info .contact-card:hover,
 .footer-contact-info .contact-socials:hover {
     border-color: var(--accent-primary);
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: white;
     transform: translateY(-5px);
 }
 
@@ -1610,7 +1599,6 @@ ul {
     align-items: center;
     justify-content: space-between;
     padding-bottom: 40px;
-    border-bottom: 1px solid var(--border-color);
 }
 
 .footer-logo {
