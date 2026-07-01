@@ -25,6 +25,28 @@
     
     <!-- Diseño -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Translation System -->
+    <script id="translations-data" type="application/json">
+    {
+      "es": {
+        "nav": {"about": "Sobre mí", "technologies": "Tecnologías", "projects": "Proyectos", "contact": "Contacto"},
+        "hero": {"badge": "Disponible para trabajar", "greeting": "Hola, soy", "name": "Asier", "role": "Desarrollador y Diseñador Web", "description": "Construyo experiencias web modernas, performantes y hermosas que hacen una diferencia. Apasionado por el código limpio y el diseño elegante.", "ctaPrimary": "Qué ofrezco", "ctaSecondary": "Contactar"},
+        "about": {"title": "Quien soy", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.", "downloadCv": "Descargar CV"}
+      },
+      "en": {
+        "nav": {"about": "About", "technologies": "Technologies", "projects": "Projects", "contact": "Contact"},
+        "hero": {"badge": "Available for work", "greeting": "Hi, I'm", "name": "Asier", "role": "Web Developer & Designer", "description": "I build modern, performant and beautiful web experiences that make a difference. Passionate about clean code and elegant design.", "ctaPrimary": "What I offer", "ctaSecondary": "Contact me"},
+        "about": {"title": "Who am I", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.", "downloadCv": "Download CV"}
+      },
+      "ca": {
+        "nav": {"about": "Sobre mi", "technologies": "Tecnologies", "projects": "Projectes", "contact": "Contacte"},
+        "hero": {"badge": "Disponible per a treballar", "greeting": "Hola, sóc", "name": "Asier", "role": "Desenvolupador i Dissenyador Web", "description": "Construeixo experiències web modernes, performants i boniques que marquen la diferència. Apassionat pel codi net i el disseny elegant.", "ctaPrimary": "Què ofereixo", "ctaSecondary": "Contactar"},
+        "about": {"title": "Qui sóc", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.", "downloadCv": "Descargar CV"}
+      }
+    }
+    </script>
+    <script src="./assets/i18n.js"></script>
 </head>
 <body>
     <div class="loader">
@@ -42,10 +64,24 @@
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-menu" id="nav-menu">
-                <li><a data-target="about" class="nav-link">Sobre mí</a></li>
-                <li><a data-target="technologies" class="nav-link">Tecnologías</a></li>
-                <li><a data-target="projects" class="nav-link">Proyectos</a></li>
-                <li><a data-target="contact" class="nav-link">Contacto</a></li>
+                <li><a data-target="about" class="nav-link" data-i18n="nav.about">Sobre mí</a></li>
+                <li><a data-target="technologies" class="nav-link" data-i18n="nav.technologies">Tecnologías</a></li>
+                <li><a data-target="projects" class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
+                <li><a data-target="contact" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+                <li class="nav-language-separator"></li>
+                <li class="nav-language-menu">
+                    <button class="language-toggle" id="language-toggle" aria-label="Toggle language menu">
+                        <span class="language-current" id="current-language">ES</span>
+                        <svg class="language-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="language-dropdown">
+                        <button class="language-option" data-lang="es">Español</button>
+                        <button class="language-option" data-lang="en">English</button>
+                        <button class="language-option" data-lang="ca">Català</button>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
@@ -56,19 +92,19 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
-                Disponible para trabajar
+                <span data-i18n="hero.badge">Disponible para trabajar</span>
             </div>
             <h1 class="hero-title">
-                <span class="hero-greeting">Hola, soy</span>
-                <span class="hero-name">Asier</span>
-                <span class="hero-role">Desarrollador y Diseñador Web</span>
+                <span class="hero-greeting" data-i18n="hero.greeting">Hola, soy</span>
+                <span class="hero-name" data-i18n="hero.name">Asier</span>
+                <span class="hero-role" data-i18n="hero.role">Desarrollador y Diseñador Web</span>
             </h1>
-            <p class="hero-description">
+            <p class="hero-description" data-i18n="hero.description">
                 Construyo experiencias web modernas, performantes y hermosas que hacen una diferencia. Apasionado por el código limpio y el diseño elegante.
             </p>
             <div class="hero-cta">
-                <a href="#projects" class="btn btn-primary">Qué ofrezco</a>
-                <a href="#contact" class="btn btn-secondary hero-btn-secondary">Contactar</a>
+                <a href="#projects" class="btn btn-primary" data-i18n="hero.ctaPrimary">Qué ofrezco</a>
+                <a href="#contact" class="btn btn-secondary hero-btn-secondary" data-i18n="hero.ctaSecondary">Contactar</a>
             </div>
         </div>
     </section>
@@ -90,11 +126,11 @@
                 <img src="assets/images/contact-person.png" alt="Perfil" class="about-person-img">
             </div>
             <div class="about-intro-card">
-                <h3 class="about-card-title">Quien soy</h3>
-                <p class="about-card-text">
+                <h3 class="about-card-title" data-i18n="about.title">Quien soy</h3>
+                <p class="about-card-text" data-i18n="about.description">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla. Nullam nec ligula mauris. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Quisque quis mi vehicula augue eleifend vestibulum. Donec aliquet tristique ante at bibendum.
                 </p>
-                <a href="#" class="btn btn-primary btn-cv">Descargar CV</a>
+                <a href="#" class="btn btn-primary btn-cv" data-i18n="about.downloadCv">Descargar CV</a>
             </div>
         </div>
 

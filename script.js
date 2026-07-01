@@ -116,6 +116,80 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
+    // LANGUAGE SWITCHER
+    // ==========================================
+    const languageToggle = document.getElementById('language-toggle');
+    const languageDropdown = document.getElementById('language-dropdown');
+    const languageOptions = document.querySelectorAll('.language-option');
+    const currentLanguageSpan = document.getElementById('current-language');
+
+    if (languageToggle && languageDropdown) {
+        // Toggle dropdown
+        languageToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            languageDropdown.classList.toggle('active');
+            languageToggle.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-language-menu')) {
+                languageDropdown.classList.remove('active');
+                languageToggle.classList.remove('active');
+            }
+        });
+
+        // Handle language selection
+        languageOptions.forEach(option => {
+            option.addEventListener('click', async (e) => {
+                e.preventDefault();
+                const lang = option.getAttribute('data-lang');
+                
+                // Close dropdown
+                languageDropdown.classList.remove('active');
+                languageToggle.classList.remove('active');
+                
+                // Update button display
+                const langCodes = { 'es': 'ES', 'en': 'EN', 'ca': 'CA' };
+                currentLanguageSpan.textContent = langCodes[lang];
+                
+                // Update active option
+                languageOptions.forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                
+                // Change language
+                i18n.setLanguage(lang);
+            });
+        });
+
+        // Set initial active option
+        const currentLang = i18n.getLanguage();
+        const langCodes = { 'es': 'ES', 'en': 'EN', 'ca': 'CA' };
+        currentLanguageSpan.textContent = langCodes[currentLang] || 'ES';
+        
+        languageOptions.forEach(option => {
+            if (option.getAttribute('data-lang') === currentLang) {
+                option.classList.add('active');
+            }
+        });
+
+        // Listen for language changes from i18n
+        document.addEventListener('languagechange', (e) => {
+            const lang = e.detail.language;
+            const langCodes = { 'es': 'ES', 'en': 'EN', 'ca': 'CA' };
+            currentLanguageSpan.textContent = langCodes[lang] || 'ES';
+            
+            languageOptions.forEach(option => {
+                if (option.getAttribute('data-lang') === lang) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    // ==========================================
     // GSAP + SCROLLTRIGGER SETUP
     // ==========================================
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
