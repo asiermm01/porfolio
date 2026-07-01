@@ -16,7 +16,7 @@
       "ctaSecondary": "Contactar"
     },
     "about": {
-      "scrollingText": "Sobre mí Sobre mí Sobre mí Sobre mí",
+      "scrollingText": "Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;",
       "title": "Quien soy",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
       "downloadCv": "Descargar CV",
@@ -32,7 +32,7 @@
       "workflowCtaButton": "¡Envíame un mensaje!"
     },
     "tech": {
-      "scrollingText": "Tecnologías",
+      "scrollingText": "Tecnologías Tecnologías Tecnologías Tecnologías Tecnologías&nbsp;",
       "card1Title": "Multimedia",
       "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
       "card2Title": "Interfaz",
@@ -57,7 +57,7 @@
       "project2Tech3": "Firebase"
     },
     "contact": {
-      "scrollingText": "Contacto",
+      "scrollingText": "Contacto Contacto Contacto Contacto Contacto&nbsp;",
       "nameLabel": "Nombre",
       "namePlaceholder": "Tu nombre",
       "emailLabel": "Correo",
@@ -100,7 +100,7 @@
       "ctaSecondary": "Contact me"
     },
     "about": {
-      "scrollingText": "About me",
+      "scrollingText": "About me About me About me About me About me&nbsp;",
       "title": "Who am I",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
       "downloadCv": "Download CV",
@@ -116,7 +116,7 @@
       "workflowCtaButton": "Send me a message!"
     },
     "tech": {
-      "scrollingText": "Technologies",
+      "scrollingText": "Technologies Technologies Technologies Technologies Technologies&nbsp;",
       "card1Title": "Multimedia",
       "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
       "card2Title": "Interface",
@@ -141,7 +141,7 @@
       "project2Tech3": "Firebase"
     },
     "contact": {
-      "scrollingText": "Contact",
+      "scrollingText": "Contact Contact Contact Contact Contact&nbsp;",
       "nameLabel": "Name",
       "namePlaceholder": "Your name",
       "emailLabel": "Email",
@@ -184,7 +184,7 @@
       "ctaSecondary": "Contactar"
     },
     "about": {
-      "scrollingText": "Sobre mi",
+      "scrollingText": "Sobre mi Sobre mi Sobre mi Sobre mi Sobre mi&nbsp;",
       "title": "Qui sóc",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
       "downloadCv": "Descargar CV",
@@ -200,7 +200,7 @@
       "workflowCtaButton": "Envia'm un missatge!"
     },
     "tech": {
-      "scrollingText": "Tecnologies",
+      "scrollingText": "Tecnologies Tecnologies Tecnologies Tecnologies Tecnologies&nbsp;",
       "card1Title": "Multimèdia",
       "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
       "card2Title": "Interfície",
@@ -225,7 +225,7 @@
       "project2Tech3": "Firebase"
     },
     "contact": {
-      "scrollingText": "Contacte",
+      "scrollingText": "Contacte Contacte Contacte Contacte Contacte&nbsp;",
       "nameLabel": "Nom",
       "namePlaceholder": "El teu nom",
       "emailLabel": "Correu",
