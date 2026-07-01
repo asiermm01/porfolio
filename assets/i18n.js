@@ -137,16 +137,17 @@ class I18n {
             return;
         }
 
-        // Find all elements with data-i18n attribute
         const elements = document.querySelectorAll('[data-i18n]');
         
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
             const translation = this.get(key);
-            
-            // Determine if we should set text content or HTML content
-            if (element.getAttribute('data-i18n-html') === 'true') {
+            const target = element.getAttribute('data-i18n-target');
+
+            if (element.getAttribute('data-i18n-html') === 'true' || target === 'html') {
                 element.innerHTML = translation;
+            } else if (target) {
+                element.setAttribute(target, translation);
             } else {
                 element.textContent = translation;
             }

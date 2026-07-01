@@ -16,10 +16,71 @@
       "ctaSecondary": "Contactar"
     },
     "about": {
-      "scrollingText": "Sobre mí",
+      "scrollingText": "Sobre mí Sobre mí Sobre mí Sobre mí",
       "title": "Quien soy",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
-      "downloadCv": "Descargar CV"
+      "downloadCv": "Descargar CV",
+      "studiesTitle": "Formación",
+      "study1": "Máster en Diseño Web para Creativos",
+      "study2": "Grado Superior en Desarrollo de Aplicaciones Web",
+      "study3": "Bachillerato de Ciencias con Dibujo Técnico",
+      "study4": "Cursos certificados de Awwwards Academy y Anthropic Academy",
+      "workflowTitle": "Modo de trabajo y diferenciación",
+      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
+      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowCtaTitle": "¿Tienes alguna idea?",
+      "workflowCtaButton": "¡Envíame un mensaje!"
+    },
+    "tech": {
+      "scrollingText": "Tecnologías",
+      "card1Title": "Multimedia",
+      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Title": "Interfaz",
+      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card3Title": "Servidor",
+      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+    },
+    "projects": {
+      "title": "Proyectos",
+      "subtitle": "Una selección de proyectos que he construido y contribuido.",
+      "project1Label": "Proyecto 360",
+      "project1Title": "Diseño y desarrollo desde cero",
+      "project1Description": "Una plataforma de comercio electrónico con autenticación, gestión de productos, carrito y pagos. Construida con tecnologías modernas para un rendimiento óptimo.",
+      "project1Tech1": "React",
+      "project1Tech2": "Node.js",
+      "project1Tech3": "MongoDB",
+      "project1Tech4": "Stripe",
+      "project2Title": "Mantenimiento web",
+      "project2Description": "Una aplicación de productividad con gestión de tareas por arrastrar y soltar, colaboración en tiempo real y una interfaz intuitiva.",
+      "project2Tech1": "TypeScript",
+      "project2Tech2": "React",
+      "project2Tech3": "Firebase"
+    },
+    "contact": {
+      "scrollingText": "Contacto",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "emailLabel": "Correo",
+      "emailPlaceholder": "tu@email.com",
+      "subjectLabel": "Asunto",
+      "subjectPlaceholder": "¿De qué trata esto?",
+      "messageLabel": "Mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "submitText": "Enviar mensaje"
+    },
+    "footer": {
+      "tagline": "Construyendo la web, un píxel a la vez.",
+      "about": "Sobre mí",
+      "technologies": "Tecnologías",
+      "projects": "Proyectos",
+      "contact": "Contacto",
+      "emailTitle": "Correo",
+      "emailValue": "hello@asier.dev",
+      "locationTitle": "Ubicación",
+      "locationValue": "España",
+      "followMe": "Sígueme",
+      "copyright": "© 2026 Asier. Todos los derechos reservados.",
+      "credit": "Diseñado y desarrollado con"
     }
   },
   "en": {
@@ -42,7 +103,68 @@
       "scrollingText": "About me",
       "title": "Who am I",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
-      "downloadCv": "Download CV"
+      "downloadCv": "Download CV",
+      "studiesTitle": "Education",
+      "study1": "Master in Web Design for Creatives",
+      "study2": "Higher Degree in Web Application Development",
+      "study3": "Science Baccalaureate with Technical Drawing",
+      "study4": "Certified courses from Awwwards Academy and Anthropic Academy",
+      "workflowTitle": "Work approach and differentiation",
+      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
+      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowCtaTitle": "Do you have an idea?",
+      "workflowCtaButton": "Send me a message!"
+    },
+    "tech": {
+      "scrollingText": "Technologies",
+      "card1Title": "Multimedia",
+      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Title": "Interface",
+      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card3Title": "Server",
+      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+    },
+    "projects": {
+      "title": "Projects",
+      "subtitle": "A selection of projects I have built and contributed to.",
+      "project1Label": "360 Project",
+      "project1Title": "Design and development from scratch",
+      "project1Description": "A full-featured e-commerce platform with authentication, product management, cart and payments. Built with modern technologies for optimal performance.",
+      "project1Tech1": "React",
+      "project1Tech2": "Node.js",
+      "project1Tech3": "MongoDB",
+      "project1Tech4": "Stripe",
+      "project2Title": "Web maintenance",
+      "project2Description": "A productivity app with drag-and-drop task management, real-time collaboration and an intuitive interface.",
+      "project2Tech1": "TypeScript",
+      "project2Tech2": "React",
+      "project2Tech3": "Firebase"
+    },
+    "contact": {
+      "scrollingText": "Contact",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@email.com",
+      "subjectLabel": "Subject",
+      "subjectPlaceholder": "What is this about?",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell me about your project...",
+      "submitText": "Send message"
+    },
+    "footer": {
+      "tagline": "Building the web, one pixel at a time.",
+      "about": "About",
+      "technologies": "Technologies",
+      "projects": "Projects",
+      "contact": "Contact",
+      "emailTitle": "Email",
+      "emailValue": "hello@asier.dev",
+      "locationTitle": "Location",
+      "locationValue": "Spain",
+      "followMe": "Follow me",
+      "copyright": "© 2026 Asier. All rights reserved.",
+      "credit": "Designed and developed with"
     }
   },
   "ca": {
@@ -65,7 +187,68 @@
       "scrollingText": "Sobre mi",
       "title": "Qui sóc",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
-      "downloadCv": "Descargar CV"
+      "downloadCv": "Descargar CV",
+      "studiesTitle": "Formació",
+      "study1": "Màster en Disseny Web per a Creatius",
+      "study2": "Grau Superior en Desenvolupament d'Aplicacions Web",
+      "study3": "Batxillerat de Ciències amb Dibuix Tècnic",
+      "study4": "Cursos certificats d'Awwwards Academy i Anthropic Academy",
+      "workflowTitle": "Mode de treball i diferenciació",
+      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
+      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowCtaTitle": "Tens alguna idea?",
+      "workflowCtaButton": "Envia'm un missatge!"
+    },
+    "tech": {
+      "scrollingText": "Tecnologies",
+      "card1Title": "Multimèdia",
+      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Title": "Interfície",
+      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card3Title": "Servidor",
+      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+    },
+    "projects": {
+      "title": "Projectes",
+      "subtitle": "Una selecció de projectes que he construït i contribuït.",
+      "project1Label": "Projecte 360",
+      "project1Title": "Disseny i desenvolupament des de zero",
+      "project1Description": "Una plataforma de comerç electrònic amb autenticació, gestió de productes, carretó i pagaments. Construïda amb tecnologies modernes per a un rendiment òptim.",
+      "project1Tech1": "React",
+      "project1Tech2": "Node.js",
+      "project1Tech3": "MongoDB",
+      "project1Tech4": "Stripe",
+      "project2Title": "Manteniment web",
+      "project2Description": "Una aplicació de productivitat amb gestió de tasques per arrossegar i deixar anar, col·laboració en temps real i una interfície intuïtiva.",
+      "project2Tech1": "TypeScript",
+      "project2Tech2": "React",
+      "project2Tech3": "Firebase"
+    },
+    "contact": {
+      "scrollingText": "Contacte",
+      "nameLabel": "Nom",
+      "namePlaceholder": "El teu nom",
+      "emailLabel": "Correu",
+      "emailPlaceholder": "tu@email.com",
+      "subjectLabel": "Assumpte",
+      "subjectPlaceholder": "De què tracta això?",
+      "messageLabel": "Missatge",
+      "messagePlaceholder": "Explica'm sobre el teu projecte...",
+      "submitText": "Enviar missatge"
+    },
+    "footer": {
+      "tagline": "Construint la web, un píxel a la vegada.",
+      "about": "Sobre mi",
+      "technologies": "Tecnologies",
+      "projects": "Projectes",
+      "contact": "Contacte",
+      "emailTitle": "Correu",
+      "emailValue": "hello@asier.dev",
+      "locationTitle": "Ubicació",
+      "locationValue": "Espanya",
+      "followMe": "Segueix-me",
+      "copyright": "© 2026 Asier. Tots els drets reservats.",
+      "credit": "Dissenyat i desenvolupat amb"
     }
   }
 }
