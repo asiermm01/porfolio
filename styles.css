@@ -1628,7 +1628,10 @@ ul {
 }
 
 .nav-language-menu {
-    position: relative;
+    position: fixed;
+    top: 20px;
+    right: 2%;
+    z-index: 1100;
 }
 
 .language-toggle {
@@ -1636,8 +1639,8 @@ ul {
     align-items: center;
     gap: 6px;
     padding: 8px 12px;
-    background: none;
-    border: 1px solid transparent;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-sm);
     color: var(--color-white);
     font-size: 0.85rem;
@@ -1645,11 +1648,14 @@ ul {
     cursor: pointer;
     transition: all var(--transition-fast);
     position: relative;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .language-toggle:hover {
     color: var(--accent-secondary);
     border-color: var(--accent-secondary);
+    background-color: rgba(255, 255, 255, 0.16);
 }
 
 .language-toggle.active {
@@ -1671,8 +1677,8 @@ ul {
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
+    background-color: rgba(10, 10, 14, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: var(--radius-sm);
     overflow: hidden;
     min-width: 140px;
@@ -1714,19 +1720,44 @@ ul {
 }
 
 /* Navbar scrolled state for language switcher */
-.navbar.scrolled .language-toggle {
+.navbar.scrolled ~ .nav-language-menu .language-toggle {
+    background-color: rgba(217, 217, 217, 0.75);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.navbar.scrolled ~ .nav-language-menu .language-toggle:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+    background-color: rgba(217, 217, 217, 0.9);
+}
+
+.navbar.scrolled ~ .nav-language-menu .language-dropdown {
+    background-color: rgba(217, 217, 217, 0.95);
+    border-color: var(--border-color);
+}
+
+.navbar.scrolled ~ .nav-language-menu .language-option {
     color: var(--text-primary);
 }
 
-.navbar.scrolled .language-toggle:hover {
+.navbar.scrolled ~ .nav-language-menu .language-option:hover,
+.navbar.scrolled ~ .nav-language-menu .language-option.active {
+    background-color: rgba(86, 32, 233, 0.1);
     color: var(--accent-primary);
-    border-color: var(--accent-primary);
 }
 
 /* Mobile responsive */
 @media (max-width: 768px) {
     .nav-language-separator {
         display: none;
+    }
+
+    .nav-language-menu {
+        top: 16px;
+        right: 16px;
     }
     
     .language-toggle {
