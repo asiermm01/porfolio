@@ -116,6 +116,64 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==========================================
+    // MOBILE NAVIGATION TOGGLE
+    // ==========================================
+    const navToggle = document.getElementById('nav-toggle');
+    const mobileNavPanel = document.getElementById('mobile-nav-panel');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+
+    if (navToggle && mobileNavPanel && mobileNavOverlay) {
+        const closeMobileMenu = () => {
+            mobileNavPanel.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
+        };
+
+        const openMobileMenu = () => {
+            mobileNavPanel.classList.add('active');
+            mobileNavOverlay.classList.add('active');
+            navToggle.classList.add('active');
+            navToggle.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('menu-open');
+        };
+
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = mobileNavPanel.classList.contains('active');
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        });
+
+        if (mobileNavClose) {
+            mobileNavClose.addEventListener('click', closeMobileMenu);
+        }
+
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        mobileNavPanel.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => closeMobileMenu());
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-container') && !e.target.closest('.nav-language-menu') && !e.target.closest('.mobile-nav-panel')) {
+                closeMobileMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+    }
+
+    // ==========================================
     // LANGUAGE SWITCHER
     // ==========================================
     const languageToggle = document.getElementById('language-toggle');
