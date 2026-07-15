@@ -1933,7 +1933,7 @@ body.menu-open {
 .mobile-nav-close {
     position: absolute;
     top: 24px;
-    right: 24px;
+    left: 24px;
     width: 40px;
     height: 40px;
     border: none;
