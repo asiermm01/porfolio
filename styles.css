@@ -2024,7 +2024,12 @@ body.menu-open {
         width: 100%;
         color: var(--color-white);
     }
-
+    .about-scrolling-bg {
+        top: 20%;
+        & span {
+            font-size: 6rem;
+        }
+    }
     .about-intro {
         padding-top: 100px;
     }

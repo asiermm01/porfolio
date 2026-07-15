@@ -384,8 +384,12 @@ function initHeroScene() {
     });
     const sphere = new THREE.Mesh(sphereGeo, sphereMat);
 
-    // Wider orbit range
-    const SPHERE_START = { x: -10, y: 6, z: -5 };
+    // Wider orbit range; keep desktop behavior intact while making the
+    // initial sphere position more centered on smaller screens.
+    const isMobileViewport = window.innerWidth <= 768;
+    const SPHERE_START = isMobileViewport
+        ? { x: -1.5, y: 5.2, z: -3 }
+        : { x: -10, y: 6, z: -5 };
     const SPHERE_END   = { x: 0, y: 5, z: 20 };
     sphere.position.set(SPHERE_START.x, SPHERE_START.y, SPHERE_START.z);
     scene.add(sphere);
