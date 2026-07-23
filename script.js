@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navToggle = document.getElementById('nav-toggle');
     const mobileNavPanel = document.getElementById('mobile-nav-panel');
     const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavClose = document.getElementById('mobile-nav-close-menu');
 
     if (navToggle && mobileNavPanel && mobileNavOverlay) {
         const closeMobileMenu = () => {
