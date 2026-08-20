@@ -47,6 +47,7 @@
     --component-esquina: polygon(0% 0%, 95% 0%, 100% 20%, 100% 100%, 5% 100%, 0% 80%);
     --component-esquina-responsive: polygon(0% 0%, 90% 0%, 100% 10%, 100% 100%, 10% 100%, 0% 90%);
     --component-basic-esquina: polygon(7% 6%, 42% 6%, 43% 0%, 98% 0%, 100% 25%, 100% 100%, 94% 100%, 93% 94%, 58% 94%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
+    --component-basic-esquina-responsive: polygon(7% 4%, 42% 4%, 43% 0%, 95% 0%, 100% 10%, 100% 100%, 94% 100%, 93% 96%, 58% 96%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
 
     /* Typography */
     --font-main: 'Questrial', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -2066,6 +2067,7 @@ body.menu-open {
         display: none;
     }
     .navbar{
+        clip-path: var(--component-basic-esquina-responsive);
         left: var(--container-padding);
         right: auto;
         width: 40%;
@@ -2191,11 +2193,13 @@ body.menu-open {
         display: none;
     }
     .contact-grid{
+        width: 90%;
         margin: 0 auto;
     }
     .contact-form-card {
-        width: 100%;
+        flex: 0 1 auto;
         margin: 0 auto;
+        width: clamp(640px, 80vw, 1200px);
         padding: 36px 24px;
         clip-path: var(--component-basic-card-responsive);
     }
