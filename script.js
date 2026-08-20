@@ -261,26 +261,35 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
+// Anchor links (use GSAP ScrollTo when available). Skip elements
+// that also have `data-target` to avoid duplicate handlers.
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener("click", async e => {
-    e.preventDefault();
+    link.addEventListener("click", async e => {
+        if (link.hasAttribute('data-target')) return; // handled elsewhere
+        e.preventDefault();
 
-    const target = document.querySelector(
-      link.getAttribute("href")
-    );
+        const href = link.getAttribute('href');
+        const target = document.querySelector(href);
 
-    await transitionIn();
+        const maybeTransitionIn = (typeof window.transitionIn === 'function') ? window.transitionIn : () => Promise.resolve();
+        const maybeTransitionOut = (typeof window.transitionOut === 'function') ? window.transitionOut : () => Promise.resolve();
 
-    window.scrollTo({
-      top: target.offsetTop,
-                gsap.to(window, { duration: 0.8, scrollTo: { y: target.offsetTop || 0, autoKill: false }, ease: "power2.inOut" });
-      behavior: "instant"
+        await maybeTransitionIn();
+
+        if (target) {
+            if (typeof gsap !== 'undefined' && typeof ScrollToPlugin !== 'undefined') {
+                gsap.to(window, { duration: 0.8, scrollTo: { y: target, autoKill: false }, ease: "power2.inOut" });
+            } else {
+                window.scrollTo({ top: target.offsetTop || 0, behavior: 'instant' });
+            }
+        } else {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        await maybeTransitionOut();
     });
-
-    await transitionOut();
-  });
 });
+
 
 // ==========================================
 // HERO THREE.JS SCENE
