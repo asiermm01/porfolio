@@ -2187,6 +2187,18 @@ body.menu-open {
     .project-info {
         padding: 28px 24px;
     }
+    .contact-person-img {
+        display: none;
+    }
+    .contact-grid{
+        margin: 0 auto;
+    }
+    .contact-form-card {
+        width: 100%;
+        margin: 0 auto;
+        padding: 36px 24px;
+        clip-path: var(--component-basic-card-responsive);
+    }
 
     .footer-content {
         flex-direction: column;
