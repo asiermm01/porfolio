@@ -270,7 +270,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
         const href = link.getAttribute('href');
         const target = document.querySelector(href);
-
+console.log(target);
         const maybeTransitionIn = (typeof window.transitionIn === 'function') ? window.transitionIn : () => Promise.resolve();
         const maybeTransitionOut = (typeof window.transitionOut === 'function') ? window.transitionOut : () => Promise.resolve();
 
@@ -281,6 +281,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
                 gsap.to(window, { duration: 0.8, scrollTo: { y: target, autoKill: false }, ease: "power2.inOut" });
             } else {
                 window.scrollTo({ top: target.offsetTop || 0, behavior: 'instant' });
+                
             }
         } else {
             window.scrollTo({ top: 0, behavior: 'instant' });
@@ -793,6 +794,10 @@ const durationScroll = 3;
 const multiplicadorTemporal = 0.0005;
 let offsetScroll = 0;
 
+// ------------------------------
+// Smooth scroll to target element with offset
+// ------------------------------
+
 function getScrollDifference(targetId) {
   const target = document.getElementById(targetId);
 
@@ -811,7 +816,7 @@ document.querySelectorAll("[data-target]").forEach(btn => {
     const id = btn.dataset.target;
     const target = document.getElementById(id);
     const tiempo = Math.abs(getScrollDifference(id)) * multiplicadorTemporal;
-    console.log(tiempo);
+    
 
     if (!target) return;
     if (id == "technologies") {
