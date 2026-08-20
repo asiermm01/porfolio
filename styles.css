@@ -1358,7 +1358,6 @@ ul {
 .contact-scrolling-bg {
     position: fixed;
     top: var(--section-padding);
-    font-size: 100rem;
     left: 0;
     right: 0;
     overflow: hidden;
@@ -2189,6 +2188,9 @@ body.menu-open {
     .project-info {
         padding: 28px 24px;
     }
+    .project-tech-stack{
+        justify-content: end;
+    }
     .contact-person-img {
         display: none;
     }
@@ -2203,7 +2205,17 @@ body.menu-open {
         padding: 36px 24px;
         clip-path: var(--component-basic-card-responsive);
     }
-
+    .contact-scrolling-bg {
+        margin-top: 100px;
+        & .scrolling-text{
+            font-size: 7rem;
+        }
+    }
+    .footer-brand{
+        display: flex;
+        flex-direction: row;
+        gap: var(--container-padding);
+    }
     .footer-content {
         flex-direction: column;
         text-align: center;
@@ -2214,6 +2226,23 @@ body.menu-open {
         grid-template-columns: 1fr;
         gap: 20px;
         margin-bottom: 60px;
+        & .contact-card, .contact-socials {
+            width: 80%;
+            flex-direction: row;
+            background-color: var(--color-white);
+            align-items: center;
+            justify-content: flex-start;
+            gap: var(--container-padding);
+            margin: 0 auto;
+        }
+    }
+    .contact-socials{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & .social-links {
+            justify-content: center;
+        }
     }
 
     .footer-bottom {
@@ -2243,9 +2272,17 @@ body.menu-open {
         width: 98vw;
         height: 70vh;
     }
-
+    .footer-brand{
+        flex-direction: column;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+    }
     .footer-nav {
         flex-wrap: wrap;
         justify-content: center;
+        & a{
+            flex: 1 1 100px;
+        }
     }
 }
