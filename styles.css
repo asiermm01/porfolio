@@ -42,8 +42,10 @@
 
     --component-basic: polygon(10% 0%, 12% 3%, 35% 3%, 37% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 97%, 65% 97%, 63% 100%, 0% 100%, 0% 0%);
     --component-basic-card: polygon(10% 0%, 12% 2%, 40% 2%, 42% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 98%, 60% 98%, 58% 100%, 0% 100%, 0% 0%);
+    --component-basic-card-responsive: polygon(10% 0%, 12% 1%, 40% 1%, 42% 0%, 100% 0%, 100% 100%, 90% 100%, 88% 99%, 60% 99%, 58% 100%, 0% 100%, 0% 0%);
     --component-basic-largo: polygon(7% 2%, 42% 2%, 43% 0%, 95% 0%, 100% 20%, 100% 100%, 94% 100%, 93% 98%, 58% 98%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
     --component-esquina: polygon(0% 0%, 95% 0%, 100% 20%, 100% 100%, 5% 100%, 0% 80%);
+    --component-esquina-responsive: polygon(0% 0%, 90% 0%, 100% 10%, 100% 100%, 10% 100%, 0% 90%);
     --component-basic-esquina: polygon(7% 6%, 42% 6%, 43% 0%, 98% 0%, 100% 25%, 100% 100%, 94% 100%, 93% 94%, 58% 94%, 57% 100%, 0% 100%, 0% 0%, 6% 0%);
 
     /* Typography */
@@ -799,6 +801,10 @@ ul {
     opacity: 0;
 }
 
+.study-card-mobile {
+    display: none;
+}
+
 .study-card:hover .study-card-border {
     opacity: 1;
 }
@@ -852,6 +858,10 @@ ul {
     }
 }
 
+@media (max-width: 768px) {
+    
+}
+
 /* --- Workflow Section --- */
 .about-workflow {
     background-color: var(--bg-primary);
@@ -888,7 +898,9 @@ ul {
     line-height: 1.8;
     margin-bottom: 30px;
 }
-
+.workflow-text-bottom{
+    margin-top: 30px;
+}
 .workflow-hero-image {
     flex: 0.8;
     display: flex;
@@ -1109,7 +1121,7 @@ ul {
 }
 
 .tech-stack-text {
-    font-size: clamp(0.85rem, 1.2vw, 1rem);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
     color: var(--text-muted);
     line-height: 1.8;
     max-width: 480px;
@@ -1120,7 +1132,6 @@ ul {
     flex: 0 0 42%;
     position: relative;
     overflow: hidden;
-    /* border-radius: 0 var(--radius-xl) var(--radius-xl) 0; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1192,7 +1203,7 @@ ul {
 }
 
 .project-card:hover {
-    border-color: var(--border-hover);
+    /* border-color: var(--border-hover); */
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     transform: translateY(-4px);
 }
@@ -1848,8 +1859,6 @@ ul {
     }
     .about-intro-card{
         position: fixed;
-        background-color: var(--bg-card);
-        backdrop-filter: blur(12px);
         padding: 15px;
     }
     .about-hero-image, .about-intro-card,
@@ -1872,9 +1881,13 @@ ul {
     .tech-stack-card-content {
         padding: 36px 32px;
     }
+    .projects {
+        clip-path: var(--component-basic-card-responsive);
+    }
 
     .project-card {
         grid-template-columns: 1fr;
+        clip-path: var(--component-esquina-responsive);
     }
 
     .project-card:nth-child(even) {
@@ -2014,12 +2027,43 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+    .study-card {
+        padding: 0;
+        min-height: auto;
+        display: block;
+    }
+
+    .study-card::before {
+        -webkit-mask: none;
+        mask: none;
+        background-color: #F2F4F3;
+        border-radius: var(--radius-md);
+    }
+
+    .study-card-border,
+    .study-name.desktop-only {
+        display: none !important;
+    }
+
+    .study-card-mobile {
+        display: block;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 15px 10px;
+        color: #12121a;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.6;
+        gap: 8px;
+    }
     :root {
         --section-padding: 64px;
         --container-padding: 20px;
     }
     .about-person-img {
-        height: 100%;
+        /* height: 125%; */
+        display: none;
     }
     .navbar{
         left: var(--container-padding);
@@ -2108,7 +2152,7 @@ body.menu-open {
         padding: 30px;
     }
     .study-card {
-        padding: 20px;
+        padding: 0 20px;
         font-size: 1rem;
     }
     .workflow-cta {
@@ -2128,8 +2172,8 @@ body.menu-open {
     }
 
     .tech-stack-card-blob {
+        display: none;
         flex: 0 0 35%;
-        border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     }
 
     .tech-stack-card-content {

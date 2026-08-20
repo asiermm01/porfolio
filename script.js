@@ -274,6 +274,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     window.scrollTo({
       top: target.offsetTop,
+                gsap.to(window, { duration: 0.8, scrollTo: { y: target.offsetTop || 0, autoKill: false }, ease: "power2.inOut" });
       behavior: "instant"
     });
 

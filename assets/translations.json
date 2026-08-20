@@ -29,7 +29,8 @@
       "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
       "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
       "workflowCtaTitle": "¿Tienes alguna idea?",
-      "workflowCtaButton": "¡Envíame un mensaje!"
+      "workflowCtaButton": "¡Envíame un mensaje!",
+      "workflowGithubCtaButton": "Desarrollo en GitHub"
     },
     "tech": {
       "scrollingText": "Tecnologías Tecnologías Tecnologías Tecnologías Tecnologías&nbsp;",
@@ -113,7 +114,8 @@
       "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
       "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
       "workflowCtaTitle": "Do you have an idea?",
-      "workflowCtaButton": "Send me a message!"
+      "workflowCtaButton": "Send me a message!",
+      "workflowGithubCtaButton": "Development on GitHub"
     },
     "tech": {
       "scrollingText": "Technologies Technologies Technologies Technologies Technologies&nbsp;",
@@ -197,7 +199,8 @@
       "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
       "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
       "workflowCtaTitle": "Tens alguna idea?",
-      "workflowCtaButton": "Envia'm un missatge!"
+      "workflowCtaButton": "Envia'm un missatge!",
+      "workflowGithubCtaButton": "Desenvolupament a GitHub"
     },
     "tech": {
       "scrollingText": "Tecnologies Tecnologies Tecnologies Tecnologies Tecnologies&nbsp;",
