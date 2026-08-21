@@ -1693,7 +1693,7 @@ ul {
     top: calc(100% + 8px);
     right: 0;
     background-color: rgba(10, 10, 14, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--accent-primary);
     border-radius: var(--radius-sm);
     overflow: hidden;
     min-width: 140px;
@@ -1751,7 +1751,7 @@ ul {
 
 .navbar.scrolled ~ .nav-language-menu .language-dropdown {
     background-color: rgba(217, 217, 217, 0.95);
-    border-color: var(--border-color);
+    border: 1px solid var(--accent-primary);
 }
 
 .navbar.scrolled ~ .nav-language-menu .language-option {
