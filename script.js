@@ -791,7 +791,7 @@ function initHeroScene() {
 gsap.registerPlugin(ScrollToPlugin);
 
 const durationScroll = 3;
-const multiplicadorTemporal = 0.0005;
+const multiplicadorTemporal = 0.0008;
 let offsetScroll = 0;
 
 // ------------------------------
