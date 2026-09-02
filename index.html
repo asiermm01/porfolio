@@ -360,12 +360,14 @@
                     <textarea id="message" name="Mensaje" class="form-input form-textarea" data-i18n-target="placeholder" data-i18n="contact.messagePlaceholder" placeholder="Cuéntame sobre tu proyecto..." rows="5" required></textarea>
                     <span class="form-highlight"></span>
                 </div>
+                <div class="form-group form-checkbox-group">
+                    <input type="checkbox" id="privacy" name="privacy" class="form-checkbox" required>
+                    <label for="privacy" class="form-checkbox-label">
+                        <span data-i18n="contact.privacyPrefix">He leído y acepto la </span><a href="privacidad.html" data-i18n="contact.privacyLink" class="form-link">política de privacidad</a>
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
                     <span class="btn-text" data-i18n="contact.submitText">Enviar mensaje</span>
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"/>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-                    </svg>
                 </button>
             </form>
             </div>
@@ -387,6 +389,7 @@
                     <a data-target="technologies" data-i18n="footer.technologies">Tecnologías</a>
                     <a data-target="projects" data-i18n="footer.projects">Proyectos</a>
                     <a data-target="contact" data-i18n="footer.contact">Contacto</a>
+                    <a href="privacidad.html" data-i18n="footer.privacy">Privacidad</a>
                 </div>
             </div>
             <div class="footer-contact-info">
@@ -430,7 +433,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p data-i18n="footer.copyright">&copy; 2026 Asier. Todos los derechos reservados.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 Asier Mariné - Todos los derechos reservados</p>
                 <p class="footer-credit"><span data-i18n="footer.credit">Diseñado y desarrollado con</span> <span class="heart">&hearts;</span></p>
             </div>
         </div>
