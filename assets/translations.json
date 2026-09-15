@@ -11,14 +11,14 @@
       "greeting": "Hola, soy",
       "name": "Asier",
       "role": "Desarrollador y Diseñador Web",
-      "description": "Construyo experiencias web modernas, performantes y hermosas que hacen una diferencia. Apasionado por el código limpio y el diseño elegante.",
+      "description": "Me gusta entender cómo funcionan las cosas, construirlas desde cero y encontrar el punto en el que el código y el diseño dejan de ser dos partes separadas.",
       "ctaPrimary": "Qué ofrezco",
       "ctaSecondary": "Contactar"
     },
     "about": {
       "scrollingText": "Sobre mí Sobre mí Sobre mí Sobre mí Sobre mí&nbsp;",
       "title": "Quien soy",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
+      "description": "Soy desarrollador y diseñador web, con una formación que combina desarrollo de aplicaciones y diseño digital. Empecé acercándome a la web desde el lado creativo, pero pronto descubrí que lo que más me interesa es entender qué hay detrás de una interfaz: cómo funciona, cómo se estructura y cómo conseguir que una idea termine convirtiéndose en algo real. Trabajo principalmente con tecnologías web y disfruto especialmente cuando un proyecto me permite combinar lógica, interacción y diseño. Me gusta cuidar tanto lo que ocurre detrás de la pantalla como aquello que el usuario termina viendo. Actualmente sigo ampliando mi perfil hacia el desarrollo, especialmente en el entorno JavaScript y las aplicaciones web modernas, sin dejar de lado la parte visual que forma parte de mi manera de trabajar.",
       "downloadCv": "Descargar CV",
       "studiesTitle": "Formación",
       "study1": "Máster en Diseño Web para Creativos",
@@ -26,8 +26,8 @@
       "study3": "Bachillerato de Ciencias con Dibujo Técnico",
       "study4": "Cursos certificados de Awwwards Academy y Anthropic Academy",
       "workflowTitle": "Modo de trabajo y diferenciación",
-      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
-      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowText": "No entiendo el desarrollo y el diseño como dos procesos independientes. Antes de escribir código intento entender qué necesita realmente el proyecto, qué quiere transmitir y cómo debería funcionar. A partir de ahí, diseño y desarrollo evolucionan juntos, buscando que la estética tenga sentido y que la parte técnica esté al servicio de la experiencia. Me gusta trabajar desde los detalles: estructura, interacción, rendimiento, responsive y pequeños elementos que hacen que una web se sienta propia en lugar de parecer una plantilla. También disfruto especialmente experimentando. Siempre que tiene sentido, intento ir un poco más allá de lo convencional mediante animación, interacción o tecnologías que permitan explorar nuevas formas de presentar contenido. Mi objetivo no es utilizar más tecnología por utilizarla, sino encontrar la herramienta adecuada para convertir una idea en una experiencia que funcione.",
+      "workflowTextBottom": "Una parte importante de mi aprendizaje ocurre construyendo. Por eso procuro experimentar, probar nuevas herramientas y documentar proyectos que me permitan aprender haciendo. Mi código y algunos de estos experimentos pueden consultarse en GitHub.",
       "workflowCtaTitle": "¿Tienes alguna idea?",
       "workflowCtaButton": "¡Envíame un mensaje!",
       "workflowGithubCtaButton": "Desarrollo en GitHub"
@@ -35,24 +35,24 @@
     "tech": {
       "scrollingText": "Tecnologías Tecnologías Tecnologías Tecnologías Tecnologías&nbsp;",
       "card1Title": "Multimedia",
-      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card1Text": "Me interesa explorar la web como un medio interactivo, no únicamente como una colección de páginas. Trabajo con animación, interacción y experiencias visuales utilizando herramientas como GSAP, Three.js, p5.js y WebGL. También he experimentado con proyectos que combinan código, imagen, movimiento y elementos generativos. No busco añadir efectos porque sí: me interesa que la parte visual tenga un propósito y contribuya a contar algo.",
       "card2Title": "Interfaz",
-      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Text": "La interfaz es donde diseño y desarrollo se encuentran. Trabajo con HTML, CSS y JavaScript, y estoy profundizando en React y Next.js para construir interfaces más complejas y mantenibles. Me interesa especialmente conseguir interfaces que sean claras y funcionales sin renunciar a una identidad visual propia, cuidando tanto la experiencia de usuario como los detalles de interacción y responsive.",
       "card3Title": "Servidor",
-      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+      "card3Text": "Aunque mi recorrido tiene una fuerte base frontend, también me interesa comprender y trabajar con lo que ocurre detrás de la interfaz. Estoy ampliando mis conocimientos en desarrollo backend, APIs, bases de datos y arquitectura de aplicaciones, con el objetivo de poder entender un proyecto de forma más completa y seguir evolucionando hacia un perfil cada vez más transversal."
     },
     "projects": {
       "title": "Proyectos",
       "subtitle": "Una selección de proyectos que he construido y contribuido.",
       "project1Label": "Proyecto 360",
       "project1Title": "Diseño y desarrollo desde cero",
-      "project1Description": "Una plataforma de comercio electrónico con autenticación, gestión de productos, carrito y pagos. Construida con tecnologías modernas para un rendimiento óptimo.",
+      "project1Description": "Una plataforma de comercio electrónico completa con autenticación de usuarios, gestión de productos, carrito de compra e integración de pagos. Construida con tecnologías web modernas para un rendimiento óptimo.",
       "project1Tech1": "React",
       "project1Tech2": "Node.js",
       "project1Tech3": "MongoDB",
       "project1Tech4": "Stripe",
       "project2Title": "Mantenimiento web",
-      "project2Description": "Una aplicación de productividad con gestión de tareas por arrastrar y soltar, colaboración en tiempo real y una interfaz intuitiva.",
+      "project2Description": "Una aplicación de productividad con gestión de tareas mediante arrastrar y soltar, funciones de colaboración en tiempo real y una interfaz de usuario intuitiva.",
       "project2Tech1": "TypeScript",
       "project2Tech2": "React",
       "project2Tech3": "Firebase"
@@ -131,7 +131,7 @@
       "locationValue": "España",
       "followMe": "Sígueme",
       "copyright": "© 2026 Asier Mariné — Todos los derechos reservados",
-      "credit": "Diseñado y desarrollado con"
+      "credit": "Diseño ideas. Desarrollo experiencias."
     }
   },
   "en": {
@@ -146,14 +146,14 @@
       "greeting": "Hi, I'm",
       "name": "Asier",
       "role": "Web Developer & Designer",
-      "description": "I build modern, performant and beautiful web experiences that make a difference. Passionate about clean code and elegant design.",
+      "description": "I like understanding how things work, building them from scratch, and finding the point where code and design stop being two separate parts.",
       "ctaPrimary": "What I offer",
       "ctaSecondary": "Contact me"
     },
     "about": {
       "scrollingText": "About me About me About me About me About me&nbsp;",
       "title": "Who am I",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
+      "description": "I am a web developer and designer, with a background that combines application development and digital design. I first approached the web from the creative side, but soon discovered that what interests me most is understanding what lies behind an interface: how it works, how it is structured, and how to turn an idea into something real. I mainly work with web technologies and especially enjoy projects that let me combine logic, interaction, and design. I like caring about both what happens behind the screen and what the user ultimately sees. I am currently expanding my profile toward development, especially in the JavaScript ecosystem and modern web applications, without leaving aside the visual side that is part of the way I work.",
       "downloadCv": "Download CV",
       "studiesTitle": "Education",
       "study1": "Master in Web Design for Creatives",
@@ -161,8 +161,8 @@
       "study3": "Science Baccalaureate with Technical Drawing",
       "study4": "Certified courses from Awwwards Academy and Anthropic Academy",
       "workflowTitle": "Work approach and differentiation",
-      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
-      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowText": "I do not see development and design as two independent processes. Before writing code, I try to understand what the project really needs, what it should communicate, and how it should work. From there, design and development evolve together, making sure the aesthetic has a purpose and the technical side serves the experience. I like working through the details: structure, interaction, performance, responsive behavior, and the small elements that make a website feel unique rather than like a template. I also especially enjoy experimenting. Whenever it makes sense, I try to go a little beyond convention through animation, interaction, or technologies that allow new ways of presenting content. My goal is not to use more technology for its own sake, but to find the right tool to turn an idea into an experience that works.",
+      "workflowTextBottom": "An important part of my learning happens through building. That is why I try to experiment, test new tools, and document projects that let me learn by doing. My code and some of these experiments can be found on GitHub.",
       "workflowCtaTitle": "Do you have an idea?",
       "workflowCtaButton": "Send me a message!",
       "workflowGithubCtaButton": "Development on GitHub"
@@ -170,24 +170,24 @@
     "tech": {
       "scrollingText": "Technologies Technologies Technologies Technologies Technologies&nbsp;",
       "card1Title": "Multimedia",
-      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card1Text": "I am interested in exploring the web as an interactive medium, not just as a collection of pages. I work with animation, interaction, and visual experiences using tools such as GSAP, Three.js, p5.js, and WebGL. I have also experimented with projects that combine code, images, movement, and generative elements. I am not looking to add effects for their own sake: I want the visual side to have a purpose and help tell a story.",
       "card2Title": "Interface",
-      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Text": "The interface is where design and development meet. I work with HTML, CSS, and JavaScript, and I am deepening my knowledge of React and Next.js to build more complex and maintainable interfaces. I am especially interested in creating interfaces that are clear and functional without giving up a distinctive visual identity, paying attention to both the user experience and the details of interaction and responsive behavior.",
       "card3Title": "Server",
-      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+      "card3Text": "Although my background is strongly frontend-focused, I am also interested in understanding and working with what happens behind the interface. I am expanding my knowledge of backend development, APIs, databases, and application architecture, with the goal of understanding a project more completely and continuing to grow toward an increasingly well-rounded profile."
     },
     "projects": {
       "title": "Projects",
       "subtitle": "A selection of projects I have built and contributed to.",
       "project1Label": "360 Project",
       "project1Title": "Design and development from scratch",
-      "project1Description": "A full-featured e-commerce platform with authentication, product management, cart and payments. Built with modern technologies for optimal performance.",
+      "project1Description": "A full-featured e-commerce platform with user authentication, product management, shopping cart, and payment integration. Built with modern web technologies for optimal performance.",
       "project1Tech1": "React",
       "project1Tech2": "Node.js",
       "project1Tech3": "MongoDB",
       "project1Tech4": "Stripe",
       "project2Title": "Web maintenance",
-      "project2Description": "A productivity app with drag-and-drop task management, real-time collaboration and an intuitive interface.",
+      "project2Description": "A productivity app with drag-and-drop task management, real-time collaboration features, and an intuitive user interface.",
       "project2Tech1": "TypeScript",
       "project2Tech2": "React",
       "project2Tech3": "Firebase"
@@ -233,7 +233,7 @@
       "locationValue": "Spain",
       "followMe": "Follow me",
       "copyright": "© 2026 Asier Mariné — All rights reserved",
-      "credit": "Designed and developed with"
+      "credit": "Designing ideas. Developing experiences."
     }
   },
   "ca": {
@@ -248,14 +248,14 @@
       "greeting": "Hola, sóc",
       "name": "Asier",
       "role": "Desenvolupador i Dissenyador Web",
-      "description": "Construeixo experiències web modernes, performants i boniques que marquen la diferència. Apassionat pel codi net i el disseny elegant.",
+      "description": "M'agrada entendre com funcionen les coses, construir-les des de zero i trobar el punt en què el codi i el disseny deixen de ser dues parts separades.",
       "ctaPrimary": "Què ofereixo",
       "ctaSecondary": "Contactar"
     },
     "about": {
       "scrollingText": "Sobre mi Sobre mi Sobre mi Sobre mi Sobre mi&nbsp;",
       "title": "Qui sóc",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet fringilla.",
+      "description": "Sóc desenvolupador i dissenyador web, amb una formació que combina desenvolupament d'aplicacions i disseny digital. Em vaig apropar a la web des del vessant creatiu, però aviat vaig descobrir que el que més m'interessa és entendre què hi ha darrere d'una interfície: com funciona, com s'estructura i com aconseguir que una idea acabi convertint-se en alguna cosa real. Treballo principalment amb tecnologies web i gaudeixo especialment quan un projecte em permet combinar lògica, interacció i disseny. M'agrada tenir cura tant del que passa darrere de la pantalla com d'allò que l'usuari acaba veient. Actualment continuo ampliant el meu perfil cap al desenvolupament, especialment en l'entorn JavaScript i les aplicacions web modernes, sense deixar de banda la part visual que forma part de la meva manera de treballar.",
       "downloadCv": "Descargar CV",
       "studiesTitle": "Formació",
       "study1": "Màster en Disseny Web per a Creatius",
@@ -263,8 +263,8 @@
       "study3": "Batxillerat de Ciències amb Dibuix Tècnic",
       "study4": "Cursos certificats d'Awwwards Academy i Anthropic Academy",
       "workflowTitle": "Mode de treball i diferenciació",
-      "workflowText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nulla imperdiet aliquam et in elit. Phasellus sit amet libero nec mi malesuada volutpat. Integer egestas libero nec aliquet.",
-      "workflowTextBottom": "Curabitur tempor turpis nec libero hendrerit ultricies. Integer condimentum id lorem in euismod. Proin vulputate iaculis nisl non fermentum. Nulla congue sem lorem, vel varius elit cursus iaculis. Nunc hendrerit tincidunt nulla eu vulputate.",
+      "workflowText": "No entenc el desenvolupament i el disseny com dos processos independents. Abans d'escriure codi intento entendre què necessita realment el projecte, què vol transmetre i com hauria de funcionar. A partir d'aquí, disseny i desenvolupament evolucionen junts, buscant que l'estètica tingui sentit i que la part tècnica estigui al servei de l'experiència. M'agrada treballar des dels detalls: estructura, interacció, rendiment, responsive i petits elements que fan que una web se senti pròpia en lloc de semblar una plantilla. També gaudeixo especialment experimentant. Sempre que té sentit, intento anar una mica més enllà del que és convencional mitjançant animació, interacció o tecnologies que permetin explorar noves formes de presentar contingut. El meu objectiu no és utilitzar més tecnologia perquè sí, sinó trobar l'eina adequada per convertir una idea en una experiència que funcioni.",
+      "workflowTextBottom": "Una part important del meu aprenentatge passa construint. Per això procuro experimentar, provar noves eines i documentar projectes que em permetin aprendre fent. El meu codi i alguns d'aquests experiments es poden consultar a GitHub.",
       "workflowCtaTitle": "Tens alguna idea?",
       "workflowCtaButton": "Envia'm un missatge!",
       "workflowGithubCtaButton": "Desenvolupament a GitHub"
@@ -272,24 +272,24 @@
     "tech": {
       "scrollingText": "Tecnologies Tecnologies Tecnologies Tecnologies Tecnologies&nbsp;",
       "card1Title": "Multimèdia",
-      "card1Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse efficitur non velit eu faucibus. Integer sed turpis et leo iaculis commodo. Nullam interdum tellus non diam efficitur, in hendrerit sem facilisis. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed eleifend nulla eu posuere bibendum. Ut egestas ex id est venenatis, non pellentesque odio adipiscing. Fusce tempus pellentesque sapien. Aliquam facilisis quis augue suscipit. Interdum tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card1Text": "M'interessa explorar la web com un mitjà interactiu, no únicament com una col·lecció de pàgines. Treballo amb animació, interacció i experiències visuals utilitzant eines com GSAP, Three.js, p5.js i WebGL. També he experimentat amb projectes que combinen codi, imatge, moviment i elements generatius. No busco afegir efectes perquè sí: m'interessa que la part visual tingui un propòsit i contribueixi a explicar alguna cosa.",
       "card2Title": "Interfície",
-      "card2Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Fusce quis elit. Phasellus quis ipsum commodo nibh. Suspendisse potenti. Nullam porttitor lacinia nisl, eu porttitor urna. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est blandit vestibulum sagittis nec arcu. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium.",
+      "card2Text": "La interfície és on es troben el disseny i el desenvolupament. Treballo amb HTML, CSS i JavaScript, i estic aprofundint en React i Next.js per construir interfícies més complexes i fàcils de mantenir. M'interessa especialment aconseguir interfícies clares i funcionals sense renunciar a una identitat visual pròpia, cuidant tant l'experiència d'usuari com els detalls d'interacció i responsive.",
       "card3Title": "Servidor",
-      "card3Text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Imperdiet ultrices id amet malesuada. Integer sed turpis eu iaculis commodo. Suspendisse potenti. Nullam porttitor lacinia nisl. Sed blandit nulla eu posuere bibendum. Ut egestas ex id est venenatis efficitur. Aliquam facilisis quis augue suscipit. Duis tempor luctus tortor. Quisque posuere tristique lobortis posuere. Maecenas id porta facilisis pretium."
+      "card3Text": "Tot i que el meu recorregut té una base frontend sòlida, també m'interessa comprendre i treballar amb el que passa darrere de la interfície. Estic ampliant els meus coneixements en desenvolupament backend, APIs, bases de dades i arquitectura d'aplicacions, amb l'objectiu d'entendre un projecte de manera més completa i continuar evolucionant cap a un perfil cada vegada més transversal."
     },
     "projects": {
       "title": "Projectes",
       "subtitle": "Una selecció de projectes que he construït i contribuït.",
       "project1Label": "Projecte 360",
       "project1Title": "Disseny i desenvolupament des de zero",
-      "project1Description": "Una plataforma de comerç electrònic amb autenticació, gestió de productes, carretó i pagaments. Construïda amb tecnologies modernes per a un rendiment òptim.",
+      "project1Description": "Una plataforma de comerç electrònic completa amb autenticació d'usuaris, gestió de productes, carretó de compra i integració de pagaments. Construïda amb tecnologies web modernes per a un rendiment òptim.",
       "project1Tech1": "React",
       "project1Tech2": "Node.js",
       "project1Tech3": "MongoDB",
       "project1Tech4": "Stripe",
       "project2Title": "Manteniment web",
-      "project2Description": "Una aplicació de productivitat amb gestió de tasques per arrossegar i deixar anar, col·laboració en temps real i una interfície intuïtiva.",
+      "project2Description": "Una aplicació de productivitat amb gestió de tasques mitjançant arrossegar i deixar anar, funcions de col·laboració en temps real i una interfície d'usuari intuïtiva.",
       "project2Tech1": "TypeScript",
       "project2Tech2": "React",
       "project2Tech3": "Firebase"
@@ -332,7 +332,7 @@
       "locationValue": "Espanya",
       "followMe": "Segueix-me",
       "copyright": "© 2026 Asier Mariné — Tots els drets reservats.",
-      "credit": "Dissenyat i desenvolupat amb"
+      "credit": "Disseny d'idees. Desenvolupament d'experiències."
     }
   }
 }
