@@ -2043,6 +2043,15 @@ body.menu-open {
         max-width: 100%;
     }
 
+    .about-intro-card {
+        width: calc(100% - 48px);
+        margin-inline: 24px;
+    }
+
+    .about-hero-image .about-person-img {
+        display: none;
+    }
+
     .about-person-img {
         margin: 0 auto;
         position: absolute;
@@ -2085,45 +2094,7 @@ body.menu-open {
     }
 }
 
-@media (max-width: 768px) {
-    .study-card {
-        padding: 0;
-        min-height: auto;
-        display: block;
-    }
-
-    .study-card::before {
-        -webkit-mask: none;
-        mask: none;
-        background-color: #F2F4F3;
-        border-radius: var(--radius-md);
-    }
-
-    .study-card-border,
-    .study-name.desktop-only {
-        display: none !important;
-    }
-
-    .study-card-mobile {
-        display: block;
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        padding: 15px 10px;
-        color: #12121a;
-        font-weight: 700;
-        font-size: 1rem;
-        line-height: 1.6;
-        gap: 8px;
-    }
-
-    :root {
-        --section-padding: 64px;
-        --container-padding: 20px;
-    }
-
-    .about-person-img { display: none; }
-
+@media (max-width: 1440px) {
     .navbar {
         clip-path: var(--component-basic-esquina-responsive);
         left: var(--container-padding);
@@ -2200,6 +2171,46 @@ body.menu-open {
         width: 100%;
         color: var(--color-white);
     }
+}
+
+@media (max-width: 768px) {
+    .study-card {
+        padding: 0;
+        min-height: auto;
+        display: block;
+    }
+
+    .study-card::before {
+        -webkit-mask: none;
+        mask: none;
+        background-color: #F2F4F3;
+        border-radius: var(--radius-md);
+    }
+
+    .study-card-border,
+    .study-name.desktop-only {
+        display: none !important;
+    }
+
+    .study-card-mobile {
+        display: block;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        padding: 15px 10px;
+        color: #12121a;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.6;
+        gap: 8px;
+    }
+
+    :root {
+        --section-padding: 64px;
+        --container-padding: 20px;
+    }
+
+    .about-person-img { display: none; }
 
     .about-scrolling-bg {
         top: 10%;
@@ -2250,6 +2261,30 @@ body.menu-open {
 
     .tech-stack-card-content {
         padding: 28px 24px;
+        overflow: hidden;
+    }
+
+    .tech-stack-card-content::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 12px;
+        height: 100%;
+        background-color: var(--tech-card-accent);
+        box-shadow: 0 0 18px var(--tech-card-accent);
+    }
+
+    .tech-stack-card[data-card-index="0"] {
+        --tech-card-accent: #5620e9;
+    }
+
+    .tech-stack-card[data-card-index="1"] {
+        --tech-card-accent: #f5b800;
+    }
+
+    .tech-stack-card[data-card-index="2"] {
+        --tech-card-accent: #00c853;
     }
 
     .tech-stack-title {
