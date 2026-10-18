@@ -66,7 +66,7 @@
       "subjectLabel": "Asunto",
       "subjectPlaceholder": "¿De qué trata esto?",
       "messageLabel": "Mensaje*",
-      "messagePlaceholder": "Cuéntame sobre tu proyecto...",
+      "messagePlaceholder": "Cuéntame sobre tu propuesta...",
       "privacyPrefix": "He leído y acepto la ",
       "privacyLink": "política de privacidad",
       "submitText": "Enviar mensaje"
@@ -201,7 +201,7 @@
       "subjectLabel": "Subject",
       "subjectPlaceholder": "What is this about?",
       "messageLabel": "Message*",
-      "messagePlaceholder": "Tell me about your project...",
+      "messagePlaceholder": "Tell me about your approach...",
       "privacyPrefix": "I have read and accept the ",
       "privacyLink": "privacy policy",
       "submitText": "Send message"
@@ -303,7 +303,7 @@
       "subjectLabel": "Assumpte",
       "subjectPlaceholder": "De què tracta això?",
       "messageLabel": "Missatge*",
-      "messagePlaceholder": "Explica'm sobre el teu projecte...",
+      "messagePlaceholder": "Explica'm sobre el teu proposta...",
       "privacyPrefix": "He llegit i accepto la ",
       "privacyLink": "política de privacitat",
       "submitText": "Enviar missatge"
