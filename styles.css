@@ -685,17 +685,21 @@ ul {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(16, 16, 20, 1);
+    background:
+        radial-gradient(ellipse at 35% 45%, rgba(67, 25, 177, 0.75), transparent 68%),
+        linear-gradient(110deg, rgba(10, 6, 27, 0.98), rgba(18, 10, 48, 0.98) 55%, rgba(8, 6, 21, 0.98));
     min-height: 450px;
     z-index: 1;
+    clip-path: var(--component-basic-card);
 }
 
 .about-card-title {
-    color: var(--accent-primary);
+    /* color: var(--accent-primary); */
+    color: #6a34fd;
     font-size: 3rem;
     font-weight: 800;
     margin-bottom: 24px;
-    font-family: var(--font-heading);
+    font-family: var(--font-deco);
 }
 
 .about-card-text {
@@ -871,7 +875,9 @@ ul {
     position: absolute;
     left: 0;
     bottom: -80px;
-    background: var(--accent-gradient);
+    /* background: var(--accent-gradient); */
+    background: radial-gradient(ellipse at 35% 45%, #5620e9d9, transparent 68%),
+        linear-gradient(110deg, rgba(29, 19, 73, 0.98), rgba(25, 15, 61, 0.98) 55%, rgba(28, 21, 78, 0.98));
     height: 50vh;
     width: 100%;
     display: flex;
@@ -963,7 +969,7 @@ ul {
     position: relative;
     z-index: 10;
     color: #fff;
-    font-family: var(--font-heading);
+    font-family: var(--font-deco);
 }
 
 .btn-contact-cta {

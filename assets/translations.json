@@ -119,19 +119,18 @@
       "currentVersion": "La versión vigente será la publicada en esta página, indicando su fecha de última actualización."
     },
     "footer": {
-      "tagline": "Construyendo la web, un píxel a la vez.",
+      "tagline": "De ideas originales a soluciones digitales.",
       "about": "Sobre mí",
       "technologies": "Tecnologías",
       "projects": "Proyectos",
       "contact": "Contacto",
       "privacy": "Privacidad",
       "emailTitle": "Correo",
-      "emailValue": "hello@asier.dev",
+      "emailValue": "asier.mm01@gmail.com",
       "locationTitle": "Ubicación",
-      "locationValue": "España",
+      "locationValue": "Logroño, España",
       "followMe": "Sígueme",
-      "copyright": "© 2026 Asier Mariné — Todos los derechos reservados",
-      "credit": "Diseño ideas. Desarrollo experiencias."
+      "copyright": "© 2026 Asier Mariné — Todos los derechos reservados"
     }
   },
   "en": {
@@ -221,19 +220,18 @@
       "securityTitle": "8. Security", "security": "Reasonable technical and organisational measures have been adopted to protect personal data against loss, unauthorised access, alteration or improper disclosure.", "securityNote": "However, no electronic transmission or storage system can guarantee absolute security.", "cookiesTitle": "9. Cookies", "cookies": "This website does not use cookies for user profiling, behavioural advertising or tracking visitor activity.", "futureCookies": "If technologies requiring user consent are used in the future, this policy will be updated and consent will be requested when necessary.", "changesTitle": "10. Changes to this policy", "changes": "This Privacy Policy may be updated to reflect legal or technical changes or changes to how the website operates.", "currentVersion": "The current version will be the one published on this page, showing its latest update date."
     },
     "footer": {
-      "tagline": "Building the web, one pixel at a time.",
+      "tagline": "From original ideas to digital solutions.",
       "about": "About",
       "technologies": "Technologies",
       "projects": "Projects",
       "contact": "Contact",
       "privacy": "Privacy",
       "emailTitle": "Email",
-      "emailValue": "hello@asier.dev",
+      "emailValue": "asier.mm01@gmail.com",
       "locationTitle": "Location",
-      "locationValue": "Spain",
+      "locationValue": "Logroño, Spain",
       "followMe": "Follow me",
-      "copyright": "© 2026 Asier Mariné — All rights reserved",
-      "credit": "Designing ideas. Developing experiences."
+      "copyright": "© 2026 Asier Mariné — All rights reserved"
     }
   },
   "ca": {
@@ -320,19 +318,18 @@
       "securityTitle": "8. Seguretat", "security": "S'han adoptat mesures tècniques i organitzatives raonables per protegir les dades personals davant de pèrdues, accessos no autoritzats, alteracions o divulgacions indegudes.", "securityNote": "No obstant això, cap sistema de transmissió o emmagatzematge electrònic pot garantir una seguretat absoluta.", "cookiesTitle": "9. Cookies", "cookies": "Aquest lloc web no utilitza cookies destinades a crear perfils d'usuari, publicitat comportamental o seguiment de l'activitat del visitant.", "futureCookies": "Si en el futur s'utilitzen tecnologies que requereixin el consentiment de l'usuari, aquesta política s'actualitzarà i se sol·licitarà el consentiment quan sigui necessari.", "changesTitle": "10. Canvis en aquesta política", "changes": "Aquesta Política de Privacitat es podrà actualitzar per adaptar-la a canvis legals, tècnics o relacionats amb el funcionament del lloc web.", "currentVersion": "La versió vigent serà la publicada en aquesta pàgina, amb la seva data d'última actualització."
     },
     "footer": {
-      "tagline": "Construint la web, un píxel a la vegada.",
+      "tagline": "D'idees originals a solucions digitals.",
       "about": "Sobre mi",
       "technologies": "Tecnologies",
       "projects": "Projectes",
       "contact": "Contacte",
       "privacy": "Privacitat",
       "emailTitle": "Correu",
-      "emailValue": "hello@asier.dev",
+      "emailValue": "asier.mm01@gmail.com",
       "locationTitle": "Ubicació",
-      "locationValue": "Espanya",
+      "locationValue": "Logroño, Espanya",
       "followMe": "Segueix-me",
-      "copyright": "© 2026 Asier Mariné — Tots els drets reservats.",
-      "credit": "Disseny d'idees. Desenvolupament d'experiències."
+      "copyright": "© 2026 Asier Mariné — Tots els drets reservats."
     }
   }
 }
