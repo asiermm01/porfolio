@@ -1119,8 +1119,8 @@ function initAboutSection() {
 
     // Set initial states
     if (scrollingBg) gsap.set(scrollingBg, { opacity: 0 });
-    if (aboutImage) gsap.set(aboutImage, { x: '-50vw', opacity: 0 });
-    if (introCard) gsap.set(introCard, { x: '50vw', opacity: 0 });
+    if (aboutImage) gsap.set(aboutImage, { x: '50vw', opacity: 0 });
+    if (introCard) gsap.set(introCard, { x: '-50vw', opacity: 0 });
 
     // Create a timeline using the parent section as trigger
     const tl = gsap.timeline({

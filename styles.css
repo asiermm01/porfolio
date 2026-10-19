@@ -659,27 +659,41 @@ ul {
 
 .about-intro-container {
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     position: fixed;
-    inset: 10%;
+    inset: 0 10%;
     z-index: 3;
     gap: 40px;
 }
 
 .about-hero-image {
-    flex: 1;
     display: flex;
     justify-content: center;
+    align-items: flex-end;
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: 55%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .about-person-img {
-    width: 100%;
-    object-fit: cover;
+    width: auto;
+    max-width: none;
+    height: 110vh;
+    object-fit: contain;
+    object-position: bottom;
+    /* -webkit-mask-image: radial-gradient(ellipse 100% 120% at 50% 100%, #000 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse 100% 120% at 50% 100%, #000 55%, transparent 100%); */
 }
 
 .about-intro-card {
-    flex: 1.2;
+    flex: 0 0 auto;
+    width: min(55%, 760px);
+    margin-right: auto;
     position: relative;
     padding: 80px 70px;
     display: flex;
@@ -837,7 +851,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 80px;
-    margin: var(--section-padding) auto;
+    margin: /* var(--section-padding) */ auto;
 }
 
 .workflow-content {
@@ -861,13 +875,16 @@ ul {
 
 .workflow-text-bottom { margin-top: 30px; }
 
-.workflow-hero-image {
+.workflow-hero-container {
     flex: 0.8;
     display: flex;
     justify-content: flex-end;
 }
 
-.workflow-hero-image .about-person-img {
+.workflow-hero-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
     background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -2037,6 +2054,10 @@ body.menu-open {
     .workflow-container {
         flex-direction: column;
         gap: 48px;
+    }
+
+    .about-intro-container {
+        flex-direction: column-reverse;
     }
 
     .about-intro-card {
