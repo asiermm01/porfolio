@@ -289,22 +289,22 @@ function initWorkflowCards() {
         });
 
         timeline.fromTo(backCard, {
-            rotationX: mobile ? 5 : 7,
+            rotationX: mobile ? 5 : 10,
             rotationY: mobile ? 11 : -16,
             rotationZ: mobile ? 5 : 6,
             x: 0,
             y: 0
         }, {
-            rotationX: mobile ? 10 : 13,
-            rotationY: mobile ? -20 : -25,
-            rotationZ: mobile ? 11 : 14,
+            rotationX: mobile ? 20 : 23,
+            rotationY: mobile ? -10 : -20,
+            rotationZ: mobile ? 5 : 18,
             x: distance * 0.55,
             y: -distance * 0.55,
             ease: 'none'
         }, 0);
 
         timeline.fromTo(frontCard, {
-            rotationX: mobile ? 20 : 23,
+            rotationX: mobile ? 20 : 4,
             rotationY: mobile ? 8 : 12,
             rotationZ: mobile ? -14 : -18,
             x: 0,
