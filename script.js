@@ -255,10 +255,70 @@ document.addEventListener("DOMContentLoaded", () => {
         initHeroScene();
         initGlobalCanvas();
         initAboutSection();
+        initWorkflowCards();
         initTechSection();
         initContactSection();
     }
 });
+
+function initWorkflowCards() {
+    const section = document.querySelector('.about-workflow');
+    const container = section?.querySelector('.workflow-hero-container');
+    const backCard = container?.querySelector('.workflow-hero-img--back');
+    const frontCard = container?.querySelector('.workflow-hero-img--front');
+
+    if (!section || !container || !backCard || !frontCard) return;
+
+    const media = gsap.matchMedia();
+    media.add({
+        isMobile: '(max-width: 768px)',
+        motionAllowed: '(prefers-reduced-motion: no-preference)'
+    }, (context) => {
+        if (!context.conditions.motionAllowed) return;
+
+        const mobile = context.conditions.isMobile;
+        const distance = mobile ? 24 : 48;
+
+        const timeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+                end: 'bottom 25%',
+                scrub: 1.5
+            }
+        });
+
+        timeline.fromTo(backCard, {
+            rotationX: mobile ? 5 : 7,
+            rotationY: mobile ? 11 : -16,
+            rotationZ: mobile ? 5 : 6,
+            x: 0,
+            y: 0
+        }, {
+            rotationX: mobile ? 10 : 13,
+            rotationY: mobile ? -20 : -25,
+            rotationZ: mobile ? 11 : 14,
+            x: distance * 0.55,
+            y: -distance * 0.55,
+            ease: 'none'
+        }, 0);
+
+        timeline.fromTo(frontCard, {
+            rotationX: mobile ? 20 : 23,
+            rotationY: mobile ? 8 : 12,
+            rotationZ: mobile ? -14 : -18,
+            x: 0,
+            y: 0
+        }, {
+            rotationX: mobile ? 5 : 7,
+            rotationY: mobile ? -3 : -5,
+            rotationZ: mobile ? -6 : -8,
+            x: -distance * 0.65,
+            y: distance * 0.65,
+            ease: 'none'
+        }, 0);
+    });
+}
 
 
 // Anchor links (use GSAP ScrollTo when available). Skip elements

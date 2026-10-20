@@ -851,7 +851,7 @@ ul {
     display: flex;
     align-items: center;
     gap: 80px;
-    margin: /* var(--section-padding) */ auto;
+    margin: 10px auto 50px;
 }
 
 .workflow-content {
@@ -877,15 +877,60 @@ ul {
 
 .workflow-hero-container {
     flex: 0.8;
-    display: flex;
-    justify-content: flex-end;
+    position: relative;
+    width: 100%;
+    min-height: clamp(340px, 38vw, 500px);
+    perspective: 1200px;
+    isolation: isolate;
+    opacity: 0.82;
+    transition: opacity 400ms ease;
+}
+
+.workflow-container:hover .workflow-hero-container {
+    z-index: 2;
+    opacity: 1;
 }
 
 .workflow-hero-img {
+    position: absolute;
+    display: block;
+    aspect-ratio: 1.25;
+    overflow: hidden;
+    border: 1px solid rgba(218, 172, 255, 0.88);
+    border-radius: 5px;
+    background: rgba(36, 9, 58, 0.82);
+    box-shadow:
+        0 22px 48px rgba(24, 7, 43, 0.28),
+        0 0 16px rgba(73, 20, 221, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    backface-visibility: hidden;
+}
+
+.workflow-hero-img > img {
+    position: absolute;
+    inset: 0;
+    display: block;
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    background-color: rgba(255, 255, 255, 0.05);
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: left top;
+}
+
+.workflow-hero-img--back {
+    z-index: 1;
+    top: -18%;
+    right: -4%;
+    width: 94%;
+    transform: rotateX(50deg) rotateY(-186deg) rotateZ(6deg);
+}
+
+.workflow-hero-img--front {
+    z-index: 2;
+    bottom: -18%;
+    left: -4%;
+    width: 90%;
+    transform: rotateX(58deg) rotateY(-5deg) rotateZ(-8deg);
 }
 
 .workflow-cta {
@@ -2066,9 +2111,14 @@ body.menu-open {
     }
 
     .about-hero-image, .about-intro-card,
-    .workflow-content, .workflow-hero-image {
+    .workflow-content, .workflow-hero-container {
         width: 100%;
         max-width: 100%;
+    }
+
+    .workflow-hero-container {
+        flex: none;
+        min-height: clamp(320px, 58vw, 440px);
     }
 
     .about-intro-card {
@@ -2267,6 +2317,29 @@ body.menu-open {
 
     .workflow-cta {
         padding: 40px 0;
+    }
+
+    .workflow-hero-container {
+        min-height: 290px;
+        perspective: 850px;
+    }
+
+    .workflow-hero-img {
+        border-radius: 4px;
+    }
+
+    .workflow-hero-img--back {
+        top: -18%;
+        right: -2%;
+        width: 94%;
+        transform: rotateX(5deg) rotateY(-11deg) rotateZ(5deg);
+    }
+
+    .workflow-hero-img--front {
+        bottom: -18%;
+        left: -2%;
+        width: 90%;
+        transform: rotateX(42deg) rotateY(-3deg) rotateZ(-6deg);
     }
 
     .cta-decor {
