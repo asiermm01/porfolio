@@ -1287,6 +1287,34 @@ function initTechSection() {
     const section = document.querySelector('.tech-section');
     if (!section) return;
 
+    const cursorTiltEnabled = window.matchMedia(
+        '(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)'
+    ).matches;
+
+    if (cursorTiltEnabled) {
+        const blobs = section.querySelectorAll('.tech-stack-card-blob');
+        const updateBlobTilt = (event) => {
+            blobs.forEach((blob) => {
+                const bounds = blob.getBoundingClientRect();
+                if (!bounds.width || !bounds.height) return;
+
+                const cursorX = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
+                const cursorY = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+
+                blob.style.setProperty('--pointer-tilt-x', `${cursorX * 6}deg`);
+                blob.style.setProperty('--pointer-tilt-y', `${cursorY * -6}deg`);
+            });
+        };
+
+        window.addEventListener('pointermove', updateBlobTilt);
+        window.addEventListener('pointerleave', () => {
+            blobs.forEach((blob) => {
+                blob.style.setProperty('--pointer-tilt-x', '0deg');
+                blob.style.setProperty('--pointer-tilt-y', '0deg');
+            });
+        });
+    }
+
     const scrollingBg = section.querySelector('.tech-scrolling-bg');
     const cards = gsap.utils.toArray('.tech-stack-card');
     const totalCards = cards.length; // 3
