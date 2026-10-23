@@ -616,7 +616,6 @@ ul {
 .section-subtitle {
     color: var(--text-secondary);
     font-size: 1.05rem;
-    max-width: 600px;
     margin-bottom: 60px;
     line-height: 1.8;
 }
@@ -730,7 +729,7 @@ ul {
     width: min(55%, 760px);
     margin-right: auto;
     position: relative;
-    padding: 80px 70px;
+    padding: clamp(32px, 5.56vw, 80px) clamp(24px, 4.86vw, 70px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1329,10 +1328,26 @@ ul {
 =================================== 
 */
 .projects {
+    display: flex;
+    flex-direction: column;
     min-height: 105vh;
     margin-top: -100vh;
     z-index: 10;
     clip-path: var(--component-basic-card)
+}
+
+.projects > .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-grid {
+    margin-block: auto;
+}
+
+.projects .section-subtitle {
+    margin-bottom: 0;
 }
 
 .projects-grid {
@@ -2243,7 +2258,6 @@ body.menu-open {
 
     .about-intro-card {
         position: fixed;
-        padding: 15px;
     }
 
     .about-hero-image, .about-intro-card,
@@ -2309,6 +2323,10 @@ body.menu-open {
 }
 
 @media (max-width: 1440px) {
+    .workflow-hero-container {
+        display: none;
+    }
+
     .navbar {
         clip-path: var(--component-basic-esquina-responsive);
         left: var(--container-padding);
@@ -2447,12 +2465,8 @@ body.menu-open {
         font-size: 4rem;
     }
 
-    .about-intro-card {
-        padding: 30px;
-    }
-
     .about-card-title {
-        font-size: 1.6rem;
+        font-size: 2rem;
         margin-bottom: 16px;
     }
 
@@ -2663,5 +2677,27 @@ body.menu-open {
 
     .footer-nav a {
         flex: 1 1 100px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .workflow-hero-container {
+        min-height: clamp(290px, calc(20vw + 205px), 410px);
+    }
+
+    .workflow-hero-img--back,
+    .workflow-hero-img--front {
+        width: clamp(280px, calc(23vw + 170px), 405px);
+        max-width: calc(100% - 32px);
+    }
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+    .workflow-hero-img--back {
+        right: 14%;
+    }
+
+    .workflow-hero-img--front {
+        left: 14%;
     }
 }
