@@ -1523,6 +1523,12 @@ ul {
     z-index: 1;
 }
 
+@media (min-width: 2800px) {
+    .contact-grid {
+        margin-right: clamp(120px, calc(80vw - 2200px), 1800px);
+    }
+}
+
 .contact-scrolling-bg {
     position: fixed;
     top: var(--section-padding);
@@ -1553,10 +1559,8 @@ ul {
 }
 
 .contact-person-img {
-    /* width: 120%; */
-    /* height: 100%; */
     max-width: none;
-    height: 130vh;
+    height: 125vh;
     object-fit: cover;
     display: block;
     margin-left: calc(var(--section-padding)*2);
