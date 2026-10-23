@@ -1555,7 +1555,8 @@ ul {
 .contact-person-img {
     /* width: 120%; */
     /* height: 100%; */
-    height: 90vh;
+    max-width: none;
+    height: 130vh;
     object-fit: cover;
     display: block;
     margin-left: calc(var(--section-padding)*2);
