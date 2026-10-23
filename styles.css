@@ -779,6 +779,10 @@ ul {
     line-height: 1.8;
 }
 
+.mobile-copy {
+    display: none;
+}
+
 /* Estudios */
 .about-studies {
     position: relative;
@@ -1085,6 +1089,7 @@ ul {
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 30px;
+    text-align: center;
     position: relative;
     z-index: 10;
     color: #fff;
@@ -1324,6 +1329,7 @@ ul {
 =================================== 
 */
 .projects {
+    min-height: 105vh;
     margin-top: -100vh;
     z-index: 10;
     clip-path: var(--component-basic-card)
@@ -2228,6 +2234,7 @@ body.menu-open {
     .workflow-container {
         flex-direction: column;
         gap: 48px;
+        margin: 0 var(--container-padding);
     }
 
     .about-intro-container {
@@ -2381,6 +2388,11 @@ body.menu-open {
 }
 
 @media (max-width: 768px) {
+    .hero-badge {
+        position: relative;
+        top: 20px;
+    }
+
     .study-card {
         padding: 0;
         min-height: auto;
@@ -2439,18 +2451,24 @@ body.menu-open {
         padding: 30px;
     }
 
+    .about-card-title {
+        font-size: 1.6rem;
+        margin-bottom: 16px;
+    }
+
     .study-card {
         padding: 0 20px;
         font-size: 1rem;
     }
 
     .workflow-cta {
-        padding: 40px 0;
+        padding: 40px;
     }
 
     .workflow-hero-container {
         min-height: 290px;
         perspective: 850px;
+        margin: var(--section-padding) auto calc(var(--section-padding) * 1.5);
     }
 
     .workflow-hero-img {
@@ -2490,8 +2508,9 @@ body.menu-open {
     }
 
     .tech-stack-card-content {
-        padding: 28px 24px;
+        padding: 45px 50px 28px 24px;
         overflow: hidden;
+
     }
 
     .tech-stack-card-content::after {
@@ -2519,6 +2538,7 @@ body.menu-open {
 
     .tech-stack-title {
         font-size: 1.6rem;
+        margin-bottom: 8px;
     }
 
     .project-info {
@@ -2601,6 +2621,14 @@ body.menu-open {
 }
 
 @media (max-width: 480px) {
+    .desktop-copy {
+        display: none;
+    }
+
+    .mobile-copy {
+        display: block;
+    }
+
     .hero-cta {
         flex-direction: column;
         align-items: center;
