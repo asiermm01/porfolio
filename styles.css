@@ -22,6 +22,10 @@
     --text-secondary: #9896a8;
     --text-muted: #5e5c6e;
 
+    --font-size-natural: clamp(1rem, 1.5vw, 1.25rem);
+    --font-size-sm: clamp(0.875rem, 1.25vw, 1rem);
+    --font-size-title: clamp(1.8rem, 3vw, 2.5rem);
+
     --accent-primary: #5620e9;
     --accent-secondary: #00c853;
     --accent-tertiary: #f5b800;
@@ -381,7 +385,7 @@ ul {
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: var(--font-size-natural);
     color: rgba(255, 255, 255, 0.55);
     max-width: 560px;
     margin: 0 auto 40px;
@@ -615,7 +619,7 @@ ul {
 
 .section-subtitle {
     color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-size: var(--font-size-natural);
     margin-bottom: 60px;
     line-height: 1.8;
 }
@@ -726,7 +730,7 @@ ul {
 
 .about-intro-card {
     flex: 0 0 auto;
-    width: min(55%, 760px);
+    width: min(70%, 760px);
     margin-right: auto;
     position: relative;
     padding: clamp(32px, 5.56vw, 80px) clamp(24px, 4.86vw, 70px);
@@ -773,7 +777,7 @@ ul {
 .about-card-text {
     color: var(--color-grey);
     font-weight: 500;
-    font-size: 1.05rem;
+    font-size: var(--font-size-natural);
     margin-bottom: 30px;
     line-height: 1.8;
 }
@@ -927,7 +931,7 @@ ul {
 .workflow-text,
 .workflow-text-bottom {
     color: var(--text-secondary);
-    font-size: 1.05rem;
+    font-size: var(--font-size-natural);
     line-height: 1.8;
     margin-bottom: 30px;
 }
@@ -1085,7 +1089,7 @@ ul {
 }
 
 .cta-title {
-    font-size: 2.2rem;
+    font-size: var(--font-size-title);
     font-weight: 800;
     margin-bottom: 30px;
     text-align: center;
@@ -1223,7 +1227,7 @@ ul {
 }
 
 .tech-stack-text {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-size: var(--font-size-natural);
     color: var(--text-muted);
     line-height: 1.8;
     max-width: 480px;
@@ -1344,6 +1348,7 @@ ul {
 
 .projects-grid {
     margin-block: auto;
+    margin-top: 40px;
 }
 
 .projects .section-subtitle {
@@ -1451,7 +1456,7 @@ ul {
 
 .project-label {
     font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     color: var(--accent-primary);
     text-transform: uppercase;
@@ -1466,7 +1471,7 @@ ul {
 
 .project-description {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: var(--font-size-natural);
     line-height: 1.8;
 }
 
@@ -1483,7 +1488,7 @@ ul {
     border: 1px solid var(--border-color);
     border-radius: 100px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--accent-secondary);
     transition: all var(--transition-fast);
@@ -1548,8 +1553,9 @@ ul {
 }
 
 .contact-person-img {
-    width: 120%;
+    /* width: 120%; */
     /* height: 100%; */
+    height: 90vh;
     object-fit: cover;
     display: block;
     margin-left: calc(var(--section-padding)*2);
@@ -1844,7 +1850,7 @@ ul {
 
 .footer-tagline {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     margin-top: 12px;
 }
 
@@ -2635,6 +2641,10 @@ body.menu-open {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --font-size-natural: 1.1rem;
+    }
+
     .desktop-copy {
         display: none;
     }
