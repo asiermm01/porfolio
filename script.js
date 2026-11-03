@@ -1209,7 +1209,9 @@ function initAboutSection() {
         }, "-=0.2"); // Small delay after text starts fading in
 }
 ScrollTrigger.create({
-  start: 3400,
+  trigger: ".about-studies",
+  // Compensate for the pinned hero so the fade starts when studies reach the viewport.
+  start: "top -100%",
 
   onEnter: () => {
     gsap.to(".about-intro", { autoAlpha: 0});
