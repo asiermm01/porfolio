@@ -291,36 +291,41 @@
                 <div class="section-line"></div>
             </div>
             <p class="section-subtitle" data-i18n="projects.subtitle">Una selección de proyectos en los que exploro la relación entre diseño, interacción y desarrollo web, desde el concepto hasta la implementación.</p>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <article class="project-card project-card-featured" id="project-1">
-                    <div class="project-image-wrapper">
-                        <img src="assets/images/Banner Porfolio.png" alt="Banner Porfolio" class="project-image">
-                        <div class="project-image-overlay">
-                            <div class="project-links">
-                                <a href="#" class="project-link" aria-label="View live site">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                </a>
-                                <a href="#" class="project-link" aria-label="View source code">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                                </a>
+            <div id="projects-react-root">
+                <div class="projects-toolbar">
+                    <label class="projects-sort-label" for="projects-sort-fallback" data-i18n="projects.sortLabel">Ordenar por</label>
+                    <select class="projects-sort-select" id="projects-sort-fallback" disabled>
+                        <option data-i18n="projects.sortFeatured">Destacados</option>
+                    </select>
+                </div>
+                <div class="projects-grid">
+                    <article class="project-card project-card-featured" id="project-1">
+                        <div class="project-image-wrapper">
+                            <img src="assets/images/Banner Porfolio.png" alt="Banner Porfolio" class="project-image">
+                            <div class="project-image-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link" aria-label="View live site">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    </a>
+                                    <a href="#" class="project-link" aria-label="View source code">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-label" data-i18n="projects.project1Label">Proyecto 360</span>
-                        <h3 class="project-title" data-i18n="projects.project1Title">Diseño y desarrollo desde cero</h3>
-                        <p class="project-description" data-i18n="projects.project1Description">
-                            A full-featured e-commerce platform with user authentication, product management, shopping cart, and payment integration. Built with modern web technologies for optimal performance.
-                        </p>
-                        <div class="project-tech-stack">
-                            <span class="project-tech" data-i18n="projects.project1Tech1">React</span>
-                            <span class="project-tech" data-i18n="projects.project1Tech2">Node.js</span>
-                            <span class="project-tech" data-i18n="projects.project1Tech3">MongoDB</span>
-                            <span class="project-tech" data-i18n="projects.project1Tech4">Stripe</span>
+                        <div class="project-info">
+                            <span class="project-label" data-i18n="projects.project1Label">Proyecto 360</span>
+                            <h3 class="project-title" data-i18n="projects.project1Title">Diseño y desarrollo desde cero</h3>
+                            <p class="project-description" data-i18n="projects.project1Description">Una plataforma de comercio electrónico completa con autenticación de usuarios, gestión de productos, carrito de compra e integración de pagos.</p>
+                            <div class="project-tech-stack">
+                                <span class="project-tech" data-i18n="projects.project1Tech1">React</span>
+                                <span class="project-tech" data-i18n="projects.project1Tech2">Node.js</span>
+                                <span class="project-tech" data-i18n="projects.project1Tech3">MongoDB</span>
+                                <span class="project-tech" data-i18n="projects.project1Tech4">Stripe</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
+                    </article>
+                </div>
             </div>
         </div>
     </section>
@@ -447,5 +452,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>
     <script src="section-animations.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="projects-react.js"></script>
 </body>
 </html>

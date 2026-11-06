@@ -49,6 +49,10 @@
     "projects": {
       "title": "Proyectos",
       "subtitle": "Una selección de proyectos en los que exploro la relación entre diseño, interacción y desarrollo web, desde el concepto hasta la implementación.",
+      "sortLabel": "Ordenar por",
+      "sortFeatured": "Destacados",
+      "sortNameAsc": "Nombre (A-Z)",
+      "sortNameDesc": "Nombre (Z-A)",
       "project1Label": "Proyecto 360",
       "project1Title": "Diseño y desarrollo desde cero",
       "project1Description": "Una plataforma de comercio electrónico completa con autenticación de usuarios, gestión de productos, carrito de compra e integración de pagos. Construida con tecnologías web modernas para un rendimiento óptimo.",
@@ -188,6 +192,10 @@
     "projects": {
       "title": "Projects",
       "subtitle": "A selection of projects in which I explore the relationship between design, interaction, and web development, from concept through implementation.",
+      "sortLabel": "Sort by",
+      "sortFeatured": "Featured",
+      "sortNameAsc": "Name (A-Z)",
+      "sortNameDesc": "Name (Z-A)",
       "project1Label": "360 Project",
       "project1Title": "Design and development from scratch",
       "project1Description": "A full-featured e-commerce platform with user authentication, product management, shopping cart, and payment integration. Built with modern web technologies for optimal performance.",
@@ -294,6 +302,10 @@
     "projects": {
       "title": "Projectes",
       "subtitle": "Una selecció de projectes en què exploro la relació entre disseny, interacció i desenvolupament web, des del concepte fins a la implementació.",
+      "sortLabel": "Ordena per",
+      "sortFeatured": "Destacats",
+      "sortNameAsc": "Nom (A-Z)",
+      "sortNameDesc": "Nom (Z-A)",
       "project1Label": "Projecte 360",
       "project1Title": "Disseny i desenvolupament des de zero",
       "project1Description": "Una plataforma de comerç electrònic completa amb autenticació d'usuaris, gestió de productes, carretó de compra i integració de pagaments. Construïda amb tecnologies web modernes per a un rendiment òptim.",

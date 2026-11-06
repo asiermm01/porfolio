@@ -40,6 +40,7 @@ class I18n {
 
             this.initialized = true;
             this.applyTranslations();
+            document.dispatchEvent(new CustomEvent('translationsready'));
             return true;
         } catch (error) {
             console.error('Error loading translations:', error);
