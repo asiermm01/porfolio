@@ -64,7 +64,24 @@
 
     .project-card {
         grid-template-columns: 1fr;
+        grid-template-rows: 150px minmax(0, 1fr);
         clip-path: var(--component-esquina-responsive);
+    }
+
+    .project-info {
+        min-height: 0;
+        padding: 16px 20px;
+        gap: 8px;
+    }
+
+    .project-tech {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+
+    .project-description {
+        -webkit-line-clamp: 2;
+        line-height: 1.5;
     }
 
     .project-card:nth-child(even) {
@@ -76,7 +93,7 @@
     }
 
     .project-image-wrapper {
-        min-height: 250px;
+        min-height: 180px;
     }
 }
 

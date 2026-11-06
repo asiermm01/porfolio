@@ -448,8 +448,7 @@
 }
 
 .projects-grid {
-    margin-block: auto;
-    margin-top: 40px;
+    margin-top: 24px;
 }
 
 .projects .section-subtitle {
@@ -487,12 +486,49 @@
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 450px);
     gap: 40px;
+}
+
+.projects-grid.is-transitioning {
+    animation: projects-page-exit 180ms ease-in both;
+}
+
+.projects-grid:not(.is-transitioning) {
+    animation: projects-page-enter 280ms ease-out both;
+}
+
+.projects-grid[data-transition-direction="forward"] {
+    --projects-slide-direction: -24px;
+}
+
+.projects-grid[data-transition-direction="backward"] {
+    --projects-slide-direction: 24px;
+}
+
+@keyframes projects-page-exit {
+    to {
+        opacity: 0;
+        transform: translateX(calc(var(--projects-slide-direction, 0px) * -0.5));
+    }
+}
+
+@keyframes projects-page-enter {
+    from {
+        opacity: 0;
+        transform: translateX(var(--projects-slide-direction, 0px));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .project-card {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
+    height: 450px;
+    max-height: 450px;
     background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     overflow: hidden;
@@ -580,6 +616,27 @@
     gap: 16px;
 }
 
+.project-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+}
+
+.project-year,
+.project-demo-badge {
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+}
+
+.project-demo-badge {
+    padding: 4px 9px;
+    color: var(--accent-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+}
+
 .project-label {
     font-family: var(--font-mono);
     font-size: var(--font-size-sm);
@@ -593,12 +650,21 @@
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .project-description {
     color: var(--text-secondary);
     font-size: var(--font-size-natural);
     line-height: 1.8;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
 }
 
 .project-tech-stack {
@@ -623,4 +689,93 @@
 .project-tech:hover {
     border-color: var(--accent-primary);
     background-color: var(--accent-glow);
+}
+
+.projects-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin: 24px 0 0;
+}
+
+.projects-pagination-top {
+    margin-bottom: 0;
+}
+
+.projects-pagination-bottom {
+    margin-top: 32px;
+}
+
+.projects-page-button {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 10px;
+    color: var(--text-primary);
+    font: inherit;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.projects-page-button.is-active {
+    color: var(--color-white);
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.projects-page-button:hover:not(:disabled):not(.is-active) {
+    background: var(--bg-card);
+}
+
+.projects-pagination[data-transition-direction="forward"] {
+    --projects-indicator-offset: -10px;
+}
+
+.projects-pagination[data-transition-direction="backward"] {
+    --projects-indicator-offset: 10px;
+}
+
+.projects-page-button.is-active {
+    animation: projects-pagination-enter 280ms ease-out both;
+}
+
+@keyframes projects-pagination-enter {
+    from {
+        opacity: 0.35;
+        transform: translateX(var(--projects-indicator-offset, 0px)) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+.projects-page-button:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 3px;
+}
+
+.projects-page-button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.projects-page-arrow {
+    font-size: 1.25rem;
+}
+
+.projects-page-ellipsis {
+    color: var(--text-secondary);
+    padding: 0 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .projects-grid.is-transitioning,
+    .projects-grid:not(.is-transitioning),
+    .projects-page-button.is-active {
+        animation: none;
+    }
 }
