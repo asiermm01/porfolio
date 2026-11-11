@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-src 'none'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests">
     <title>Asier — Portfolio</title>
     <meta name="description" content="Asier's personal portfolio showcasing projects, skills, and experience in web development.">
     <meta name="theme-color" content="#ffffff">
@@ -348,30 +350,25 @@
                 <form class="contact-form" id="contact-form" action="https://formspree.io/f/xljrzakw" method="POST">
                 <div class="form-group">
                     <label for="name" class="form-label" data-i18n="contact.nameLabel">Nombre</label>
-                    <input type="text" id="name" name="Nombre" class="form-input" data-i18n-target="placeholder" data-i18n="contact.namePlaceholder" placeholder="Tu nombre" required>
+                    <input type="text" id="name" name="Nombre" class="form-input" data-i18n-target="placeholder" data-i18n="contact.namePlaceholder" placeholder="Tu nombre" autocomplete="name" maxlength="100" required>
                     <span class="form-highlight"></span>
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label" data-i18n="contact.emailLabel">Correo</label>
-                    <input type="email" id="email" name="Email" class="form-input" data-i18n-target="placeholder" data-i18n="contact.emailPlaceholder" placeholder="nombre@dominio.com" required>
+                    <input type="email" id="email" name="Email" class="form-input" data-i18n-target="placeholder" data-i18n="contact.emailPlaceholder" placeholder="nombre@dominio.com" autocomplete="email" maxlength="254" required>
                     <span class="form-highlight"></span>
                 </div>
                 <div class="form-group">
                     <label for="subject" class="form-label" data-i18n="contact.subjectLabel">Asunto</label>
-                    <input type="text" id="subject" name="Asunto" class="form-input" data-i18n-target="placeholder" data-i18n="contact.subjectPlaceholder" placeholder="Asunto del mensaje">
+                    <input type="text" id="subject" name="Asunto" class="form-input" data-i18n-target="placeholder" data-i18n="contact.subjectPlaceholder" placeholder="Asunto del mensaje" maxlength="150">
                     <span class="form-highlight"></span>
                 </div>
                 <div class="form-group">
                     <label for="message" class="form-label" data-i18n="contact.messageLabel">Mensaje</label>
-                    <textarea id="message" name="Mensaje" class="form-input form-textarea" data-i18n-target="placeholder" data-i18n="contact.messagePlaceholder" placeholder="Cuéntame en qué puedo ayudarte..." rows="5" required></textarea>
+                    <textarea id="message" name="Mensaje" class="form-input form-textarea" data-i18n-target="placeholder" data-i18n="contact.messagePlaceholder" placeholder="Cuéntame en qué puedo ayudarte..." rows="5" maxlength="5000" required></textarea>
                     <span class="form-highlight"></span>
                 </div>
-                <div class="form-group form-checkbox-group">
-                    <input type="checkbox" id="privacy" name="privacy" class="form-checkbox" required>
-                    <label for="privacy" class="form-checkbox-label">
-                        <span data-i18n="contact.privacyPrefix">He leído y acepto la </span><a href="privacidad.html" data-i18n="contact.privacyLink" class="form-link">política de privacidad</a>
-                    </label>
-                </div>
+                <p class="form-privacy-notice"><span data-i18n="contact.privacyNotice">Al enviar este formulario, enviarás tu nombre, correo, asunto si lo incluyes y mensaje a través de Formspree para que pueda responderte. Consulta la</span> <a href="privacidad.html" data-i18n="contact.privacyLink" class="form-link">política de privacidad</a>.</p>
                 <button type="submit" class="btn btn-primary btn-submit" id="submit-btn">
                     <span class="btn-text" data-i18n="contact.submitText">Enviar mensaje</span>
                 </button>
@@ -445,15 +442,15 @@
     </footer>
 
     <!-- Animation Engine (GSAP + ScrollTrigger) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" integrity="sha384-RVPQwTb0fPz9kI8s5GwAq1Qioto9fnEQt1aKGSQSm8xV6+DIdBSgcCShoHqfKnhv" crossorigin="anonymous"></script>
     <!-- 3D Graphics Engine (Three.js) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
     <script src="script.js"></script>
     <script src="section-animations.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js" integrity="sha384-DGyLxAyjq0f9SPpVevD6IgztCFlnMF6oW/XQGmfe+IsZ8TqEiDrcHkMLKI6fiB/Z" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js" integrity="sha384-gTGxhz21lVGYNMcdJOyq01Edg0jhn/c22nsx0kyqP0TxaV5WVdsSH1fSDUf5YJj1" crossorigin="anonymous"></script>
     <script src="projects-react.js"></script>
 </body>
 </html>

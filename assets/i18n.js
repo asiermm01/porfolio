@@ -52,14 +52,24 @@ class I18n {
      * Get stored language from localStorage
      */
     getStoredLanguage() {
-        return localStorage.getItem('preferredLanguage');
+        try {
+            const language = window.localStorage.getItem('preferredLanguage');
+            return ['es', 'en', 'ca'].includes(language) ? language : null;
+        } catch (error) {
+            console.warn('Could not read the saved language preference:', error);
+            return null;
+        }
     }
 
     /**
      * Save language preference to localStorage
      */
     saveLanguagePreference(lang) {
-        localStorage.setItem('preferredLanguage', lang);
+        try {
+            window.localStorage.setItem('preferredLanguage', lang);
+        } catch (error) {
+            console.warn('Could not save the language preference:', error);
+        }
     }
 
     /**
@@ -138,6 +148,7 @@ class I18n {
             return;
         }
 
+        document.documentElement.lang = this.currentLanguage;
         const elements = document.querySelectorAll('[data-i18n]');
         
         elements.forEach(element => {
@@ -146,13 +157,53 @@ class I18n {
             const target = element.getAttribute('data-i18n-target');
 
             if (element.getAttribute('data-i18n-html') === 'true' || target === 'html') {
-                element.innerHTML = translation;
+                element.replaceChildren(...this.createSafeTranslationNodes(translation));
             } else if (target) {
                 element.setAttribute(target, translation);
             } else {
                 element.textContent = translation;
             }
         });
+    }
+
+    createSafeTranslationNodes(html) {
+        const parsed = new DOMParser().parseFromString(html, 'text/html');
+        const allowedTags = new Set(['A', 'BR', 'STRONG']);
+
+        const copyNode = (node) => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                return document.createTextNode(node.textContent || '');
+            }
+
+            if (node.nodeType !== Node.ELEMENT_NODE || !allowedTags.has(node.tagName)) {
+                return document.createTextNode(node.textContent || '');
+            }
+
+            const safeNode = document.createElement(node.tagName.toLowerCase());
+            if (node.tagName === 'A') {
+                const href = node.getAttribute('href');
+                if (href) {
+                    try {
+                        const url = new URL(href, window.location.href);
+                        if (url.protocol === 'https:' || url.protocol === 'mailto:') {
+                            safeNode.setAttribute('href', url.href);
+                        }
+                    } catch (error) {
+                        console.warn('Discarded an invalid link in a translation:', error);
+                    }
+                }
+
+                if (node.getAttribute('target') === '_blank') {
+                    safeNode.setAttribute('target', '_blank');
+                    safeNode.setAttribute('rel', 'noopener noreferrer');
+                }
+            }
+
+            safeNode.replaceChildren(...Array.from(node.childNodes, copyNode));
+            return safeNode;
+        };
+
+        return Array.from(parsed.body.childNodes, copyNode);
     }
 
     /**

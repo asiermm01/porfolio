@@ -176,6 +176,13 @@
     margin-top: 3px;
 }
 
+.form-privacy-notice {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.45;
+    margin: -4px 0 0;
+}
+
 .form-link {
     color: var(--accent-primary);
     text-decoration: none;
